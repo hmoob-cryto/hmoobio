@@ -50,14 +50,20 @@ export default function AppPreview() {
               </a>
             </div>
           </div>
-          <div className="flex justify-center items-end gap-[-20px]">
-            <div className="relative z-10 -mr-6">
-              <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full scale-75" />
-              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[260px] sm:w-[300px] drop-shadow-2xl" loading="lazy" width={800} height={1200} />
+          <div className="flex justify-center items-center">
+            <div className="relative z-10 -mr-8 lg:-mr-12 translate-y-4">
+              <div className="absolute inset-0 bg-primary/15 blur-[100px] rounded-full scale-75" />
+              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[240px] sm:w-[300px] lg:w-[340px] drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500" loading="lazy" width={896} height={1344} />
+              <div className="text-center mt-3">
+                <span className="text-xs font-mono text-primary/80 bg-primary/[0.08] px-3 py-1 rounded-full border border-primary/15">hmoob.io</span>
+              </div>
             </div>
-            <div className="relative z-20 -ml-6">
-              <div className="absolute inset-0 bg-secondary/10 blur-[80px] rounded-full scale-75" />
-              <img src={appMockup2} alt="HMOOB Mining App - Wallet" className="relative w-[260px] sm:w-[300px] drop-shadow-2xl" loading="lazy" width={800} height={1200} />
+            <div className="relative z-20 -ml-8 lg:-ml-12 -translate-y-4">
+              <div className="absolute inset-0 bg-secondary/15 blur-[100px] rounded-full scale-75" />
+              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[240px] sm:w-[300px] lg:w-[340px] drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500" loading="lazy" width={896} height={1344} />
+              <div className="text-center mt-3">
+                <span className="text-xs font-mono text-secondary/80 bg-secondary/[0.08] px-3 py-1 rounded-full border border-secondary/15">Bitget Wallet</span>
+              </div>
             </div>
           </div>
         </div>
