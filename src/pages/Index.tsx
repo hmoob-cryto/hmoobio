@@ -22,7 +22,6 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
       <Hero />
-      <Hero />
       <TrustBanner />
       <StatsBar />
       <About />
