@@ -1,12 +1,14 @@
 import { Quote } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import visionBg from "@/assets/vision-bg.jpg";
 
 export default function Vision() {
   const { t } = useLanguage();
 
   return (
     <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.04)_0%,_transparent_60%)]" />
+      <img src={visionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" width={1920} height={1080} />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/75 to-background" />
       <div className="container max-w-4xl text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-8 mx-auto">
           <span className="w-8 h-px bg-primary/50" />{t("vision.label")}<span className="w-8 h-px bg-primary/50" />
