@@ -6,6 +6,7 @@ const links = [
   { label: "About", id: "about" },
   { label: "How It Works", id: "how-it-works" },
   { label: "Features", id: "features" },
+  { label: "Security", id: "security" },
   { label: "Boost Plans", id: "boost" },
   { label: "Ecosystem", id: "ecosystem" },
   { label: "FAQ", id: "faq" },
