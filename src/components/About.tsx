@@ -5,7 +5,7 @@ export default function About() {
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="section-fade py-28 relative overflow-hidden">
+    <section id="about" className="py-28 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[120px]" />
       <div className="container max-w-5xl relative">
         <div className="grid md:grid-cols-[1fr_auto] gap-16 items-center">

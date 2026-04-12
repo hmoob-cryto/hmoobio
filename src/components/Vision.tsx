@@ -5,7 +5,7 @@ export default function Vision() {
   const { t } = useLanguage();
 
   return (
-    <section className="section-fade py-28 relative overflow-hidden">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.04)_0%,_transparent_60%)]" />
       <div className="container max-w-4xl text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-8 mx-auto">

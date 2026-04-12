@@ -70,7 +70,7 @@ export default function Testimonials() {
   const items = [...testimonials, ...testimonials];
 
   return (
-    <section className="section-fade py-28 bg-surface relative overflow-hidden">
+    <section className="py-28 bg-surface relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsla(36,90%,55%,0.03)_0%,_transparent_50%)]" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">

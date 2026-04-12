@@ -18,7 +18,7 @@ export default function HowItWorks() {
   if (!steps) return null;
 
   return (
-    <section id="how-it-works" className="section-fade py-28 bg-surface relative overflow-hidden">
+    <section id="how-it-works" className="py-28 bg-surface relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">

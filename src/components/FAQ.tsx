@@ -17,7 +17,7 @@ export default function FAQ() {
   if (!faqs) return null;
 
   return (
-    <section id="faq" className="section-fade py-28 relative overflow-hidden">
+    <section id="faq" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsla(172,55%,39%,0.03)_0%,_transparent_50%)]" />
       <div className="container max-w-3xl relative">
         <div className="text-center mb-16">
