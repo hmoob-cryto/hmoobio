@@ -1,15 +1,15 @@
 import { useCountUp } from "@/hooks/useCountUp";
-import { Users, Zap, Coins, Clock } from "lucide-react";
+import { Users, Zap, Coins, Clock, Shield } from "lucide-react";
 import { type LucideIcon } from "lucide-react";
 
-const stats: { label: string; value: number; suffix: string; icon: LucideIcon }[] = [
-  { label: "Active Miners", value: 3310, suffix: "+", icon: Users },
-  { label: "Hash Rate Boosts", value: 6, suffix: " Plans", icon: Zap },
-  { label: "ROI per Year", value: 365, suffix: "%", icon: Coins },
-  { label: "Boost Duration", value: 365, suffix: " Days", icon: Clock },
+const stats: { label: string; value: number; suffix: string; icon: LucideIcon; detail: string }[] = [
+  { label: "Active Miners", value: 3310, suffix: "+", icon: Users, detail: "Growing daily" },
+  { label: "Boost Plans", value: 6, suffix: " Tiers", icon: Zap, detail: "10–1,000 HMOOB" },
+  { label: "Annual ROI", value: 365, suffix: "%", icon: Coins, detail: "Over 365 days" },
+  { label: "Wallet Users", value: 80, suffix: "M+", icon: Shield, detail: "Bitget Wallet" },
 ];
 
-function StatItem({ label, value, suffix, icon: Icon }: { label: string; value: number; suffix: string; icon: LucideIcon }) {
+function StatItem({ label, value, suffix, icon: Icon, detail }: { label: string; value: number; suffix: string; icon: LucideIcon; detail: string }) {
   const { value: count, ref } = useCountUp(value);
 
   return (
@@ -20,7 +20,8 @@ function StatItem({ label, value, suffix, icon: Icon }: { label: string; value: 
       <div className="font-display text-3xl sm:text-4xl font-bold text-gradient-gold tracking-tight">
         {count.toLocaleString()}{suffix}
       </div>
-      <div className="text-muted-foreground text-sm font-medium">{label}</div>
+      <div className="text-foreground text-sm font-medium">{label}</div>
+      <div className="text-muted-foreground text-xs font-mono">{detail}</div>
     </div>
   );
 }

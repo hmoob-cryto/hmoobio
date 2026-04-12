@@ -1,11 +1,13 @@
 import { useScrollFade } from "@/hooks/useScrollFade";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TrustBanner from "@/components/TrustBanner";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
 import AppPreview from "@/components/AppPreview";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
+import SecuritySection from "@/components/SecuritySection";
 import BoostPlans from "@/components/BoostPlans";
 import Ecosystem from "@/components/Ecosystem";
 import Vision from "@/components/Vision";
@@ -23,11 +25,13 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
+      <TrustBanner />
       <StatsBar />
       <About />
       <AppPreview />
       <HowItWorks />
       <Features />
+      <SecuritySection />
       <BoostPlans />
       <Ecosystem />
       <Vision />
