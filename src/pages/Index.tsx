@@ -1,4 +1,3 @@
-import { useScrollFade } from "@/hooks/useScrollFade";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBanner from "@/components/TrustBanner";
@@ -19,10 +18,8 @@ import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 
 export default function Index() {
-  useScrollFade();
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
       <Hero />
       <TrustBanner />
