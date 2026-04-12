@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
 
 const links = ["About", "How It Works", "Features", "Ecosystem", "FAQ"];
 
@@ -21,8 +22,9 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass border-b border-border" : ""}`}>
       <div className="container flex items-center justify-between h-16">
-        <a href="#" className="font-display text-xl font-bold text-foreground">
-          <span className="text-gradient-gold">hmoob</span>.io
+        <a href="#" className="flex items-center gap-2">
+          <img src={logo} alt="Hmoob.io" className="w-10 h-10 rounded-full" />
+          <span className="font-display text-lg font-bold text-foreground"><span className="text-gradient-gold">hmoob</span>.io</span>
         </a>
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (

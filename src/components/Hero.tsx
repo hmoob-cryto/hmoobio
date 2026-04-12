@@ -1,3 +1,5 @@
+import logo from "@/assets/logo.jpeg";
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -6,10 +8,8 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="container relative z-10 text-center px-4">
-        <div className="inline-block mb-6 animate-fade-up-1">
-          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-medium border border-primary/30 text-primary bg-primary/5">
-            ⛏️ Cloud Mining Made Simple
-          </span>
+        <div className="mb-8 animate-fade-up-1">
+          <img src={logo} alt="Hmong Coin" className="w-28 h-28 rounded-full mx-auto shadow-lg shadow-primary/30 animate-glow-pulse" />
         </div>
         <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-up-1">
           Mine Crypto.<br />
