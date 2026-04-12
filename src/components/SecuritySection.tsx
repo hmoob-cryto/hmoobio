@@ -15,7 +15,7 @@ export default function SecuritySection() {
     },
   });
 
-  if (!features?.length) return null;
+  if (!features) return null;
 
   return (
     <section id="security" className="section-fade py-28 relative overflow-hidden">

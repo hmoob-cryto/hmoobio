@@ -15,7 +15,7 @@ export default function Ecosystem() {
     },
   });
 
-  if (!items?.length) return null;
+  if (!items) return null;
 
   return (
     <section id="ecosystem" className="section-fade py-28 relative overflow-hidden">

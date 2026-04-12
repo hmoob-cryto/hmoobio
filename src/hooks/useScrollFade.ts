@@ -10,9 +10,34 @@ export function useScrollFade() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: "50px" }
     );
-    document.querySelectorAll(".section-fade").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+
+    const observeAll = () => {
+      document.querySelectorAll(".section-fade").forEach((el) => {
+        if (!el.hasAttribute("data-observed")) {
+          el.setAttribute("data-observed", "true");
+          observer.observe(el);
+        }
+      });
+    };
+
+    // Initial pass
+    observeAll();
+
+    // Watch for dynamically added elements
+    const mutationObserver = new MutationObserver(observeAll);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    // Fallback: periodic check for first 5 seconds
+    const interval = setInterval(observeAll, 500);
+    const timeout = setTimeout(() => clearInterval(interval), 5000);
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, []);
 }

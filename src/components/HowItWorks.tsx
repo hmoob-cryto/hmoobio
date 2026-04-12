@@ -15,7 +15,7 @@ export default function HowItWorks() {
     },
   });
 
-  if (!steps?.length) return null;
+  if (!steps) return null;
 
   return (
     <section id="how-it-works" className="section-fade py-28 bg-surface relative overflow-hidden">

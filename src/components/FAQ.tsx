@@ -14,7 +14,7 @@ export default function FAQ() {
     },
   });
 
-  if (!faqs?.length) return null;
+  if (!faqs) return null;
 
   return (
     <section id="faq" className="section-fade py-28 relative overflow-hidden">
