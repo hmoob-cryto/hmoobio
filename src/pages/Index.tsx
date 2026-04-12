@@ -22,6 +22,7 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
       <Hero />
+      <div style={{padding: '40px', background: 'red', color: 'white', fontSize: '24px'}}>TEST SECTION VISIBLE</div>
       <TrustBanner />
       <StatsBar />
       <About />
