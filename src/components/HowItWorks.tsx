@@ -1,17 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Download } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
 
 export default function HowItWorks() {
+  const { locale, t } = useLanguage();
   const { data: steps } = useQuery({
-    queryKey: ["how_it_works_steps"],
+    queryKey: ["how_it_works_steps", locale],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("how_it_works_steps")
-        .select("*")
-        .eq("is_active", true)
-        .order("sort_order");
+      const { data, error } = await supabase.from("how_it_works_steps").select("*").eq("is_active", true).eq("locale", locale).order("sort_order");
       if (error) throw error;
       return data;
     },
@@ -24,12 +22,10 @@ export default function HowItWorks() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
-          <span className="w-8 h-px bg-primary/50" />
-          How It Works
-          <span className="w-8 h-px bg-primary/50" />
+          <span className="w-8 h-px bg-primary/50" />{t("howItWorks.label")}<span className="w-8 h-px bg-primary/50" />
         </span>
         <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-20">
-          Four Steps to <span className="text-gradient-gold">Mine HMOOB</span>
+          {t("howItWorks.title1")} <span className="text-gradient-gold">{t("howItWorks.title2")}</span>
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {steps.map((s, i) => {
@@ -38,9 +34,7 @@ export default function HowItWorks() {
               <div key={s.id} className="relative group">
                 <div className="relative z-10 flex flex-col items-center p-7 rounded-2xl border border-border bg-background hover:border-primary/20 transition-all duration-500 group-hover:-translate-y-1 h-full">
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="font-mono text-[11px] font-bold text-primary-foreground bg-primary px-3 py-1 rounded-full">
-                      0{i + 1}
-                    </span>
+                    <span className="font-mono text-[11px] font-bold text-primary-foreground bg-primary px-3 py-1 rounded-full">0{i + 1}</span>
                   </div>
                   <div className="w-16 h-16 rounded-2xl bg-primary/[0.08] border border-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary/[0.12] group-hover:border-primary/25 transition-all duration-300">
                     <Icon className="text-primary" size={28} />
@@ -52,20 +46,14 @@ export default function HowItWorks() {
             );
           })}
         </div>
-
         <div className="mt-16">
-          <a
-            href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-surface-elevated border border-border hover:border-primary/20 px-8 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 group"
-          >
+          <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-surface-elevated border border-border hover:border-primary/20 px-8 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 group">
             <div className="w-10 h-10 rounded-xl bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/[0.15] transition-colors">
               <Download size={20} className="text-primary" />
             </div>
             <div className="text-left">
-              <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Get it on Google Play</div>
-              <div className="font-display font-bold">Bitget Wallet</div>
+              <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">{t("howItWorks.cta")}</div>
+              <div className="font-display font-bold">{t("howItWorks.wallet")}</div>
             </div>
           </a>
         </div>

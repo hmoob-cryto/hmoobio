@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
-
-const links = [
-  { label: "About", id: "about" },
-  { label: "How It Works", id: "how-it-works" },
-  { label: "Features", id: "features" },
-  { label: "Security", id: "security" },
-  { label: "Boost Plans", id: "boost" },
-  { label: "Ecosystem", id: "ecosystem" },
-  { label: "FAQ", id: "faq" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
+
+  const links = [
+    { label: t("nav.about"), id: "about" },
+    { label: t("nav.howItWorks"), id: "how-it-works" },
+    { label: t("nav.features"), id: "features" },
+    { label: t("nav.security"), id: "security" },
+    { label: t("nav.boostPlans"), id: "boost" },
+    { label: t("nav.ecosystem"), id: "ecosystem" },
+    { label: t("nav.faq"), id: "faq" },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -26,6 +28,8 @@ export default function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setOpen(false);
   };
+
+  const toggleLang = () => setLocale(locale === "en" ? "hmn" : "en");
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass border-b border-border shadow-lg shadow-background/50" : ""}`}>
@@ -50,17 +54,36 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
-          <div className="w-px h-6 bg-border mx-3" />
+          <div className="w-px h-6 bg-border mx-2" />
+          {/* Language toggle */}
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200 font-mono"
+            title={locale === "en" ? "Switch to Hmong" : "Switch to English"}
+          >
+            <Globe size={15} />
+            <span className="text-xs font-bold uppercase">{locale === "en" ? "EN" : "HM"}</span>
+          </button>
+          <div className="w-px h-6 bg-border mx-2" />
           <button
             onClick={() => scrollTo("cta")}
             className="bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5"
           >
-            Get Started
+            {t("nav.getStarted")}
           </button>
         </div>
-        <button className="lg:hidden text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors" onClick={() => setOpen(!open)}>
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors font-mono text-xs font-bold"
+          >
+            <Globe size={15} />
+            {locale === "en" ? "EN" : "HM"}
+          </button>
+          <button className="text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors" onClick={() => setOpen(!open)}>
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
       {open && (
         <div className="lg:hidden glass border-t border-border px-4 pb-4 pt-2 flex flex-col gap-1 animate-fade-up-1">
@@ -77,7 +100,7 @@ export default function Navbar() {
             onClick={() => scrollTo("cta")}
             className="bg-primary text-primary-foreground px-5 py-3 rounded-lg text-sm font-semibold mt-2"
           >
-            Get Started
+            {t("nav.getStarted")}
           </button>
         </div>
       )}

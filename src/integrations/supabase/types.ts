@@ -19,6 +19,7 @@ export type Database = {
           created_at: string
           id: string
           is_active: boolean
+          locale: string
           sort_order: number
           text: string
         }
@@ -26,6 +27,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           text: string
         }
@@ -33,6 +35,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           text?: string
         }
@@ -46,6 +49,7 @@ export type Database = {
           id: string
           is_active: boolean
           is_recommended: boolean
+          locale: string
           name: string
           sort_order: number
           total_return: string
@@ -59,6 +63,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           is_recommended?: boolean
+          locale?: string
           name: string
           sort_order?: number
           total_return: string
@@ -72,6 +77,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           is_recommended?: boolean
+          locale?: string
           name?: string
           sort_order?: number
           total_return?: string
@@ -87,6 +93,7 @@ export type Database = {
           icon_name: string
           id: string
           is_active: boolean
+          locale: string
           name: string
           sort_order: number
           updated_at: string
@@ -98,6 +105,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           name: string
           sort_order?: number
           updated_at?: string
@@ -109,6 +117,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           name?: string
           sort_order?: number
           updated_at?: string
@@ -122,6 +131,7 @@ export type Database = {
           created_at: string
           id: string
           is_active: boolean
+          locale: string
           question: string
           sort_order: number
           updated_at: string
@@ -131,6 +141,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_active?: boolean
+          locale?: string
           question: string
           sort_order?: number
           updated_at?: string
@@ -140,6 +151,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_active?: boolean
+          locale?: string
           question?: string
           sort_order?: number
           updated_at?: string
@@ -153,6 +165,7 @@ export type Database = {
           icon_name: string
           id: string
           is_active: boolean
+          locale: string
           sort_order: number
           title: string
           updated_at: string
@@ -163,6 +176,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           title: string
           updated_at?: string
@@ -173,6 +187,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           title?: string
           updated_at?: string
@@ -186,6 +201,7 @@ export type Database = {
           icon_name: string
           id: string
           is_active: boolean
+          locale: string
           sort_order: number
           title: string
           updated_at: string
@@ -196,6 +212,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           title: string
           updated_at?: string
@@ -206,6 +223,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           title?: string
           updated_at?: string
@@ -219,6 +237,7 @@ export type Database = {
           icon_name: string
           id: string
           is_active: boolean
+          locale: string
           sort_order: number
           title: string
           updated_at: string
@@ -229,6 +248,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           title: string
           updated_at?: string
@@ -239,6 +259,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           title?: string
           updated_at?: string
@@ -253,6 +274,7 @@ export type Database = {
           id: string
           is_active: boolean
           label: string
+          locale: string
           sort_order: number
           suffix: string
           updated_at: string
@@ -265,6 +287,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           label: string
+          locale?: string
           sort_order?: number
           suffix?: string
           updated_at?: string
@@ -277,6 +300,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           label?: string
+          locale?: string
           sort_order?: number
           suffix?: string
           updated_at?: string
@@ -294,6 +318,7 @@ export type Database = {
           initials: string
           is_active: boolean
           is_verified: boolean
+          locale: string
           name: string
           quote: string
           role: string
@@ -309,6 +334,7 @@ export type Database = {
           initials: string
           is_active?: boolean
           is_verified?: boolean
+          locale?: string
           name: string
           quote: string
           role: string
@@ -324,6 +350,7 @@ export type Database = {
           initials?: string
           is_active?: boolean
           is_verified?: boolean
+          locale?: string
           name?: string
           quote?: string
           role?: string
@@ -338,6 +365,7 @@ export type Database = {
           icon_name: string
           id: string
           is_active: boolean
+          locale: string
           sort_order: number
           text: string
         }
@@ -346,6 +374,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           text: string
         }
@@ -354,6 +383,7 @@ export type Database = {
           icon_name?: string
           id?: string
           is_active?: boolean
+          locale?: string
           sort_order?: number
           text?: string
         }
@@ -365,6 +395,7 @@ export type Database = {
           description: string
           id: string
           is_active: boolean
+          locale: string
           name: string
           sort_order: number
           updated_at: string
@@ -375,6 +406,7 @@ export type Database = {
           description: string
           id?: string
           is_active?: boolean
+          locale?: string
           name: string
           sort_order?: number
           updated_at?: string
@@ -385,6 +417,7 @@ export type Database = {
           description?: string
           id?: string
           is_active?: boolean
+          locale?: string
           name?: string
           sort_order?: number
           updated_at?: string

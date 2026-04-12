@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.jpeg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -19,46 +20,40 @@ const TelegramIcon = () => (
 );
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative border-t border-border pt-16 pb-8">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsla(36,90%,55%,0.03)_0%,_transparent_50%)]" />
       <div className="container relative">
         <div className="grid md:grid-cols-12 gap-10 mb-14">
-          {/* Brand */}
           <div className="md:col-span-4">
             <div className="flex items-center gap-2.5 mb-4">
               <img src={logo} alt="Hmoob.io" className="w-11 h-11 rounded-full ring-2 ring-primary/20" />
               <span className="font-display text-xl font-bold">
-                <span className="text-gradient-gold">hmoob</span>
-                <span className="text-muted-foreground">.io</span>
+                <span className="text-gradient-gold">hmoob</span><span className="text-muted-foreground">.io</span>
               </span>
             </div>
-            <p className="text-muted-foreground text-sm leading-[1.8] max-w-xs mb-4">
-              Cloud-based HMOOB mining on DannyChain Layer 2. Empowering the Hmong community through accessible Web3 technology.
-            </p>
+            <p className="text-muted-foreground text-sm leading-[1.8] max-w-xs mb-4">{t("footer.desc")}</p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-mono text-secondary bg-secondary/[0.06] border border-secondary/15">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary/75 opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-secondary" />
               </span>
-              Platform Online
+              {t("footer.online")}
             </div>
           </div>
-
-          {/* Platform */}
           <div className="md:col-span-2">
-            <h4 className="font-display font-bold text-sm mb-4">Platform</h4>
+            <h4 className="font-display font-bold text-sm mb-4">{t("footer.platform")}</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">Launch App ↗</a>
-              <a href="#how-it-works" className="block hover:text-foreground transition-colors duration-200">How It Works</a>
-              <a href="#boost" className="block hover:text-foreground transition-colors duration-200">Boost Plans</a>
-              <a href="#faq" className="block hover:text-foreground transition-colors duration-200">FAQ</a>
+              <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">{t("footer.launchApp")}</a>
+              <a href="#how-it-works" className="block hover:text-foreground transition-colors duration-200">{t("nav.howItWorks")}</a>
+              <a href="#boost" className="block hover:text-foreground transition-colors duration-200">{t("nav.boostPlans")}</a>
+              <a href="#faq" className="block hover:text-foreground transition-colors duration-200">{t("nav.faq")}</a>
             </div>
           </div>
-
-          {/* Ecosystem */}
           <div className="md:col-span-2">
-            <h4 className="font-display font-bold text-sm mb-4">Ecosystem</h4>
+            <h4 className="font-display font-bold text-sm mb-4">{t("footer.ecosystem")}</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
               <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DannyChain ↗</a>
               <a href="https://danmarket.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanMarket ↗</a>
@@ -66,65 +61,27 @@ export default function Footer() {
               <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">Bitget Wallet ↗</a>
             </div>
           </div>
-
-          {/* Contact & Social */}
           <div className="md:col-span-4">
-            <h4 className="font-display font-bold text-sm mb-4">Contact Us</h4>
+            <h4 className="font-display font-bold text-sm mb-4">{t("footer.contactUs")}</h4>
             <div className="space-y-3 mb-6">
-              <a
-                href="https://wa.me/message/hmoobmining"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[hsl(142,70%,41%)]/10 border border-[hsl(142,70%,41%)]/20 flex items-center justify-center text-[hsl(142,70%,41%)] group-hover:bg-[hsl(142,70%,41%)]/15 group-hover:border-[hsl(142,70%,41%)]/30 transition-all duration-300">
-                  <WhatsAppIcon />
-                </div>
-                <span>Chat on WhatsApp</span>
+              <a href="https://wa.me/message/hmoobmining" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group">
+                <div className="w-9 h-9 rounded-xl bg-[hsl(142,70%,41%)]/10 border border-[hsl(142,70%,41%)]/20 flex items-center justify-center text-[hsl(142,70%,41%)] group-hover:bg-[hsl(142,70%,41%)]/15 group-hover:border-[hsl(142,70%,41%)]/30 transition-all duration-300"><WhatsAppIcon /></div>
+                <span>{t("footer.whatsapp")}</span>
               </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61575614786498"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[hsl(220,46%,48%)]/10 border border-[hsl(220,46%,48%)]/20 flex items-center justify-center text-[hsl(220,46%,48%)] group-hover:bg-[hsl(220,46%,48%)]/15 group-hover:border-[hsl(220,46%,48%)]/30 transition-all duration-300">
-                  <FacebookIcon />
-                </div>
-                <span>Follow on Facebook</span>
+              <a href="https://www.facebook.com/profile.php?id=61575614786498" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group">
+                <div className="w-9 h-9 rounded-xl bg-[hsl(220,46%,48%)]/10 border border-[hsl(220,46%,48%)]/20 flex items-center justify-center text-[hsl(220,46%,48%)] group-hover:bg-[hsl(220,46%,48%)]/15 group-hover:border-[hsl(220,46%,48%)]/30 transition-all duration-300"><FacebookIcon /></div>
+                <span>{t("footer.facebook")}</span>
               </a>
             </div>
             <div className="flex gap-3">
-              <a
-                href="https://www.facebook.com/profile.php?id=61575614786498"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"
-              >
-                <FacebookIcon />
-              </a>
-              <a
-                href="https://wa.me/message/hmoobmining"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"
-              >
-                <WhatsAppIcon />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"
-              >
-                <TelegramIcon />
-              </a>
+              <a href="https://www.facebook.com/profile.php?id=61575614786498" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"><FacebookIcon /></a>
+              <a href="https://wa.me/message/hmoobmining" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"><WhatsAppIcon /></a>
+              <a href="#" className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"><TelegramIcon /></a>
             </div>
           </div>
         </div>
-
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Hmoob.io — Built on DannyChain Layer 2. All rights reserved.
-          </span>
+          <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hmoob.io — {t("footer.copyright")}</span>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DannyChain</a>
             <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DanScan Explorer</a>
