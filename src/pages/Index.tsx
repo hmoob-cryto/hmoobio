@@ -7,6 +7,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import Ecosystem from "@/components/Ecosystem";
 import Vision from "@/components/Vision";
+import VideoSection from "@/components/VideoSection";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import CTASection from "@/components/CTASection";
