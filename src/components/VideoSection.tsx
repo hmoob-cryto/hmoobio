@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import videoAsset from "@/assets/vision-video.mp4.asset.json";
+const VIDEO_URL = "https://oahmqliohtgaehtuhmqp.supabase.co/storage/v1/object/public/media/videos/vision-video.mp4";
 
 export default function VideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
