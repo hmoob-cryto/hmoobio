@@ -1,8 +1,8 @@
-import { Zap, Wallet, Users, Target, ArrowRightLeft, Shield } from "lucide-react";
+import { Zap, Smartphone, Users, Target, ArrowRightLeft, Shield } from "lucide-react";
 
 const features = [
   { icon: Zap, title: "Mining Power Boosts", desc: "Choose from 6 boost tiers (10–1,000 HMOOB) to increase your GH/s hash rate and earn 365% ROI over 365 days." },
-  { icon: Wallet, title: "Built-in Wallet", desc: "View your HMOOB balance, transaction history, buy more tokens, or withdraw — all in one integrated wallet." },
+  { icon: Smartphone, title: "Bitget Wallet Integration", desc: "Connect through the Bitget Wallet app — a trusted Web3 wallet with 80M+ users, built-in DApp browser, and self-custodial security." },
   { icon: Users, title: "Referral Program", desc: "Invite friends and earn 20% bonus plus GH/s hash rate boosts. The more friends join, the faster you mine." },
   { icon: Target, title: "Daily Missions", desc: "Complete tasks and challenges to earn additional HMOOB rewards. New missions available regularly." },
   { icon: ArrowRightLeft, title: "Token Swap", desc: "Swap HMOOB tokens seamlessly via the integrated DANNY Exchange — powered by DannyChain Layer 2." },

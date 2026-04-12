@@ -1,5 +1,5 @@
 import appMockup from "@/assets/app-mockup.png";
-import { Wallet, Users, Home, Zap, Target, ArrowRightLeft } from "lucide-react";
+import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink } from "lucide-react";
 
 const navItems = [
   { icon: Wallet, label: "Wallet" },
@@ -27,8 +27,11 @@ export default function AppPreview() {
               <br />
               <span className="text-gradient-gold">Anytime</span>
             </h2>
-            <p className="text-muted-foreground text-base leading-[1.8] mb-8">
-              HMOOB Mining is built mobile-first — access all features directly from your browser. No app download needed.
+            <p className="text-muted-foreground text-base leading-[1.8] mb-4">
+              HMOOB Mining works seamlessly through the <strong className="text-foreground">Bitget Wallet</strong> app — a trusted Web3 wallet with 80M+ users worldwide. Simply open hmoob.io inside the wallet's DApp browser to access all features.
+            </p>
+            <p className="text-muted-foreground text-sm leading-[1.8] mb-8">
+              Bitget Wallet provides self-custodial security, multi-chain support, and a built-in DApp browser — making it the perfect gateway to HMOOB Mining and the DannyChain ecosystem.
             </p>
 
             {/* Feature nav items */}
@@ -43,14 +46,26 @@ export default function AppPreview() {
               ))}
             </div>
 
-            <a
-              href="https://hmoob.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-10 bg-primary text-primary-foreground px-8 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              Open HMOOB Mining
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 mt-10">
+              <a
+                href="https://hmoob.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <ExternalLink size={18} />
+                Open HMOOB Mining
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-border px-8 py-3.5 rounded-xl font-semibold hover:bg-muted/30 hover:border-muted-foreground/30 transition-all duration-300"
+              >
+                <Download size={18} />
+                Get Bitget Wallet
+              </a>
+            </div>
           </div>
 
           {/* Phone mockup */}

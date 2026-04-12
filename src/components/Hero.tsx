@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.jpeg";
+import { Download } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -33,7 +34,7 @@ export default function Hero() {
         <div className="mb-8 animate-fade-up-2">
           <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-mono font-medium border border-primary/20 text-primary/90 bg-primary/[0.06] shimmer">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            HMOOB Mining — Built on DannyChain
+            HMOOB Mining — Built on DannyChain × Bitget Wallet
           </span>
         </div>
 
@@ -43,7 +44,7 @@ export default function Hero() {
           Earn Every Day.
         </h1>
         <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 animate-fade-up-3 leading-relaxed">
-          Connect your wallet, boost your hash rate, and start mining HMOOB tokens — no hardware needed. Join 3,300+ miners on the DannyChain ecosystem.
+          Connect via Bitget Wallet, boost your hash rate, and mine HMOOB tokens — no hardware needed. Join 3,300+ miners on the DannyChain ecosystem.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-4">
           <a
@@ -56,10 +57,13 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
           <a
-            href="#how-it-works"
-            className="border border-border px-10 py-4 rounded-xl font-semibold text-lg text-foreground hover:bg-muted/30 hover:border-muted-foreground/30 transition-all duration-300"
+            href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-border px-10 py-4 rounded-xl font-semibold text-lg text-foreground hover:bg-muted/30 hover:border-muted-foreground/30 transition-all duration-300"
           >
-            How It Works
+            <Download size={20} />
+            Download Bitget Wallet
           </a>
         </div>
 
