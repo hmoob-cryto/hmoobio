@@ -1,13 +1,13 @@
 import { ArrowRight, Download, Shield } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import ctaBg from "@/assets/cta-bg.jpg";
+import ctaBg from "@/assets/hero-bg.jpg";
 
 export default function CTASection() {
   const { t } = useLanguage();
 
   return (
     <section id="cta" className="py-28 bg-surface relative overflow-hidden">
-      <img src={ctaBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" width={1920} height={1080} />
+      <img src={ctaBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/50" />
       <div className="container max-w-3xl text-center relative z-10">
         <div className="p-10 sm:p-14 rounded-3xl border border-border bg-background/50 relative overflow-hidden">
