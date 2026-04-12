@@ -46,7 +46,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "about.p1": "HMOOB Mining is a cloud-based mining platform built on the DannyChain Layer 2 blockchain. Users connect through the",
     "about.bitget": "Bitget Wallet",
     "about.p1End": "app — a trusted Web3 wallet with 80M+ users — to mine HMOOB tokens by purchasing boost plans and earning daily rewards, all without any physical hardware.",
-    "about.p2": "Part of a growing ecosystem that includes DannyChain (Layer 2 blockchain), DanMarket (decentralized marketplace), and the DANNY Exchange — HMOOB Mining represents the Hmong community's entry into Web3 with a platform designed for accessibility and simplicity.",
+    "about.p2": "Part of a growing ecosystem that includes DannyChain (Layer 2 blockchain), DanDEX (decentralized exchange), DanMarket (decentralized marketplace), and DanScan (blockchain explorer) — HMOOB Mining represents the Hmong community's entry into Web3 with a platform designed for accessibility and simplicity.",
 
     // App Preview
     "appPreview.label": "Mobile-First Platform",
@@ -187,7 +187,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "about.p1": "HMOOB Mining yog ib lub platform khawb crypto hauv huab cua tsim rau ntawm DannyChain Layer 2 blockchain. Cov neeg siv txuas los ntawm",
     "about.bitget": "Bitget Wallet",
     "about.p1End": "app — ib lub Web3 wallet uas muaj 80M+ cov neeg siv — los khawb HMOOB tokens los ntawm kev yuav boost plans thiab khwv tau rewards txhua hnub, tsis xav tau kho vajtse.",
-    "about.p2": "Ib feem ntawm ib lub ecosystem uas loj tuaj suav nrog DannyChain (Layer 2 blockchain), DanMarket (khw muag khoom digital), thiab DANNY Exchange — HMOOB Mining sawv cev rau haiv Hmoob txoj kev nkag mus rau Web3 nrog ib lub platform tsim rau kev yooj yim.",
+    "about.p2": "Ib feem ntawm ib lub ecosystem uas loj tuaj suav nrog DannyChain (Layer 2 blockchain), DanDEX (kev sib pauv crypto), DanMarket (khw muag khoom digital), thiab DanScan (blockchain explorer) — HMOOB Mining sawv cev rau haiv Hmoob txoj kev nkag mus rau Web3 nrog ib lub platform tsim rau kev yooj yim.",
 
     // App Preview
     "appPreview.label": "Mobile-First Platform",
