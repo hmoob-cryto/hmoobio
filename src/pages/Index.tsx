@@ -26,6 +26,7 @@ export default function Index() {
       <Features />
       <Ecosystem />
       <Vision />
+      <VideoSection />
       <Testimonials />
       <FAQ />
       <CTASection />
