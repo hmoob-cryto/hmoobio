@@ -1,39 +1,24 @@
-import { Shield, Lock, Eye, Server, KeyRound, FileCheck } from "lucide-react";
-
-const securityFeatures = [
-  {
-    icon: Lock,
-    title: "Self-Custodial Security",
-    desc: "Your private keys stay in your Bitget Wallet — only you control your funds. No centralized custody risk.",
-  },
-  {
-    icon: Shield,
-    title: "DannyChain Layer 2 Protection",
-    desc: "Built on DannyChain — an EVM-compatible Layer 2 blockchain inheriting Ethereum's battle-tested security model.",
-  },
-  {
-    icon: Eye,
-    title: "Transparent & Verifiable",
-    desc: "All transactions are publicly verifiable on DanScan explorer. Every boost purchase and reward distribution is on-chain.",
-  },
-  {
-    icon: Server,
-    title: "Decentralized Infrastructure",
-    desc: "No single point of failure. Mining operations run on decentralized smart contracts that execute automatically.",
-  },
-  {
-    icon: KeyRound,
-    title: "Secure Wallet Connection",
-    desc: "Connect through Bitget Wallet's DApp browser with industry-standard Web3 protocols. No password sharing required.",
-  },
-  {
-    icon: FileCheck,
-    title: "Smart Contract Audited",
-    desc: "Mining and reward distribution smart contracts are community-reviewed and deployed on the immutable DannyChain blockchain.",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Eye } from "lucide-react";
+import { getIcon } from "@/lib/iconMap";
 
 export default function SecuritySection() {
+  const { data: features } = useQuery({
+    queryKey: ["security_features"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("security_features")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (!features?.length) return null;
+
   return (
     <section id="security" className="section-fade py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
@@ -53,21 +38,23 @@ export default function SecuritySection() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-          {securityFeatures.map((f) => (
-            <div
-              key={f.title}
-              className="group rounded-2xl p-7 bg-surface border border-border hover:border-secondary/20 text-left transition-all duration-500 hover:-translate-y-1"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-secondary/[0.08] border border-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/[0.15] group-hover:border-secondary/25 transition-all duration-300">
-                <f.icon className="text-secondary" size={26} />
+          {features.map((f) => {
+            const Icon = getIcon(f.icon_name);
+            return (
+              <div
+                key={f.id}
+                className="group rounded-2xl p-7 bg-surface border border-border hover:border-secondary/20 text-left transition-all duration-500 hover:-translate-y-1"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-secondary/[0.08] border border-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/[0.15] group-hover:border-secondary/25 transition-all duration-300">
+                  <Icon className="text-secondary" size={26} />
+                </div>
+                <h3 className="font-display text-lg font-bold mb-2.5">{f.title}</h3>
+                <p className="text-muted-foreground text-sm leading-[1.7]">{f.description}</p>
               </div>
-              <h3 className="font-display text-lg font-bold mb-2.5">{f.title}</h3>
-              <p className="text-muted-foreground text-sm leading-[1.7]">{f.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Verify CTA */}
         <div className="mt-14 text-center">
           <a
             href="https://danscan.io"
