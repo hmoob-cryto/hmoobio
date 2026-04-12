@@ -16,12 +16,15 @@ export default function About() {
               <br />Own Crypto Token
             </h2>
             <p className="text-muted-foreground text-base leading-[1.8] mb-5">
-              HMOOB Mining is a cloud-based mining platform built on the DannyChain Layer 2 blockchain. Users can mine HMOOB tokens by connecting their wallet, purchasing boost plans to increase hash rate, and earning daily rewards — all without any physical hardware.
+              HMOOB Mining is a cloud-based mining platform built on the DannyChain Layer 2 blockchain. Users connect through the <strong className="text-foreground">Bitget Wallet</strong> app — a trusted Web3 wallet with 80M+ users — to mine HMOOB tokens by purchasing boost plans and earning daily rewards, all without any physical hardware.
             </p>
             <p className="text-muted-foreground text-base leading-[1.8] mb-5">
               Part of a growing ecosystem that includes DannyChain (Layer 2 blockchain), DanMarket (decentralized marketplace), and the DANNY Exchange — HMOOB Mining represents the Hmong community's entry into Web3 with a platform designed for accessibility and simplicity.
             </p>
-            <div className="flex gap-4 mt-8">
+            <div className="flex flex-wrap gap-4 mt-8">
+              <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-primary hover:text-primary/80 transition-colors border border-primary/20 px-4 py-2 rounded-lg hover:bg-primary/5">
+                Bitget Wallet ↗
+              </a>
               <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
                 DannyChain ↗
               </a>

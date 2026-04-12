@@ -1,10 +1,10 @@
-import { Wallet, Zap, TrendingUp, ArrowRightLeft } from "lucide-react";
+import { Download, Wallet, Zap, TrendingUp } from "lucide-react";
 
 const steps = [
-  { icon: Wallet, title: "Connect Wallet", desc: "Connect your Web3 wallet to the HMOOB Mining platform. Your HMOOB balance and hash rate are tracked in real time." },
-  { icon: Zap, title: "Choose a Boost", desc: "Purchase a Boost plan (from 10 to 1,000 HMOOB) to increase your mining hash rate and start earning 365% ROI over 365 days." },
-  { icon: TrendingUp, title: "Mine & Earn", desc: "Your mining runs automatically. Watch your HMOOB balance grow daily. Complete missions and invite friends for bonus rewards." },
-  { icon: ArrowRightLeft, title: "Swap & Withdraw", desc: "Swap HMOOB to other tokens via DANNY Exchange or withdraw to your wallet. Full control of your earnings." },
+  { icon: Download, title: "Download Bitget Wallet", desc: "Download the Bitget Wallet app from Google Play Store. Create or import your Web3 wallet to get started securely." },
+  { icon: Wallet, title: "Connect to hmoob.io", desc: "Open hmoob.io in the Bitget Wallet's built-in DApp browser. Connect your wallet — your HMOOB balance and hash rate sync in real time." },
+  { icon: Zap, title: "Choose a Boost", desc: "Purchase a Boost plan (10–1,000 HMOOB) to increase your mining hash rate and start earning 365% ROI over 365 days." },
+  { icon: TrendingUp, title: "Mine, Earn & Swap", desc: "Mining runs automatically. Watch your HMOOB grow daily. Complete missions, invite friends, and swap tokens via DANNY Exchange." },
 ];
 
 export default function HowItWorks() {
@@ -38,6 +38,24 @@ export default function HowItWorks() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bitget Wallet CTA */}
+        <div className="mt-16">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-surface-elevated border border-border hover:border-primary/20 px-8 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 group"
+          >
+            <div className="w-10 h-10 rounded-xl bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/[0.15] transition-colors">
+              <Download size={20} className="text-primary" />
+            </div>
+            <div className="text-left">
+              <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Get it on Google Play</div>
+              <div className="font-display font-bold">Bitget Wallet</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
