@@ -20,7 +20,7 @@ export default function HowItWorks() {
 
   return (
     <section id="how-it-works" className="py-28 bg-surface relative overflow-hidden">
-      <img src={howitworksBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" loading="lazy" width={1920} height={1080} />
+      <img src={howitworksBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
