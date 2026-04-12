@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Download } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
+import howitworksBg from "@/assets/howitworks-bg.jpg";
 
 export default function HowItWorks() {
   const { locale, t } = useLanguage();
@@ -19,7 +20,8 @@ export default function HowItWorks() {
 
   return (
     <section id="how-it-works" className="py-28 bg-surface relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
+      <img src={howitworksBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" loading="lazy" width={1920} height={1080} />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
           <span className="w-8 h-px bg-primary/50" />{t("howItWorks.label")}<span className="w-8 h-px bg-primary/50" />

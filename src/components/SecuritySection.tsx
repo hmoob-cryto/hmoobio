@@ -3,6 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Eye } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
+import securityBg from "@/assets/security-bg.jpg";
+import { getIcon } from "@/lib/iconMap";
 
 export default function SecuritySection() {
   const { locale, t } = useLanguage();
@@ -19,7 +21,8 @@ export default function SecuritySection() {
 
   return (
     <section id="security" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
+      <img src={securityBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="lazy" width={1920} height={1080} />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="container relative">
         <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 text-secondary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">

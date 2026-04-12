@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Check } from "lucide-react";
+import boostBg from "@/assets/boost-bg.jpg";
 
 export default function BoostPlans() {
   const { locale, t } = useLanguage();
@@ -26,7 +27,8 @@ export default function BoostPlans() {
 
   return (
     <section id="boost" className="py-28 bg-surface relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsla(36,90%,55%,0.04)_0%,_transparent_50%)]" />
+      <img src={boostBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="lazy" width={1920} height={1080} />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="container relative">
         <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
