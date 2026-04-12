@@ -1,4 +1,5 @@
 import { Twitter, Github, MessageCircle } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
 
 export default function Footer() {
   return (

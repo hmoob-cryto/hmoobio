@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
 
 const links = ["About", "How It Works", "Features", "Ecosystem", "FAQ"];
 
