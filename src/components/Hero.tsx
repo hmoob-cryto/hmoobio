@@ -1,5 +1,5 @@
 import logo from "@/assets/logo.jpeg";
-import { Download } from "lucide-react";
+import { Download, ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -18,6 +18,17 @@ export default function Hero() {
       <div className="absolute bottom-32 left-[25%] w-1 h-1 rounded-full bg-primary/20 animate-float" style={{ animationDelay: "4s" }} />
 
       <div className="container relative z-10 text-center px-4 pt-16">
+        {/* Live mining indicator */}
+        <div className="mb-6 animate-fade-up-1">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-mono text-secondary bg-secondary/[0.06] border border-secondary/15">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary/75 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
+            </span>
+            Live Mining — 3,310+ Active Miners
+          </span>
+        </div>
+
         {/* Logo with glow ring */}
         <div className="mb-10 animate-fade-up-1">
           <div className="relative inline-block">
@@ -34,7 +45,7 @@ export default function Hero() {
         <div className="mb-8 animate-fade-up-2">
           <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-mono font-medium border border-primary/20 text-primary/90 bg-primary/[0.06] shimmer">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            HMOOB Mining — Built on DannyChain × Bitget Wallet
+            Built on DannyChain × Bitget Wallet
           </span>
         </div>
 
@@ -44,16 +55,17 @@ export default function Hero() {
           Earn Every Day.
         </h1>
         <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 animate-fade-up-3 leading-relaxed">
-          Connect via Bitget Wallet, boost your hash rate, and mine HMOOB tokens — no hardware needed. Join 3,300+ miners on the DannyChain ecosystem.
+          Connect via Bitget Wallet, boost your hash rate, and mine HMOOB tokens — no hardware needed. Earn <strong className="text-foreground">365% ROI</strong> over 365 days on the DannyChain ecosystem.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-4">
           <a
             href="https://hmoob.io"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative bg-primary text-primary-foreground px-10 py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
+            className="group relative bg-primary text-primary-foreground px-10 py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 overflow-hidden inline-flex items-center justify-center gap-2"
           >
             <span className="relative z-10">Start Mining</span>
+            <ArrowRight size={20} className="relative z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
           <a
@@ -67,8 +79,24 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Trust micro-badges */}
+        <div className="flex flex-wrap justify-center gap-6 mt-12 animate-fade-up-4">
+          <span className="text-xs font-mono text-muted-foreground/60 flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-primary/40" />
+            365% Annual ROI
+          </span>
+          <span className="text-xs font-mono text-muted-foreground/60 flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-secondary/40" />
+            No Hardware Required
+          </span>
+          <span className="text-xs font-mono text-muted-foreground/60 flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-primary/40" />
+            Self-Custodial Wallet
+          </span>
+        </div>
+
         {/* Scroll indicator */}
-        <div className="mt-20 animate-fade-up-4">
+        <div className="mt-16 animate-fade-up-4">
           <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 mx-auto flex items-start justify-center p-1.5">
             <div className="w-1 h-2.5 rounded-full bg-muted-foreground/50 animate-bounce" />
           </div>

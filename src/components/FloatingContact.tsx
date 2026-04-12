@@ -18,12 +18,10 @@ export default function FloatingContact() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Contact options */}
       {isOpen && (
         <div className="flex flex-col gap-3 animate-fade-up-1">
-          {/* WhatsApp */}
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/message/hmoobmining"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 bg-[hsl(142,70%,41%)] text-foreground pl-5 pr-6 py-3 rounded-2xl shadow-lg shadow-[hsla(142,70%,41%,0.3)] hover:shadow-xl hover:shadow-[hsla(142,70%,41%,0.4)] hover:-translate-y-0.5 transition-all duration-300"
@@ -31,10 +29,8 @@ export default function FloatingContact() {
             <WhatsAppIcon />
             <span className="text-sm font-semibold text-white">WhatsApp</span>
           </a>
-
-          {/* Facebook */}
           <a
-            href="https://facebook.com/hmoob.io"
+            href="https://www.facebook.com/profile.php?id=61575614786498"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 bg-[hsl(220,46%,48%)] text-foreground pl-5 pr-6 py-3 rounded-2xl shadow-lg shadow-[hsla(220,46%,48%,0.3)] hover:shadow-xl hover:shadow-[hsla(220,46%,48%,0.4)] hover:-translate-y-0.5 transition-all duration-300"
@@ -45,7 +41,6 @@ export default function FloatingContact() {
         </div>
       )}
 
-      {/* Toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 ${

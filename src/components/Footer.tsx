@@ -12,9 +12,9 @@ const FacebookIcon = () => (
   </svg>
 );
 
-const TwitterIcon = () => (
+const TelegramIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
   </svg>
 );
 
@@ -33,30 +33,37 @@ export default function Footer() {
                 <span className="text-muted-foreground">.io</span>
               </span>
             </div>
-            <p className="text-muted-foreground text-sm leading-[1.8] max-w-xs">
-              Crypto cloud mining for everyone. Empowering communities through blockchain technology.
+            <p className="text-muted-foreground text-sm leading-[1.8] max-w-xs mb-4">
+              Cloud-based HMOOB mining on DannyChain Layer 2. Empowering the Hmong community through accessible Web3 technology.
             </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-mono text-secondary bg-secondary/[0.06] border border-secondary/15">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary/75 opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-secondary" />
+              </span>
+              Platform Online
+            </div>
           </div>
 
           {/* Platform */}
           <div className="md:col-span-2">
             <h4 className="font-display font-bold text-sm mb-4">Platform</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href="#about" className="block hover:text-foreground transition-colors duration-200">About</a>
-              <a href="#features" className="block hover:text-foreground transition-colors duration-200">Features</a>
+              <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">Launch App ↗</a>
               <a href="#how-it-works" className="block hover:text-foreground transition-colors duration-200">How It Works</a>
+              <a href="#boost" className="block hover:text-foreground transition-colors duration-200">Boost Plans</a>
               <a href="#faq" className="block hover:text-foreground transition-colors duration-200">FAQ</a>
             </div>
           </div>
 
-          {/* Resources */}
+          {/* Ecosystem */}
           <div className="md:col-span-2">
-            <h4 className="font-display font-bold text-sm mb-4">Resources</h4>
+            <h4 className="font-display font-bold text-sm mb-4">Ecosystem</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href="#" className="block hover:text-foreground transition-colors duration-200">Documentation</a>
-              <a href="#" className="block hover:text-foreground transition-colors duration-200">Blog</a>
-              <a href="#" className="block hover:text-foreground transition-colors duration-200">Support</a>
-              <a href="#" className="block hover:text-foreground transition-colors duration-200">Terms of Service</a>
+              <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DannyChain ↗</a>
+              <a href="https://danmarket.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanMarket ↗</a>
+              <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanScan ↗</a>
+              <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">Bitget Wallet ↗</a>
             </div>
           </div>
 
@@ -65,7 +72,7 @@ export default function Footer() {
             <h4 className="font-display font-bold text-sm mb-4">Contact Us</h4>
             <div className="space-y-3 mb-6">
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/message/hmoobmining"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
@@ -76,7 +83,7 @@ export default function Footer() {
                 <span>Chat on WhatsApp</span>
               </a>
               <a
-                href="https://facebook.com/hmoob.io"
+                href="https://www.facebook.com/profile.php?id=61575614786498"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
@@ -89,10 +96,26 @@ export default function Footer() {
             </div>
             <div className="flex gap-3">
               <a
+                href="https://www.facebook.com/profile.php?id=61575614786498"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"
+              >
+                <FacebookIcon />
+              </a>
+              <a
+                href="https://wa.me/message/hmoobmining"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"
+              >
+                <WhatsAppIcon />
+              </a>
+              <a
                 href="#"
                 className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"
               >
-                <TwitterIcon />
+                <TelegramIcon />
               </a>
             </div>
           </div>
@@ -100,11 +123,11 @@ export default function Footer() {
 
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Hmoob.io. All rights reserved.
+            © {new Date().getFullYear()} Hmoob.io — Built on DannyChain Layer 2. All rights reserved.
           </span>
           <div className="flex gap-6 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
+            <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DannyChain</a>
+            <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DanScan Explorer</a>
           </div>
         </div>
       </div>
