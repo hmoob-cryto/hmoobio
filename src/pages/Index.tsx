@@ -3,8 +3,10 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
+import AppPreview from "@/components/AppPreview";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
+import BoostPlans from "@/components/BoostPlans";
 import Ecosystem from "@/components/Ecosystem";
 import Vision from "@/components/Vision";
 import VideoSection from "@/components/VideoSection";
@@ -23,8 +25,10 @@ export default function Index() {
       <Hero />
       <StatsBar />
       <About />
+      <AppPreview />
       <HowItWorks />
       <Features />
+      <BoostPlans />
       <Ecosystem />
       <Vision />
       <VideoSection />
