@@ -4,7 +4,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Eye } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
 import securityBg from "@/assets/security-bg.jpg";
-import { getIcon } from "@/lib/iconMap";
 
 export default function SecuritySection() {
   const { locale, t } = useLanguage();
