@@ -5,7 +5,7 @@ import { getIcon } from "@/lib/iconMap";
 
 export default function Features() {
   const { locale, t } = useLanguage();
-  const { data: features } = useQuery({
+  const { data: features, isLoading, error } = useQuery({
     queryKey: ["site_features", locale],
     queryFn: async () => {
       const { data, error } = await supabase.from("site_features").select("*").eq("is_active", true).eq("locale", locale).order("sort_order");
@@ -14,7 +14,9 @@ export default function Features() {
     },
   });
 
-  if (!features) return null;
+  if (isLoading) return <section id="features" className="section-fade py-28"><div className="container text-center"><p className="text-muted-foreground">Loading...</p></div></section>;
+  if (error) return <section id="features" className="section-fade py-28"><div className="container text-center"><p className="text-red-500">Error: {String(error)}</p></div></section>;
+  if (!features?.length) return null;
 
   return (
     <section id="features" className="section-fade py-28 relative overflow-hidden">
