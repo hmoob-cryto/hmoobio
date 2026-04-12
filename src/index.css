@@ -84,20 +84,6 @@
     box-shadow: 0 0 25px hsla(36, 90%, 55%, 0.12), inset 0 1px 0 hsla(36, 90%, 55%, 0.08);
   }
   .section-fade {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .section-fade.visible,
-  .section-fade:not(.observed) {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .section-fade.observed {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  .section-fade.observed.visible {
     opacity: 1;
     transform: translateY(0);
   }
