@@ -1,4 +1,5 @@
 import appMockup from "@/assets/app-mockup.png";
+import appMockup2 from "@/assets/app-mockup-2.png";
 import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -49,10 +50,14 @@ export default function AppPreview() {
               </a>
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="relative">
+          <div className="flex justify-center items-end gap-[-20px]">
+            <div className="relative z-10 -mr-6">
               <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full scale-75" />
-              <img src={appMockup} alt="HMOOB Mining App" className="relative w-[320px] sm:w-[380px] drop-shadow-2xl" loading="lazy" width={800} height={1200} />
+              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[260px] sm:w-[300px] drop-shadow-2xl" loading="lazy" width={800} height={1200} />
+            </div>
+            <div className="relative z-20 -ml-6">
+              <div className="absolute inset-0 bg-secondary/10 blur-[80px] rounded-full scale-75" />
+              <img src={appMockup2} alt="HMOOB Mining App - Wallet" className="relative w-[260px] sm:w-[300px] drop-shadow-2xl" loading="lazy" width={800} height={1200} />
             </div>
           </div>
         </div>
