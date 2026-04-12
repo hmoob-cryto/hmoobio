@@ -7,7 +7,7 @@ export default function Vision() {
 
   return (
     <section className="py-28 relative overflow-hidden">
-      <img src={visionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" width={1920} height={1080} />
+      <img src={visionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/75 to-background" />
       <div className="container max-w-4xl text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-8 mx-auto">

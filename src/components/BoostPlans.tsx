@@ -27,7 +27,7 @@ export default function BoostPlans() {
 
   return (
     <section id="boost" className="py-28 bg-surface relative overflow-hidden">
-      <img src={boostBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="lazy" width={1920} height={1080} />
+      <img src={boostBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="container relative">
         <div className="text-center mb-16">
