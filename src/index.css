@@ -84,8 +84,20 @@
     box-shadow: 0 0 25px hsla(36, 90%, 55%, 0.12), inset 0 1px 0 hsla(36, 90%, 55%, 0.08);
   }
   .section-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .section-fade.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .section-fade {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
   .glass {
     background: hsl(240 18% 7% / 0.7);
