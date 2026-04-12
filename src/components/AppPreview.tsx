@@ -15,7 +15,7 @@ export default function AppPreview() {
   const { t } = useLanguage();
 
   return (
-    <section className="section-fade py-28 relative overflow-hidden">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.04)_0%,_transparent_60%)]" />
       <div className="container relative">
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">

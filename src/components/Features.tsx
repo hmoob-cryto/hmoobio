@@ -17,7 +17,7 @@ export default function Features() {
   if (!features?.length) return null;
 
   return (
-    <section id="features" className="section-fade py-28 relative overflow-hidden">
+    <section id="features" className="py-28 relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-secondary/[0.03] blur-[120px]" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">

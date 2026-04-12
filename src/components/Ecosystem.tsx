@@ -18,7 +18,7 @@ export default function Ecosystem() {
   if (!items) return null;
 
   return (
-    <section id="ecosystem" className="section-fade py-28 relative overflow-hidden">
+    <section id="ecosystem" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
       <div className="container relative">
         <div className="text-center mb-20">

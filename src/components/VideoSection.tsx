@@ -22,7 +22,7 @@ export default function VideoSection() {
   };
 
   return (
-    <section className="section-fade py-28 bg-surface relative overflow-hidden">
+    <section className="py-28 bg-surface relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.03)_0%,_transparent_60%)]" />
       <div className="container relative">
         <div className="text-center mb-14">

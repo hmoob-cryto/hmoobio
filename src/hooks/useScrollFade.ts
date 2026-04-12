@@ -7,37 +7,43 @@ export function useScrollFade() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.05, rootMargin: "50px" }
+      { threshold: 0.05, rootMargin: "100px 0px" }
     );
 
     const observeAll = () => {
-      document.querySelectorAll(".section-fade").forEach((el) => {
-        if (!el.hasAttribute("data-observed")) {
-          el.setAttribute("data-observed", "true");
-          observer.observe(el);
-        }
+      document.querySelectorAll(".section-fade:not(.visible)").forEach((el) => {
+        observer.observe(el);
       });
     };
 
     // Initial pass
     observeAll();
 
-    // Watch for dynamically added elements
+    // Watch for dynamically added elements (data loaded async)
     const mutationObserver = new MutationObserver(observeAll);
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
-    // Fallback: periodic check for first 5 seconds
-    const interval = setInterval(observeAll, 500);
-    const timeout = setTimeout(() => clearInterval(interval), 5000);
+    // Fallback: periodic check for first 10 seconds
+    const interval = setInterval(observeAll, 300);
+    const timeout = setTimeout(() => clearInterval(interval), 10000);
+
+    // Safety: make everything visible after 5s regardless
+    const safety = setTimeout(() => {
+      document.querySelectorAll(".section-fade:not(.visible)").forEach((el) => {
+        el.classList.add("visible");
+      });
+    }, 5000);
 
     return () => {
       observer.disconnect();
       mutationObserver.disconnect();
       clearInterval(interval);
       clearTimeout(timeout);
+      clearTimeout(safety);
     };
   }, []);
 }

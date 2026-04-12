@@ -18,7 +18,7 @@ export default function SecuritySection() {
   if (!features) return null;
 
   return (
-    <section id="security" className="section-fade py-28 relative overflow-hidden">
+    <section id="security" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
       <div className="container relative">
         <div className="text-center mb-16">

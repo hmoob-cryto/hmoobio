@@ -26,7 +26,7 @@ export default function TrustBanner() {
   if (isLoading) return null;
 
   return (
-    <section className="section-fade relative border-b border-border bg-background py-12 overflow-hidden">
+    <section className="relative border-b border-border bg-background py-12 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.02)_0%,_transparent_70%)]" />
       <div className="container relative">
         {indicators && indicators.length > 0 && (

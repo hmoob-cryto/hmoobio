@@ -25,7 +25,7 @@ export default function BoostPlans() {
   if (!boosts) return null;
 
   return (
-    <section id="boost" className="section-fade py-28 bg-surface relative overflow-hidden">
+    <section id="boost" className="py-28 bg-surface relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsla(36,90%,55%,0.04)_0%,_transparent_50%)]" />
       <div className="container relative">
         <div className="text-center mb-16">
