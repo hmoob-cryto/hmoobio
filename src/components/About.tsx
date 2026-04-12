@@ -1,6 +1,9 @@
 import logo from "@/assets/logo.jpeg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="section-fade py-28 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[120px]" />
@@ -9,17 +12,17 @@ export default function About() {
           <div>
             <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4">
               <span className="w-8 h-px bg-primary/50" />
-              About HMOOB Mining
+              {t("about.label")}
             </span>
             <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-8 leading-tight">
-              The <span className="text-gradient-gold">Hmong Community's</span>
-              <br />Own Crypto Token
+              {t("about.title1")} <span className="text-gradient-gold">{t("about.title2")}</span>
+              <br />{t("about.titleEnd")}
             </h2>
             <p className="text-muted-foreground text-base leading-[1.8] mb-5">
-              HMOOB Mining is a cloud-based mining platform built on the DannyChain Layer 2 blockchain. Users connect through the <strong className="text-foreground">Bitget Wallet</strong> app — a trusted Web3 wallet with 80M+ users — to mine HMOOB tokens by purchasing boost plans and earning daily rewards, all without any physical hardware.
+              {t("about.p1")} <strong className="text-foreground">{t("about.bitget")}</strong> {t("about.p1End")}
             </p>
             <p className="text-muted-foreground text-base leading-[1.8] mb-5">
-              Part of a growing ecosystem that includes DannyChain (Layer 2 blockchain), DanMarket (decentralized marketplace), and the DANNY Exchange — HMOOB Mining represents the Hmong community's entry into Web3 with a platform designed for accessibility and simplicity.
+              {t("about.p2")}
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-primary hover:text-primary/80 transition-colors border border-primary/20 px-4 py-2 rounded-lg hover:bg-primary/5">
