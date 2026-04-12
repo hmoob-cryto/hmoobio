@@ -22,7 +22,7 @@ export default function BoostPlans() {
     },
   });
 
-  if (!boosts?.length) return null;
+  if (!boosts) return null;
 
   return (
     <section id="boost" className="section-fade py-28 bg-surface relative overflow-hidden">

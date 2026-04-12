@@ -22,7 +22,8 @@ export default function TrustBanner() {
     },
   });
 
-  if (!indicators?.length && !partners?.length) return null;
+  const isLoading = !indicators && !partners;
+  if (isLoading) return null;
 
   return (
     <section className="section-fade relative border-b border-border bg-background py-12 overflow-hidden">

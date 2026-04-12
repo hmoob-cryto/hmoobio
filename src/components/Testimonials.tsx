@@ -14,7 +14,7 @@ export default function Testimonials() {
     },
   });
 
-  if (!testimonials?.length) return null;
+  if (!testimonials) return null;
 
   return (
     <section className="section-fade py-28 bg-surface relative overflow-hidden">

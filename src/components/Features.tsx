@@ -14,7 +14,7 @@ export default function Features() {
     },
   });
 
-  if (!features?.length) return null;
+  if (!features) return null;
 
   return (
     <section id="features" className="section-fade py-28 relative overflow-hidden">

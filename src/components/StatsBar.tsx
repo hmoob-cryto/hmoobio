@@ -37,7 +37,7 @@ export default function StatsBar() {
     },
   });
 
-  if (!stats?.length) return null;
+  if (!stats) return null;
 
   return (
     <section className="section-fade relative border-y border-border bg-surface py-16 overflow-hidden">
