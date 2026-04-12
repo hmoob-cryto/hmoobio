@@ -23,7 +23,7 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl scale-150 animate-glow-pulse" />
             <img
               src={logo}
-              alt="Hmong Coin"
+              alt="HMOOB Mining"
               className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full mx-auto ring-2 ring-primary/30 shadow-2xl shadow-primary/20"
             />
           </div>
@@ -33,23 +33,23 @@ export default function Hero() {
         <div className="mb-8 animate-fade-up-2">
           <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-mono font-medium border border-primary/20 text-primary/90 bg-primary/[0.06] shimmer">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Cloud Mining Made Simple
+            HMOOB Mining — Built on DannyChain
           </span>
         </div>
 
         <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.05] mb-8 animate-fade-up-2 tracking-tight">
-          Mine Crypto.
+          Mine <span className="text-gradient-gold">HMOOB</span>
           <br />
-          <span className="text-gradient-gold">Earn Daily.</span>
-          <br />
-          Build Wealth.
+          Earn Every Day.
         </h1>
         <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 animate-fade-up-3 leading-relaxed">
-          Join thousands of miners on the Hmoob.io platform — the easiest way to mine cryptocurrency without expensive hardware.
+          Connect your wallet, boost your hash rate, and start mining HMOOB tokens — no hardware needed. Join 3,300+ miners on the DannyChain ecosystem.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-4">
           <a
-            href="#cta"
+            href="https://hmoob.io"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative bg-primary text-primary-foreground px-10 py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
           >
             <span className="relative z-10">Start Mining</span>

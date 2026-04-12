@@ -1,12 +1,12 @@
-import { Shield, Zap, Globe, BarChart3, Smartphone, Users } from "lucide-react";
+import { Zap, Wallet, Users, Target, ArrowRightLeft, Shield } from "lucide-react";
 
 const features = [
-  { icon: Zap, title: "Instant Mining", desc: "Start mining immediately after sign-up. No hardware setup or downloads required." },
-  { icon: Shield, title: "Enterprise Security", desc: "Bank-grade encryption and multi-layer security protect your assets 24/7." },
-  { icon: Globe, title: "Multi-Chain Support", desc: "Mine across 35+ blockchains including Bitcoin, Ethereum, Solana, and more." },
-  { icon: BarChart3, title: "Real-Time Dashboard", desc: "Track your earnings, hash rate, and portfolio performance in real time." },
-  { icon: Smartphone, title: "Mobile Optimized", desc: "Manage your mining operations on the go with our mobile-first platform." },
-  { icon: Users, title: "Referral Rewards", desc: "Earn bonus rewards by inviting friends and growing your mining network." },
+  { icon: Zap, title: "Mining Power Boosts", desc: "Choose from 6 boost tiers (10–1,000 HMOOB) to increase your GH/s hash rate and earn 365% ROI over 365 days." },
+  { icon: Wallet, title: "Built-in Wallet", desc: "View your HMOOB balance, transaction history, buy more tokens, or withdraw — all in one integrated wallet." },
+  { icon: Users, title: "Referral Program", desc: "Invite friends and earn 20% bonus plus GH/s hash rate boosts. The more friends join, the faster you mine." },
+  { icon: Target, title: "Daily Missions", desc: "Complete tasks and challenges to earn additional HMOOB rewards. New missions available regularly." },
+  { icon: ArrowRightLeft, title: "Token Swap", desc: "Swap HMOOB tokens seamlessly via the integrated DANNY Exchange — powered by DannyChain Layer 2." },
+  { icon: Shield, title: "DannyChain Security", desc: "Built on DannyChain — an EVM-compatible Layer 2 blockchain with Ethereum-grade security and low fees." },
 ];
 
 export default function Features() {
@@ -16,17 +16,17 @@ export default function Features() {
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
           <span className="w-8 h-px bg-primary/50" />
-          Features
+          Platform Features
           <span className="w-8 h-px bg-primary/50" />
         </span>
         <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-6">
-          Everything You Need to <span className="text-gradient-gold">Mine Smarter</span>
+          Everything in <span className="text-gradient-gold">One Platform</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-16">
-          Powerful tools designed for miners of all experience levels
+          Mine, earn, swap, and grow your HMOOB portfolio
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-          {features.map((f, i) => (
+          {features.map((f) => (
             <div
               key={f.title}
               className="group border-glow rounded-2xl p-7 bg-surface text-left transition-all duration-500 hover:-translate-y-1"
