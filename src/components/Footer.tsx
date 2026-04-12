@@ -7,9 +7,12 @@ export default function Footer() {
       <div className="container">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="Hmoob.io" className="w-10 h-10 rounded-full" />
             <span className="font-display text-xl font-bold">
               <span className="text-gradient-gold">hmoob</span>.io
             </span>
+          </div>
             <p className="text-muted-foreground text-sm mt-3">
               Crypto cloud mining for everyone. Empowering communities through blockchain technology.
             </p>
