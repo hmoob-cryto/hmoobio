@@ -56,6 +56,7 @@ export default function Footer() {
             <h4 className="font-display font-bold text-sm mb-4">{t("footer.ecosystem")}</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
               <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DannyChain ↗</a>
+              <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanDEX ↗</a>
               <a href="https://danmarket.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanMarket ↗</a>
               <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanScan ↗</a>
               <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">Bitget Wallet ↗</a>
@@ -84,6 +85,7 @@ export default function Footer() {
           <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hmoob.io — {t("footer.copyright")}</span>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DannyChain</a>
+            <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DanDEX</a>
             <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DanScan Explorer</a>
           </div>
         </div>
