@@ -1,18 +1,16 @@
 import { useCountUp } from "@/hooks/useCountUp";
-import { Users, Coins, TrendingUp, Shield } from "lucide-react";
+import { Users, Zap, Coins, Clock } from "lucide-react";
 import { type LucideIcon } from "lucide-react";
 
 const stats: { label: string; value: number; suffix: string; icon: LucideIcon }[] = [
-  { label: "Active Miners", value: 12480, suffix: "+", icon: Users },
-  { label: "Coins Supported", value: 35, suffix: "+", icon: Coins },
-  { label: "Avg Daily Reward", value: 4.8, suffix: "%", icon: TrendingUp },
-  { label: "Platform Uptime", value: 99.9, suffix: "%", icon: Shield },
+  { label: "Active Miners", value: 3310, suffix: "+", icon: Users },
+  { label: "Hash Rate Boosts", value: 6, suffix: " Plans", icon: Zap },
+  { label: "ROI per Year", value: 365, suffix: "%", icon: Coins },
+  { label: "Boost Duration", value: 365, suffix: " Days", icon: Clock },
 ];
 
 function StatItem({ label, value, suffix, icon: Icon }: { label: string; value: number; suffix: string; icon: LucideIcon }) {
-  const isDecimal = value % 1 !== 0;
-  const { value: count, ref } = useCountUp(isDecimal ? Math.floor(value * 10) : value);
-  const display = isDecimal ? (count / 10).toFixed(1) : count.toLocaleString();
+  const { value: count, ref } = useCountUp(value);
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-3 group">
@@ -20,7 +18,7 @@ function StatItem({ label, value, suffix, icon: Icon }: { label: string; value: 
         <Icon size={20} className="text-primary/70" />
       </div>
       <div className="font-display text-3xl sm:text-4xl font-bold text-gradient-gold tracking-tight">
-        {display}{suffix}
+        {count.toLocaleString()}{suffix}
       </div>
       <div className="text-muted-foreground text-sm font-medium">{label}</div>
     </div>

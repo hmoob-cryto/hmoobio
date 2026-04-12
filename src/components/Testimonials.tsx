@@ -3,22 +3,22 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     name: "Kia Vang",
-    role: "Miner since 2024",
-    quote: "I never thought I could mine crypto without buying expensive equipment. Hmoob.io made it so easy — I earn rewards daily without any hassle.",
+    role: "Miner since 2025",
+    quote: "HMOOB Mining made crypto accessible for our community. I bought the Advanced Boost and my balance grows every day. The referral rewards are a great bonus too!",
     initials: "KV",
     gradient: "from-primary/20 to-primary/5",
   },
   {
     name: "Mailee Xiong",
-    role: "Community Leader",
-    quote: "This platform has brought our community closer to the world of Web3. The education resources and simple UX make it perfect for beginners.",
+    role: "Community Builder",
+    quote: "I love that this platform is built for the Hmong community. The DannyChain ecosystem feels like it's ours. I've already referred 15 friends and boosted my hash rate significantly.",
     initials: "MX",
     gradient: "from-secondary/20 to-secondary/5",
   },
   {
     name: "Tou Lee",
-    role: "Experienced Trader",
-    quote: "The integration with Bitget Wallet is seamless. I can manage my mining rewards and trade all from one ecosystem. Highly recommended.",
+    role: "Crypto Enthusiast",
+    quote: "The 365% ROI over a year is impressive. The wallet integration is smooth, missions keep things interesting, and I can swap my HMOOB tokens easily through DANNY Exchange.",
     initials: "TL",
     gradient: "from-primary/20 to-secondary/5",
   },
@@ -38,7 +38,7 @@ export default function Testimonials() {
           What Our <span className="text-gradient-gold">Miners Say</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-lg mx-auto mb-16">
-          Real feedback from our growing community of miners
+          Real feedback from our growing community
         </p>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {testimonials.map((t) => (

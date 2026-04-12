@@ -15,12 +15,12 @@ export default function Vision() {
             <Quote className="text-primary/15" size={56} />
           </div>
           <blockquote className="relative font-display text-xl sm:text-2xl lg:text-3xl font-medium leading-[1.6] text-foreground/85 italic pt-8">
-            "We believe that every person — regardless of location, background, or technical skill — deserves access to the financial tools of tomorrow. Hmoob.io isn't just a mining platform; it's a movement to democratize wealth creation through blockchain technology."
+            "HMOOB Mining is more than a platform — it's our community's gateway into the decentralized future. Built on DannyChain, we're creating a complete ecosystem where the Hmong community and all users can mine, earn, swap, and grow together."
           </blockquote>
           <div className="mt-10 flex items-center justify-center gap-4">
             <div className="w-12 h-px bg-gradient-to-r from-transparent to-primary/40" />
             <div>
-              <div className="text-gradient-gold font-display font-bold text-lg">The Hmoob.io Team</div>
+              <div className="text-gradient-gold font-display font-bold text-lg">The HMOOB Team</div>
               <div className="text-muted-foreground text-sm">Founders & Builders</div>
             </div>
             <div className="w-12 h-px bg-gradient-to-l from-transparent to-primary/40" />
