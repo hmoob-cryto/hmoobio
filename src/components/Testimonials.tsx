@@ -6,45 +6,56 @@ const testimonials = [
     role: "Miner since 2024",
     quote: "I never thought I could mine crypto without buying expensive equipment. Hmoob.io made it so easy — I earn rewards daily without any hassle.",
     initials: "KV",
+    gradient: "from-primary/20 to-primary/5",
   },
   {
     name: "Mailee Xiong",
     role: "Community Leader",
     quote: "This platform has brought our community closer to the world of Web3. The education resources and simple UX make it perfect for beginners.",
     initials: "MX",
+    gradient: "from-secondary/20 to-secondary/5",
   },
   {
     name: "Tou Lee",
     role: "Experienced Trader",
     quote: "The integration with Bitget Wallet is seamless. I can manage my mining rewards and trade all from one ecosystem. Highly recommended.",
     initials: "TL",
+    gradient: "from-primary/20 to-secondary/5",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="section-fade py-24 bg-surface">
-      <div className="container text-center">
-        <span className="text-primary font-mono text-sm tracking-wider uppercase">Testimonials</span>
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mt-3 mb-16">
+    <section className="section-fade py-28 bg-surface relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsla(36,90%,55%,0.03)_0%,_transparent_50%)]" />
+      <div className="container text-center relative">
+        <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
+          <span className="w-8 h-px bg-primary/50" />
+          Testimonials
+          <span className="w-8 h-px bg-primary/50" />
+        </span>
+        <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-6">
           What Our <span className="text-gradient-gold">Miners Say</span>
         </h2>
+        <p className="text-muted-foreground text-lg max-w-lg mx-auto mb-16">
+          Real feedback from our growing community of miners
+        </p>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {testimonials.map((t) => (
-            <div key={t.name} className="border-glow rounded-xl p-6 bg-background text-left">
-              <div className="flex gap-1 mb-4">
+            <div key={t.name} className="border-glow rounded-2xl p-7 bg-background text-left group transition-all duration-500 hover:-translate-y-1">
+              <div className="flex gap-1 mb-5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={14} className="text-primary fill-primary" />
                 ))}
               </div>
-              <p className="text-foreground/80 text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold text-sm">
-                  {t.initials}
+              <p className="text-foreground/80 text-sm leading-[1.8] mb-7">"{t.quote}"</p>
+              <div className="flex items-center gap-3.5 pt-5 border-t border-border">
+                <div className={`w-11 h-11 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center ring-1 ring-border`}>
+                  <span className="text-primary font-display font-bold text-sm">{t.initials}</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-sm">{t.name}</div>
-                  <div className="text-muted-foreground text-xs">{t.role}</div>
+                  <div className="font-display font-bold text-sm">{t.name}</div>
+                  <div className="text-muted-foreground text-xs mt-0.5">{t.role}</div>
                 </div>
               </div>
             </div>
