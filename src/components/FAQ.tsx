@@ -10,21 +10,30 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section-fade py-24">
-      <div className="container max-w-3xl">
+    <section id="faq" className="section-fade py-28 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsla(172,55%,39%,0.03)_0%,_transparent_50%)]" />
+      <div className="container max-w-3xl relative">
         <div className="text-center mb-16">
-          <span className="text-primary font-mono text-sm tracking-wider uppercase">FAQ</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold mt-3">
+          <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
+            <span className="w-8 h-px bg-primary/50" />
+            FAQ
+            <span className="w-8 h-px bg-primary/50" />
+          </span>
+          <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2">
             Frequently Asked <span className="text-gradient-gold">Questions</span>
           </h2>
         </div>
         <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((f, i) => (
-            <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-xl px-6 bg-surface">
-              <AccordionTrigger className="text-left font-display text-base font-medium hover:no-underline">
+            <AccordionItem
+              key={i}
+              value={`faq-${i}`}
+              className="border border-border rounded-2xl px-7 bg-surface hover:border-primary/15 transition-colors duration-300 data-[state=open]:border-primary/20"
+            >
+              <AccordionTrigger className="text-left font-display text-base font-semibold hover:no-underline py-5">
                 {f.q}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-sm leading-relaxed">
+              <AccordionContent className="text-muted-foreground text-sm leading-[1.8] pb-6">
                 {f.a}
               </AccordionContent>
             </AccordionItem>

@@ -25,6 +25,7 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         surface: "hsl(var(--surface))",
+        "surface-elevated": "hsl(var(--surface-elevated))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -84,7 +85,11 @@ export default {
         },
         "glow-pulse": {
           "0%, 100%": { boxShadow: "0 0 20px hsla(36, 90%, 55%, 0.15)" },
-          "50%": { boxShadow: "0 0 40px hsla(36, 90%, 55%, 0.3)" },
+          "50%": { boxShadow: "0 0 50px hsla(36, 90%, 55%, 0.25), 0 0 80px hsla(36, 90%, 55%, 0.1)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
         },
       },
       animation: {
@@ -93,7 +98,9 @@ export default {
         "fade-up-1": "fade-up 0.8s ease-out 0.1s both",
         "fade-up-2": "fade-up 0.8s ease-out 0.3s both",
         "fade-up-3": "fade-up 0.8s ease-out 0.5s both",
+        "fade-up-4": "fade-up 0.8s ease-out 0.7s both",
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
       },
     },
   },

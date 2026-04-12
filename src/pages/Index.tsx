@@ -12,6 +12,7 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 
 export default function Index() {
   useScrollFade();
@@ -31,6 +32,7 @@ export default function Index() {
       <FAQ />
       <CTASection />
       <Footer />
+      <FloatingContact />
     </div>
   );
 }
