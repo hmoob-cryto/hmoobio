@@ -34,6 +34,12 @@ export default function About() {
               <a href="https://danmarket.io" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
                 DanMarket ↗
               </a>
+              <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
+                DanDEX ↗
+              </a>
+              <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
+                DanScan ↗
+              </a>
             </div>
           </div>
           <div className="hidden md:flex justify-center">
