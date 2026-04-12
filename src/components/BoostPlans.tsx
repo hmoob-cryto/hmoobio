@@ -1,22 +1,36 @@
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { Check } from "lucide-react";
 
-const boosts = [
-  { name: "Starter", hmoob: 10, usd: "0.07", hashRate: "0.12", totalReturn: "46.5" },
-  { name: "Advanced", hmoob: 50, usd: "0.37", hashRate: "0.58", totalReturn: "232.5", recommended: true },
-  { name: "Elite", hmoob: 100, usd: "0.75", hashRate: "1.16", totalReturn: "465" },
-  { name: "Elite Plus", hmoob: 300, usd: "2.24", hashRate: "3.49", totalReturn: "1,395" },
-  { name: "Elite Max", hmoob: 500, usd: "3.74", hashRate: "5.81", totalReturn: "2,325" },
-  { name: "Ultimate", hmoob: 1000, usd: "7.48", hashRate: "11.63", totalReturn: "4,650" },
-];
-
-const benefits = [
-  "365% return on investment over 365 days",
-  "Boosts stack — purchase multiple boosts",
-  "Higher hash rate = faster HMOOB mining",
-  "Active for the full 365-day duration",
-];
-
 export default function BoostPlans() {
+  const { data: boosts } = useQuery({
+    queryKey: ["boost_plans"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("boost_plans")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const { data: benefits } = useQuery({
+    queryKey: ["boost_benefits"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("boost_benefits")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (!boosts?.length) return null;
+
   return (
     <section id="boost" className="section-fade py-28 bg-surface relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsla(36,90%,55%,0.04)_0%,_transparent_50%)]" />
@@ -38,14 +52,14 @@ export default function BoostPlans() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-12">
           {boosts.map((b) => (
             <div
-              key={b.name}
+              key={b.id}
               className={`relative rounded-2xl p-6 border transition-all duration-500 hover:-translate-y-1 ${
-                b.recommended
+                b.is_recommended
                   ? "border-primary/40 bg-gradient-to-b from-primary/[0.08] to-surface shadow-lg shadow-primary/10"
                   : "border-border bg-background hover:border-primary/20"
               }`}
             >
-              {b.recommended && (
+              {b.is_recommended && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="bg-primary text-primary-foreground text-[10px] font-bold font-mono px-3 py-1 rounded-full uppercase tracking-wider">
                     Recommended
@@ -54,13 +68,13 @@ export default function BoostPlans() {
               )}
               <div className="text-center mb-5">
                 <h3 className="font-display text-base font-bold text-muted-foreground mb-1">{b.name} Boost</h3>
-                <div className="font-display text-3xl font-bold text-gradient-gold">{b.hmoob.toLocaleString()} <span className="text-lg">HMOOB</span></div>
-                <div className="text-muted-foreground text-sm mt-1">~${b.usd}</div>
+                <div className="font-display text-3xl font-bold text-gradient-gold">{b.hmoob_amount.toLocaleString()} <span className="text-lg">HMOOB</span></div>
+                <div className="text-muted-foreground text-sm mt-1">~${b.usd_price}</div>
               </div>
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Hash Rate</span>
-                  <span className="font-mono font-bold text-secondary">+{b.hashRate} GH/s</span>
+                  <span className="font-mono font-bold text-secondary">+{b.hash_rate} GH/s</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Mining Power</span>
@@ -68,7 +82,7 @@ export default function BoostPlans() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Total Return</span>
-                  <span className="font-mono font-bold text-primary">~{b.totalReturn} HMOOB</span>
+                  <span className="font-mono font-bold text-primary">~{b.total_return} HMOOB</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Duration</span>
@@ -80,7 +94,7 @@ export default function BoostPlans() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`block text-center py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                  b.recommended
+                  b.is_recommended
                     ? "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25"
                     : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
@@ -91,15 +105,16 @@ export default function BoostPlans() {
           ))}
         </div>
 
-        {/* Benefits */}
-        <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-3">
-          {benefits.map((b) => (
-            <div key={b} className="flex items-center gap-3 text-sm text-muted-foreground">
-              <Check size={16} className="text-secondary shrink-0" />
-              <span>{b}</span>
-            </div>
-          ))}
-        </div>
+        {benefits && benefits.length > 0 && (
+          <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-3">
+            {benefits.map((b) => (
+              <div key={b.id} className="flex items-center gap-3 text-sm text-muted-foreground">
+                <Check size={16} className="text-secondary shrink-0" />
+                <span>{b.text}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
