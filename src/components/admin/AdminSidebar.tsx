@@ -60,24 +60,24 @@ export function AdminSidebar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border">
-      <SidebarContent className="pt-4">
+    <Sidebar collapsible="icon" className="border-r-0 !bg-slate-800">
+      <SidebarContent className="pt-4 !bg-slate-800">
         {/* Logo */}
         <div className={`px-4 mb-4 flex items-center gap-2 ${collapsed ? "justify-center" : ""}`}>
-          <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-            <Shield size={16} className="text-primary" />
+          <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center shrink-0">
+            <Shield size={16} className="text-white" />
           </div>
           {!collapsed && (
             <div>
-              <div className="font-display font-bold text-sm">Hmoob Admin</div>
-              <div className="text-[10px] text-muted-foreground">Content Manager</div>
+              <div className="font-display font-bold text-sm text-white">Hmoob Admin</div>
+              <div className="text-[10px] text-slate-400">Content Manager</div>
             </div>
           )}
         </div>
 
         {menuGroups.map((group) => (
           <SidebarGroup key={group.label}>
-            <SidebarGroupLabel className="text-[10px] uppercase tracking-widest text-muted-foreground/60">
+            <SidebarGroupLabel className="text-[10px] uppercase tracking-widest text-slate-500">
               {!collapsed && group.label}
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -88,7 +88,7 @@ export function AdminSidebar() {
                       onClick={() => navigate(item.path)}
                       isActive={isActive(item.path)}
                       tooltip={collapsed ? item.title : undefined}
-                      className={`transition-all ${isActive(item.path) ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
+                      className={`transition-all ${isActive(item.path) ? "!bg-amber-500/20 !text-amber-400 font-medium" : "!text-slate-300 hover:!text-white hover:!bg-slate-700"}`}
                     >
                       <item.icon size={16} />
                       {!collapsed && <span className="text-sm">{item.title}</span>}
@@ -101,16 +101,16 @@ export function AdminSidebar() {
         ))}
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-border p-2">
+      <SidebarFooter className="border-t border-slate-700 p-2 !bg-slate-800">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground">
+            <SidebarMenuButton onClick={() => navigate("/")} className="!text-slate-300 hover:!text-white hover:!bg-slate-700">
               <Globe size={16} />
               {!collapsed && <span className="text-sm">View Site</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton onClick={signOut} className="text-destructive hover:text-destructive hover:bg-destructive/10">
+            <SidebarMenuButton onClick={signOut} className="!text-red-400 hover:!text-red-300 hover:!bg-red-500/10">
               <LogOut size={16} />
               {!collapsed && <span className="text-sm">Sign Out</span>}
             </SidebarMenuButton>
