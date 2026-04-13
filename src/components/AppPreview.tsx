@@ -1,6 +1,9 @@
 import appMockup from "@/assets/app-mockup.png";
 import appMockup2 from "@/assets/app-mockup-2.png";
-import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink, Search, BarChart3, Blocks } from "lucide-react";
+import hmoobLogo from "@/assets/logo.jpeg";
+import dandexLogo from "@/assets/dandex-logo.png";
+import danscanLogo from "@/assets/danscan-logo.png";
+import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const navItems = [
