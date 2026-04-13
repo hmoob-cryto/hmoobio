@@ -49,7 +49,7 @@ export default function AdminCrudTable({
       }
       const { data, error } = await query;
       if (error) throw error;
-      return data as Record<string, unknown>[];
+      return (data as unknown) as Record<string, unknown>[];
     },
   });
 
