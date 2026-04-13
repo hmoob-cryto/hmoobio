@@ -1,6 +1,6 @@
 import appMockup from "@/assets/app-mockup.png";
 import appMockup2 from "@/assets/app-mockup-2.png";
-import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink } from "lucide-react";
+import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink, Search, BarChart3, Blocks } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const navItems = [
@@ -10,6 +10,36 @@ const navItems = [
   { icon: Zap, label: "Boost" },
   { icon: Target, label: "Missions" },
   { icon: ArrowRightLeft, label: "Swap" },
+];
+
+const ecosystemApps = [
+  {
+    name: "HMOOB Mining",
+    url: "https://hmoob.io",
+    icon: Zap,
+    descKey: "appPreview.hmoobDesc",
+    color: "text-primary",
+    bgColor: "bg-primary/[0.08]",
+    borderColor: "hover:border-primary/30",
+  },
+  {
+    name: "DanDEX",
+    url: "https://dandex.io",
+    icon: BarChart3,
+    descKey: "appPreview.dandexDesc",
+    color: "text-emerald-400",
+    bgColor: "bg-emerald-400/[0.08]",
+    borderColor: "hover:border-emerald-400/30",
+  },
+  {
+    name: "DanScan",
+    url: "https://danscan.io",
+    icon: Search,
+    descKey: "appPreview.danscanDesc",
+    color: "text-sky-400",
+    bgColor: "bg-sky-400/[0.08]",
+    borderColor: "hover:border-sky-400/30",
+  },
 ];
 
 export default function AppPreview() {
@@ -30,18 +60,44 @@ export default function AppPreview() {
             <p className="text-muted-foreground text-base leading-[1.8] mb-4">
               {t("appPreview.desc")} <strong className="text-foreground">{t("about.bitget")}</strong> {t("appPreview.descEnd")}
             </p>
-            <p className="text-muted-foreground text-sm leading-[1.8] mb-8">{t("appPreview.desc2")}</p>
-            <div className="grid grid-cols-3 gap-3">
-              {navItems.map((item) => (
-                <div key={item.label} className="flex items-center gap-3 p-3 rounded-xl border border-border bg-surface hover:border-primary/20 transition-all duration-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/[0.12] transition-colors">
-                    <item.icon size={16} className="text-primary" />
+            <p className="text-muted-foreground text-sm leading-[1.8] mb-6">{t("appPreview.desc2")}</p>
+
+            {/* Ecosystem Apps */}
+            <div className="space-y-3 mb-6">
+              {ecosystemApps.map((app) => (
+                <a
+                  key={app.name}
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center gap-4 p-4 rounded-xl border border-border bg-surface ${app.borderColor} transition-all duration-300 group hover:bg-muted/20`}
+                >
+                  <div className={`w-10 h-10 rounded-lg ${app.bgColor} flex items-center justify-center shrink-0`}>
+                    <app.icon size={18} className={app.color} />
                   </div>
-                  <span className="text-sm font-medium">{item.label}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold">{app.name}</span>
+                      <ExternalLink size={12} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t(app.descKey)}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Nav Features */}
+            <div className="grid grid-cols-3 gap-2">
+              {navItems.map((item) => (
+                <div key={item.label} className="flex items-center gap-2 p-2.5 rounded-lg border border-border bg-surface hover:border-primary/20 transition-all duration-300 group">
+                  <div className="w-8 h-8 rounded-md bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/[0.12] transition-colors">
+                    <item.icon size={14} className="text-primary" />
+                  </div>
+                  <span className="text-xs font-medium">{item.label}</span>
                 </div>
               ))}
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 mt-10">
+            <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5">
                 <ExternalLink size={18} />{t("appPreview.openApp")}
               </a>
