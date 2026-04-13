@@ -40,9 +40,9 @@ export default function StatsBar() {
   if (!stats) return null;
 
   return (
-    <section className="relative border-y border-border bg-surface py-16 overflow-hidden">
+    <section className="relative border-y border-border bg-surface py-10 sm:py-16 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.03)_0%,_transparent_70%)]" />
-      <div className="container relative grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="container relative grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
         {stats.map((s) => (
           <StatItem key={s.id} label={s.label} value={s.value} suffix={s.suffix} icon={getIcon(s.icon_name)} detail={s.detail || ""} />
         ))}

@@ -17,10 +17,10 @@ export default function FAQ() {
   if (!faqs) return null;
 
   return (
-    <section id="faq" className="py-28 relative overflow-hidden">
+    <section id="faq" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsla(172,55%,39%,0.03)_0%,_transparent_50%)]" />
       <div className="container max-w-3xl relative">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
             <span className="w-8 h-px bg-primary/50" />{t("faq.label")}<span className="w-8 h-px bg-primary/50" />
           </span>

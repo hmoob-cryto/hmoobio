@@ -4,10 +4,11 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Download } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
 import howitworksBg from "@/assets/howitworks-bg.jpg";
+import { SectionSkeleton } from "@/components/SectionSkeleton";
 
 export default function HowItWorks() {
   const { locale, t } = useLanguage();
-  const { data: steps } = useQuery({
+  const { data: steps, isLoading } = useQuery({
     queryKey: ["how_it_works_steps", locale],
     queryFn: async () => {
       const { data, error } = await supabase.from("how_it_works_steps").select("*").eq("is_active", true).eq("locale", locale).order("sort_order");
@@ -16,17 +17,18 @@ export default function HowItWorks() {
     },
   });
 
+  if (isLoading) return <SectionSkeleton rows={4} />;
   if (!steps) return null;
 
   return (
-    <section id="how-it-works" className="py-28 bg-surface relative overflow-hidden">
+    <section id="how-it-works" className="py-16 sm:py-28 bg-surface relative overflow-hidden">
       <img src={howitworksBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
           <span className="w-8 h-px bg-primary/50" />{t("howItWorks.label")}<span className="w-8 h-px bg-primary/50" />
         </span>
-        <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-20">
+        <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-10 sm:mb-20">
           {t("howItWorks.title1")} <span className="text-gradient-gold">{t("howItWorks.title2")}</span>
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">

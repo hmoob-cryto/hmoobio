@@ -29,7 +29,7 @@ export default function EcosystemFlow() {
           <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
             <span className="w-8 h-px bg-primary/50" />{t("flow.label")}<span className="w-8 h-px bg-primary/50" />
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold mt-2">
             {t("flow.title1")} <span className="text-gradient-gold">{t("flow.title2")}</span> {t("flow.titleEnd")}
           </h2>
           <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">{t("flow.desc")}</p>

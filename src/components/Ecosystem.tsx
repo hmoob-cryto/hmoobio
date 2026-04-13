@@ -18,19 +18,19 @@ export default function Ecosystem() {
   if (!items) return null;
 
   return (
-    <section id="ecosystem" className="py-28 relative overflow-hidden">
+    <section id="ecosystem" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsla(172,55%,39%,0.04)_0%,_transparent_50%)]" />
       <div className="container relative">
         <div className="text-center mb-20">
           <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
             <span className="w-8 h-px bg-primary/50" />{t("ecosystem.label")}<span className="w-8 h-px bg-primary/50" />
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold mt-2">
             {t("ecosystem.title1")} <span className="text-gradient-gold">{t("ecosystem.title2")}</span> {t("ecosystem.titleEnd")}
           </h2>
           <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">{t("ecosystem.desc")}</p>
         </div>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
           {items.map((item) => {
             const Icon = getIcon(item.icon_name);
             return (

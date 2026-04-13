@@ -3,18 +3,9 @@ import appMockup2 from "@/assets/app-mockup-2.png";
 import hmoobLogo from "@/assets/logo.jpeg";
 import dandexLogo from "@/assets/dandex-logo.png";
 import danscanLogo from "@/assets/danscan-logo.png";
-import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink, Star } from "lucide-react";
+import { Download, ExternalLink, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCompatibleWallets } from "@/hooks/useDbData";
-
-const navItems = [
-  { icon: Wallet, label: "Wallet" },
-  { icon: Users, label: "Friends" },
-  { icon: Home, label: "Home" },
-  { icon: Zap, label: "Boost" },
-  { icon: Target, label: "Missions" },
-  { icon: ArrowRightLeft, label: "Swap" },
-];
 
 const ecosystemApps = [
   { name: "HMOOB Mining", url: "https://hmoob.io", logo: hmoobLogo, descKey: "appPreview.hmoobDesc", borderColor: "hover:border-primary/30" },
@@ -27,7 +18,7 @@ export default function AppPreview() {
   const { data: wallets } = useCompatibleWallets();
 
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.04)_0%,_transparent_60%)]" />
       <div className="container relative">
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
@@ -66,10 +57,10 @@ export default function AppPreview() {
               <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
                 {t("appPreview.compatibleWallets")}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {(wallets || []).map((wallet) => (
                   <a key={wallet.id} href={wallet.play_url} target="_blank" rel="noopener noreferrer"
-                    className="relative flex flex-col items-center gap-3 p-4 rounded-xl border border-border bg-surface hover:border-primary/20 hover:bg-muted/20 transition-all duration-300 group">
+                    className="relative flex flex-col items-center gap-2 p-3 sm:p-4 rounded-xl border border-border bg-surface hover:border-primary/20 hover:bg-muted/20 transition-all duration-300 group">
                     {wallet.is_recommended && (
                       <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-[10px] font-semibold bg-primary text-primary-foreground px-2.5 py-0.5 rounded-full whitespace-nowrap">
                         {t("boost.recommended")}
@@ -93,16 +84,6 @@ export default function AppPreview() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-2">
-              {navItems.map((item) => (
-                <div key={item.label} className="flex items-center gap-2 p-2.5 rounded-lg border border-border bg-surface hover:border-primary/20 transition-all duration-300 group">
-                  <div className="w-8 h-8 rounded-md bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/[0.12] transition-colors">
-                    <item.icon size={14} className="text-primary" />
-                  </div>
-                  <span className="text-xs font-medium">{item.label}</span>
-                </div>
-              ))}
-            </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5">
                 <ExternalLink size={18} />{t("appPreview.openApp")}
@@ -112,18 +93,20 @@ export default function AppPreview() {
               </a>
             </div>
           </div>
-          <div className="flex justify-center items-center relative min-h-[500px] lg:min-h-[600px]">
+          <div className="flex justify-center items-center relative min-h-[300px] sm:min-h-[500px] lg:min-h-[600px]">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.08)_0%,_transparent_70%)]" />
-            <div className="relative z-10 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+            {/* Primary phone — always visible */}
+            <div className="relative z-10 transform sm:-rotate-3 hover:rotate-0 transition-transform duration-500">
               <div className="absolute -inset-8 bg-primary/10 blur-[80px] rounded-full" />
-              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[220px] sm:w-[260px] lg:w-[280px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
+              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[180px] sm:w-[230px] lg:w-[270px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
               <div className="text-center mt-4">
                 <span className="text-xs font-mono text-primary/80 bg-primary/[0.08] px-3 py-1.5 rounded-full border border-primary/15">hmoob.io</span>
               </div>
             </div>
-            <div className="relative z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500 -ml-6 lg:-ml-4 translate-y-8">
+            {/* Secondary phone — hidden on mobile to prevent overflow */}
+            <div className="hidden sm:block relative z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500 -ml-6 lg:-ml-4 translate-y-8">
               <div className="absolute -inset-8 bg-blue-500/10 blur-[80px] rounded-full" />
-              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[220px] sm:w-[260px] lg:w-[280px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
+              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[180px] sm:w-[230px] lg:w-[270px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
               <div className="text-center mt-4">
                 <span className="text-xs font-mono text-blue-400/80 bg-blue-400/[0.08] px-3 py-1.5 rounded-full border border-blue-400/15">Bitget Wallet</span>
               </div>
