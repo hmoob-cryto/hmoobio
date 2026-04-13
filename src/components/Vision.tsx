@@ -1,9 +1,9 @@
-import { Quote, Target, Rocket, Globe, Users, Gem, Star } from "lucide-react";
+import { Quote, Target, Rocket, Globe, Users, Gem, Star, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useVisionMilestones } from "@/hooks/useDbData";
 import visionBg from "@/assets/vision-bg.jpg";
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, LucideIcon> = {
   Rocket, Globe, Users, Gem, Target, Star,
 };
 
