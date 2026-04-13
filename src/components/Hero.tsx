@@ -23,7 +23,7 @@ export default function Hero() {
       <div className="absolute top-40 right-[20%] w-1.5 h-1.5 rounded-full bg-secondary/40 animate-float" style={{ animationDelay: "2s" }} />
       <div className="absolute bottom-32 left-[25%] w-1 h-1 rounded-full bg-primary/20 animate-float" style={{ animationDelay: "4s" }} />
 
-      <div className="container relative z-10 text-center px-4 pt-16">
+      <div className="container relative z-10 text-center pt-16">
         <div className="mb-6 animate-fade-up-1">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-mono text-secondary bg-secondary/[0.06] border border-secondary/15">
             <span className="relative flex h-2 w-2">

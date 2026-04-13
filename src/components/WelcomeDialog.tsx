@@ -38,7 +38,7 @@ export default function WelcomeDialog() {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-lg p-0 border-border bg-card overflow-hidden gap-0 [&>button]:hidden">
         <div className="h-1.5 w-full bg-gradient-to-r from-primary via-amber-400 to-primary" />
-        <div className="relative px-8 pt-8 pb-10">
+        <div className="relative px-5 sm:px-8 pt-6 sm:pt-8 pb-7 sm:pb-10">
           <button onClick={handleClose} className="absolute top-4 right-4 w-8 h-8 rounded-full border border-border bg-muted/30 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors">
             <X size={14} />
           </button>
