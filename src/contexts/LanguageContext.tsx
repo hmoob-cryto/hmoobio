@@ -379,7 +379,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const t = useCallback(
-    (key: string) => translations[locale][key] || translations.en[key] || key,
+    (key: string) => {
+      const val = translations[locale][key];
+      if (val !== undefined) return val;
+      const enVal = translations.en[key];
+      if (enVal !== undefined) return enVal;
+      return key;
+    },
     [locale]
   );
 
