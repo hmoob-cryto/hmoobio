@@ -21,7 +21,7 @@ export default function AppPreview() {
     <section className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.04)_0%,_transparent_60%)]" />
       <div className="container relative">
-        <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.25fr] gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           <div>
             <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4">
               <span className="w-8 h-px bg-primary/50" />{t("appPreview.label")}
@@ -93,20 +93,20 @@ export default function AppPreview() {
               </a>
             </div>
           </div>
-          <div className="flex justify-center items-center relative min-h-[300px] sm:min-h-[500px] lg:min-h-[600px]">
+          <div className="flex justify-center items-center relative min-h-[300px] sm:min-h-[520px] lg:min-h-[680px] xl:min-h-[740px]">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.08)_0%,_transparent_70%)]" />
             {/* Primary phone — always visible */}
             <div className="relative z-10 transform sm:-rotate-3 hover:rotate-0 transition-transform duration-500">
               <div className="absolute -inset-8 bg-primary/10 blur-[80px] rounded-full" />
-              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[180px] sm:w-[230px] lg:w-[270px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
+              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[180px] sm:w-[230px] lg:w-[310px] xl:w-[345px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
               <div className="text-center mt-4">
                 <span className="text-xs font-mono text-primary/80 bg-primary/[0.08] px-3 py-1.5 rounded-full border border-primary/15">hmoob.io</span>
               </div>
             </div>
             {/* Secondary phone — hidden on mobile to prevent overflow */}
-            <div className="hidden sm:block relative z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500 -ml-6 lg:-ml-4 translate-y-8">
+            <div className="hidden sm:block relative z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500 -ml-8 lg:-ml-12 translate-y-8">
               <div className="absolute -inset-8 bg-blue-500/10 blur-[80px] rounded-full" />
-              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[180px] sm:w-[230px] lg:w-[270px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
+              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[180px] sm:w-[230px] lg:w-[310px] xl:w-[345px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
               <div className="text-center mt-4">
                 <span className="text-xs font-mono text-blue-400/80 bg-blue-400/[0.08] px-3 py-1.5 rounded-full border border-blue-400/15">Bitget Wallet</span>
               </div>

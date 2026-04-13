@@ -27,8 +27,18 @@ export default function BoostPlans() {
 
   return (
     <section id="boost" className="py-16 sm:py-28 bg-surface relative overflow-hidden">
-      <img src={boostBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" loading="lazy" width={1920} height={1080} />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      {/* Fixed parallax background — doesn't scroll with page */}
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          backgroundImage: `url(${boostBg})`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      {/* Lighter overlay so the image shows through clearly */}
+      <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/50 to-surface/80" />
       <div className="container relative">
         <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
