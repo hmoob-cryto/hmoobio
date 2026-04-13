@@ -60,6 +60,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "appPreview.hmoobDesc": "Cloud mining — boost hash rate, earn daily HMOOB rewards",
     "appPreview.dandexDesc": "Decentralized exchange — swap tokens, provide liquidity, live charts",
     "appPreview.danscanDesc": "Blockchain explorer — track transactions, blocks, wallets & gas",
+    "appPreview.compatibleWallets": "Compatible Wallets",
 
     // How It Works
     "howItWorks.label": "How It Works",
