@@ -57,6 +57,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "appPreview.desc2": "Bitget Wallet provides self-custodial security, multi-chain support, and a built-in DApp browser — making it the perfect gateway to HMOOB Mining and the DannyChain ecosystem.",
     "appPreview.openApp": "Open HMOOB Mining",
     "appPreview.getWallet": "Get Bitget Wallet",
+    "appPreview.hmoobDesc": "Cloud mining — boost hash rate, earn daily HMOOB rewards",
+    "appPreview.dandexDesc": "Decentralized exchange — swap tokens, provide liquidity, live charts",
+    "appPreview.danscanDesc": "Blockchain explorer — track transactions, blocks, wallets & gas",
 
     // How It Works
     "howItWorks.label": "How It Works",
@@ -198,6 +201,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "appPreview.desc2": "Bitget Wallet muaj self-custodial kev ruaj ntseg, multi-chain support, thiab DApp browser — ua rau nws yog txoj kev zoo tshaj plaws mus rau HMOOB Mining thiab DannyChain ecosystem.",
     "appPreview.openApp": "Qhib HMOOB Mining",
     "appPreview.getWallet": "Tau Bitget Wallet",
+    "appPreview.hmoobDesc": "Khawb hauv huab cua — nce hash rate, khwv HMOOB rewards txhua hnub",
+    "appPreview.dandexDesc": "Kev sib pauv crypto — swap tokens, muab liquidity, saib charts",
+    "appPreview.danscanDesc": "Blockchain explorer — nrhiav transactions, blocks, wallets & gas",
 
     // How It Works
     "howItWorks.label": "Ua Li Cas",
