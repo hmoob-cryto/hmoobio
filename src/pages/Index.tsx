@@ -41,6 +41,7 @@ export default function Index() {
       <CTASection />
       <Footer />
       <FloatingContact />
+      <WelcomeDialog />
     </div>
   );
 }
