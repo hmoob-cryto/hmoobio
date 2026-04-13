@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-const VIDEO_URL = "https://oahmqliohtgaehtuhmqp.supabase.co/storage/v1/object/public/media/videos/vision-video.mp4";
+import ecosystemVideo from "@/assets/ecosystem-promo.mp4";
+const VIDEO_URL = ecosystemVideo;
 
 export default function VideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
