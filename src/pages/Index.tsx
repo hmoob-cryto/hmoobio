@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import WelcomeDialog from "@/components/WelcomeDialog";
 import TrustBanner from "@/components/TrustBanner";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
@@ -40,6 +41,7 @@ export default function Index() {
       <CTASection />
       <Footer />
       <FloatingContact />
+      <WelcomeDialog />
     </div>
   );
 }
