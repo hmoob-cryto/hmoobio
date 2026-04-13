@@ -18,8 +18,8 @@ export default function AdminLayout() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <Loader2 className="animate-spin text-primary" size={32} />
+      <div className="min-h-screen flex items-center justify-center bg-slate-100">
+        <Loader2 className="animate-spin text-amber-500" size={32} />
       </div>
     );
   }
@@ -28,13 +28,13 @@ export default function AdminLayout() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+      <div className="min-h-screen flex w-full bg-slate-100">
         <AdminSidebar />
         <div className="flex-1 flex flex-col min-w-0">
-          <header className="h-14 flex items-center border-b border-border px-4 gap-3 bg-card/50 backdrop-blur-sm sticky top-0 z-30">
-            <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-            <div className="w-px h-6 bg-border" />
-            <span className="text-sm font-medium text-muted-foreground capitalize">
+          <header className="h-14 flex items-center border-b border-slate-200 px-4 gap-3 bg-white/80 backdrop-blur-sm sticky top-0 z-30">
+            <SidebarTrigger className="text-slate-400 hover:text-slate-700" />
+            <div className="w-px h-6 bg-slate-200" />
+            <span className="text-sm font-medium text-slate-500 capitalize">
               {location.pathname.split("/").pop()?.replace(/-/g, " ") || "Dashboard"}
             </span>
           </header>
