@@ -4,6 +4,7 @@ import TrustBanner from "@/components/TrustBanner";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
 import AppPreview from "@/components/AppPreview";
+import EcosystemFlow from "@/components/EcosystemFlow";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import SecuritySection from "@/components/SecuritySection";
@@ -26,6 +27,7 @@ export default function Index() {
       <StatsBar />
       <About />
       <AppPreview />
+      <EcosystemFlow />
       <HowItWorks />
       <Features />
       <SecuritySection />
