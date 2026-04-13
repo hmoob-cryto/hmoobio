@@ -3,7 +3,7 @@ import appMockup2 from "@/assets/app-mockup-2.png";
 import hmoobLogo from "@/assets/logo.jpeg";
 import dandexLogo from "@/assets/dandex-logo.png";
 import danscanLogo from "@/assets/danscan-logo.png";
-import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink } from "lucide-react";
+import { Wallet, Users, Home, Zap, Target, ArrowRightLeft, Download, ExternalLink, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const navItems = [
@@ -39,6 +39,36 @@ const ecosystemApps = [
   },
 ];
 
+const compatibleWallets = [
+  {
+    name: "Bitget Wallet",
+    desc: "90M+ users · 130+ chains",
+    rating: "4.6",
+    downloads: "10M+",
+    logo: "https://play-lh.googleusercontent.com/QbNP8A9GE_UM1s3RFNF8i599yWm_F37iwL4viYCueD9XhJaIZ2yZjMnEwsegeTaHa7Q=s128-rw",
+    playUrl: "https://play.google.com/store/apps/details?id=com.bitkeep.wallet",
+    recommended: true,
+  },
+  {
+    name: "TokenPocket",
+    desc: "25M+ users · 1,000+ networks",
+    rating: "4.4",
+    downloads: "5M+",
+    logo: "https://play-lh.googleusercontent.com/D752bekSu2KR_ERPvFiMve7UoQ-5isqXC7v1SP6eVMUaOhCGHJcgjc1k_o8qf1CH_VeFLecOXylysCA05VnY0Sk=s128-rw",
+    playUrl: "https://play.google.com/store/apps/details?id=vip.mytokenpocket",
+    recommended: false,
+  },
+  {
+    name: "SafePal",
+    desc: "20M+ users · 200+ chains",
+    rating: "4.6",
+    downloads: "5M+",
+    logo: "https://play-lh.googleusercontent.com/uT6ByyNvUeLRMDnMKEC91RrbHftl2EBB58r9vZaNbiYf1F5Twa33_Hx0zYvEfCtiG1kE=s128-rw",
+    playUrl: "https://play.google.com/store/apps/details?id=io.safepal.wallet",
+    recommended: false,
+  },
+];
+
 export default function AppPreview() {
   const { t } = useLanguage();
 
@@ -60,7 +90,7 @@ export default function AppPreview() {
             <p className="text-muted-foreground text-sm leading-[1.8] mb-6">{t("appPreview.desc2")}</p>
 
             {/* Ecosystem Apps */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-8">
               {ecosystemApps.map((app) => (
                 <a
                   key={app.name}
@@ -81,6 +111,50 @@ export default function AppPreview() {
                   </div>
                 </a>
               ))}
+            </div>
+
+            {/* Compatible Wallets */}
+            <div className="mb-8">
+              <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
+                {t("appPreview.compatibleWallets")}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {compatibleWallets.map((wallet) => (
+                  <a
+                    key={wallet.name}
+                    href={wallet.playUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative flex flex-col items-center gap-3 p-4 rounded-xl border border-border bg-surface hover:border-primary/20 hover:bg-muted/20 transition-all duration-300 group"
+                  >
+                    {wallet.recommended && (
+                      <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-[10px] font-semibold bg-primary text-primary-foreground px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                        {t("boost.recommended")}
+                      </span>
+                    )}
+                    <img
+                      src={wallet.logo}
+                      alt={wallet.name}
+                      className="w-14 h-14 rounded-2xl shadow-md"
+                      loading="lazy"
+                      width={56}
+                      height={56}
+                    />
+                    <div className="text-center">
+                      <span className="text-sm font-semibold block">{wallet.name}</span>
+                      <div className="flex items-center justify-center gap-1 mt-1">
+                        <Star size={10} className="text-amber-400 fill-amber-400" />
+                        <span className="text-xs text-muted-foreground">{wallet.rating}</span>
+                        <span className="text-xs text-muted-foreground">· {wallet.downloads}</span>
+                      </div>
+                      <p className="text-[10px] text-muted-foreground mt-1">{wallet.desc}</p>
+                    </div>
+                    <span className="text-[10px] font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                      <Download size={10} /> Google Play
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Nav Features */}
