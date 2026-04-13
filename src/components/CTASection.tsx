@@ -17,11 +17,11 @@ export default function CTASection() {
   const { data: wallets } = useCompatibleWallets();
 
   return (
-    <section id="cta" className="py-28 bg-surface relative overflow-hidden">
+    <section id="cta" className="py-16 sm:py-28 bg-surface relative overflow-hidden">
       <img src={ctaBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-50" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/50" />
       <div className="container max-w-4xl text-center relative z-10">
-        <div className="p-10 sm:p-14 rounded-3xl border border-border bg-background/50 relative overflow-hidden">
+        <div className="p-6 sm:p-10 md:p-14 rounded-3xl border border-border bg-background/50 relative overflow-hidden">
           <div className="absolute inset-0 shimmer" />
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-mono text-secondary bg-secondary/[0.06] border border-secondary/15 mb-8">
@@ -33,7 +33,7 @@ export default function CTASection() {
             <p className="text-muted-foreground text-lg mb-5 leading-relaxed">{t("cta.desc")}</p>
             <p className="text-muted-foreground text-sm mb-10 max-w-lg mx-auto">{t("cta.steps")}</p>
 
-            <div className="grid sm:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-3 gap-3 mb-8">
               {ctaApps.map((app) => (
                 <a key={app.name} href={app.url} target="_blank" rel="noopener noreferrer"
                   className="flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-surface/50 hover:bg-muted/30 hover:border-primary/20 transition-all duration-300 group hover:-translate-y-0.5">

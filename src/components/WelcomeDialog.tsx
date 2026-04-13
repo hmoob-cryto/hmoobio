@@ -10,9 +10,16 @@ export default function WelcomeDialog() {
   const { data: settings } = useSiteSettings();
 
   useEffect(() => {
-    const timer = setTimeout(() => setOpen(true), 600);
+    const dismissed = sessionStorage.getItem("welcome_dismissed");
+    if (dismissed) return;
+    const timer = setTimeout(() => setOpen(true), 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleClose = () => {
+    setOpen(false);
+    sessionStorage.setItem("welcome_dismissed", "1");
+  };
 
   const isHmn = locale === "hmn";
   const s = settings || {};
@@ -28,11 +35,11 @@ export default function WelcomeDialog() {
   ];
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-lg p-0 border-border bg-card overflow-hidden gap-0 [&>button]:hidden">
         <div className="h-1.5 w-full bg-gradient-to-r from-primary via-amber-400 to-primary" />
         <div className="relative px-8 pt-8 pb-10">
-          <button onClick={() => setOpen(false)} className="absolute top-4 right-4 w-8 h-8 rounded-full border border-border bg-muted/30 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors">
+          <button onClick={handleClose} className="absolute top-4 right-4 w-8 h-8 rounded-full border border-border bg-muted/30 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors">
             <X size={14} />
           </button>
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-60 h-60 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
@@ -53,7 +60,7 @@ export default function WelcomeDialog() {
               </div>
             ))}
           </div>
-          <button onClick={() => setOpen(false)} className="w-full mt-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-display font-semibold text-sm hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5">
+          <button onClick={handleClose} className="w-full mt-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-display font-semibold text-sm hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5">
             {cta}
           </button>
           <div className="flex items-center justify-center gap-4 mt-5 text-xs text-muted-foreground">

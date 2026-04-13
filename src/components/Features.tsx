@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getIcon } from "@/lib/iconMap";
+import { SectionSkeleton } from "@/components/SectionSkeleton";
 
 export default function Features() {
   const { locale, t } = useLanguage();
-  const { data: features } = useQuery({
+  const { data: features, isLoading } = useQuery({
     queryKey: ["site_features", locale],
     queryFn: async () => {
       const { data, error } = await supabase.from("site_features").select("*").eq("is_active", true).eq("locale", locale).order("sort_order");
@@ -14,10 +15,11 @@ export default function Features() {
     },
   });
 
+  if (isLoading) return <SectionSkeleton rows={3} />;
   if (!features?.length) return null;
 
   return (
-    <section id="features" className="py-28 relative overflow-hidden">
+    <section id="features" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-secondary/[0.03] blur-[120px]" />
       <div className="container text-center relative">
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
@@ -26,8 +28,8 @@ export default function Features() {
         <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-6">
           {t("features.title1")} <span className="text-gradient-gold">{t("features.title2")}</span>
         </h2>
-        <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-16">{t("features.desc")}</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+        <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10">{t("features.desc")}</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
           {features.map((f) => {
             const Icon = getIcon(f.icon_name);
             return (

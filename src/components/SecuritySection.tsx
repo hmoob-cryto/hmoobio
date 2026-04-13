@@ -4,10 +4,11 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Eye } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
 import securityBg from "@/assets/security-bg.jpg";
+import { SectionSkeleton } from "@/components/SectionSkeleton";
 
 export default function SecuritySection() {
   const { locale, t } = useLanguage();
-  const { data: features } = useQuery({
+  const { data: features, isLoading } = useQuery({
     queryKey: ["security_features", locale],
     queryFn: async () => {
       const { data, error } = await supabase.from("security_features").select("*").eq("is_active", true).eq("locale", locale).order("sort_order");
@@ -16,14 +17,15 @@ export default function SecuritySection() {
     },
   });
 
+  if (isLoading) return <SectionSkeleton rows={3} />;
   if (!features) return null;
 
   return (
-    <section id="security" className="py-28 relative overflow-hidden">
+    <section id="security" className="py-16 sm:py-28 relative overflow-hidden">
       <img src={securityBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="container relative">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="inline-flex items-center gap-2 text-secondary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
             <span className="w-8 h-px bg-secondary/50" />{t("security.label")}<span className="w-8 h-px bg-secondary/50" />
           </span>
@@ -32,7 +34,7 @@ export default function SecuritySection() {
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("security.desc")}</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
           {features.map((f) => {
             const Icon = getIcon(f.icon_name);
             return (

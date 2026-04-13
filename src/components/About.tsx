@@ -7,10 +7,10 @@ export default function About() {
   const { data: partnerLinks } = useSiteLinks("about_partner");
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[120px]" />
       <div className="container max-w-5xl relative">
-        <div className="grid md:grid-cols-[1fr_auto] gap-16 items-center">
+        <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-16 items-center">
           <div>
             <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4">
               <span className="w-8 h-px bg-primary/50" />

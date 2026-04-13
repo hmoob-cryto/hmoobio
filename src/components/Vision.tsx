@@ -12,7 +12,7 @@ export default function Vision() {
   const { data: milestones } = useVisionMilestones();
 
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="py-16 sm:py-28 relative overflow-hidden">
       <img src={visionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-90" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background/60" />
       <div className="container max-w-5xl relative">
@@ -21,11 +21,11 @@ export default function Vision() {
         </span>
 
         {/* Quote */}
-        <div className="relative p-10 sm:p-16 rounded-3xl border border-border bg-surface/50 mb-16">
+        <div className="relative p-7 sm:p-10 md:p-16 rounded-3xl border border-border bg-surface/50 mb-10 sm:mb-16">
           <div className="absolute top-8 left-8 sm:top-10 sm:left-10">
             <Quote className="text-primary/15" size={56} />
           </div>
-          <blockquote className="relative font-display text-xl sm:text-2xl lg:text-3xl font-medium leading-[1.6] text-foreground/85 italic pt-8">
+          <blockquote className="relative font-display text-lg sm:text-2xl lg:text-3xl font-medium leading-[1.6] text-foreground/85 italic pt-6 sm:pt-8">
             {t("vision.quote")}
           </blockquote>
           <div className="mt-10 flex items-center justify-center gap-4">

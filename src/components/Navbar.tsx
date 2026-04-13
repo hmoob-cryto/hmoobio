@@ -6,6 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { locale, setLocale, t } = useLanguage();
 
   const links = [
@@ -19,7 +20,18 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => {
+      setScrolled(window.scrollY > 20);
+      const ids = links.map((l) => l.id);
+      let current = "";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          current = id;
+        }
+      }
+      setActiveSection(current);
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -49,7 +61,7 @@ export default function Navbar() {
             <button
               key={l.id}
               onClick={() => scrollTo(l.id)}
-              className="text-sm text-muted-foreground hover:text-foreground px-4 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200"
+              className={`text-sm px-4 py-2 rounded-lg transition-all duration-200 ${activeSection === l.id ? "text-primary bg-primary/[0.08] font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
             >
               {l.label}
             </button>

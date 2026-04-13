@@ -83,7 +83,17 @@
     border-color: hsl(36 90% 55% / 0.35);
     box-shadow: 0 0 25px hsla(36, 90%, 55%, 0.12), inset 0 1px 0 hsla(36, 90%, 55%, 0.08);
   }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(36 90% 55% / 0.15), transparent);
+    margin: 0;
+  }
   .section-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .section-fade.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -115,6 +125,17 @@
   }
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
