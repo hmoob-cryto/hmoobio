@@ -170,7 +170,7 @@ export default function Testimonials() {
           </div>
           <span className="hidden sm:block w-px h-4 bg-border" />
           <span className="text-sm text-muted-foreground font-mono">
-            {testimonials ? `${testimonials.length * 12}+` : "—"}{" "}
+            {testimonials ? `${testimonials.length * 12}+` : "ï¿½"}{" "}
             <span className="text-foreground font-medium">{t("testimonials.label")}</span>
           </span>
           <span className="hidden sm:block w-px h-4 bg-border" />
