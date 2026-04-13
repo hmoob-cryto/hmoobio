@@ -205,6 +205,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "appPreview.hmoobDesc": "Khawb hauv huab cua — nce hash rate, khwv HMOOB rewards txhua hnub",
     "appPreview.dandexDesc": "Kev sib pauv crypto — swap tokens, muab liquidity, saib charts",
     "appPreview.danscanDesc": "Blockchain explorer — nrhiav transactions, blocks, wallets & gas",
+    "appPreview.compatibleWallets": "Cov Wallet Sib Haum",
 
     // How It Works
     "howItWorks.label": "Ua Li Cas",
