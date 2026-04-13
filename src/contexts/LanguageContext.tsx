@@ -60,6 +60,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "appPreview.hmoobDesc": "Cloud mining — boost hash rate, earn daily HMOOB rewards",
     "appPreview.dandexDesc": "Decentralized exchange — swap tokens, provide liquidity, live charts",
     "appPreview.danscanDesc": "Blockchain explorer — track transactions, blocks, wallets & gas",
+    "appPreview.compatibleWallets": "Compatible Wallets",
 
     // How It Works
     "howItWorks.label": "How It Works",
@@ -204,6 +205,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "appPreview.hmoobDesc": "Khawb hauv huab cua — nce hash rate, khwv HMOOB rewards txhua hnub",
     "appPreview.dandexDesc": "Kev sib pauv crypto — swap tokens, muab liquidity, saib charts",
     "appPreview.danscanDesc": "Blockchain explorer — nrhiav transactions, blocks, wallets & gas",
+    "appPreview.compatibleWallets": "Cov Wallet Sib Haum",
 
     // How It Works
     "howItWorks.label": "Ua Li Cas",
