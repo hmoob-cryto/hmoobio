@@ -177,19 +177,39 @@ export default function AppPreview() {
               </a>
             </div>
           </div>
-          <div className="flex justify-center items-center">
-            <div className="relative z-10 -mr-8 lg:-mr-12 translate-y-4">
-              <div className="absolute inset-0 bg-primary/15 blur-[100px] rounded-full scale-75" />
-              <img src={appMockup} alt="HMOOB Mining App - Home" className="relative w-[240px] sm:w-[300px] lg:w-[340px] drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500" loading="lazy" width={896} height={1344} />
-              <div className="text-center mt-3">
-                <span className="text-xs font-mono text-primary/80 bg-primary/[0.08] px-3 py-1 rounded-full border border-primary/15">hmoob.io</span>
+          <div className="flex justify-center items-center relative min-h-[500px] lg:min-h-[600px]">
+            {/* Ambient glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.08)_0%,_transparent_70%)]" />
+            
+            {/* Left phone - HMOOB Mining */}
+            <div className="relative z-10 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+              <div className="absolute -inset-8 bg-primary/10 blur-[80px] rounded-full" />
+              <img 
+                src={appMockup} 
+                alt="HMOOB Mining App - Home" 
+                className="relative w-[220px] sm:w-[260px] lg:w-[280px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" 
+                loading="lazy" 
+                width={896} 
+                height={1344} 
+              />
+              <div className="text-center mt-4">
+                <span className="text-xs font-mono text-primary/80 bg-primary/[0.08] px-3 py-1.5 rounded-full border border-primary/15">hmoob.io</span>
               </div>
             </div>
-            <div className="relative z-20 -ml-8 lg:-ml-12 -translate-y-4">
-              <div className="absolute inset-0 bg-secondary/15 blur-[100px] rounded-full scale-75" />
-              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[240px] sm:w-[300px] lg:w-[340px] drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500" loading="lazy" width={896} height={1344} />
-              <div className="text-center mt-3">
-                <span className="text-xs font-mono text-secondary/80 bg-secondary/[0.08] px-3 py-1 rounded-full border border-secondary/15">Bitget Wallet</span>
+
+            {/* Right phone - Bitget Wallet */}
+            <div className="relative z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500 -ml-6 lg:-ml-4 translate-y-8">
+              <div className="absolute -inset-8 bg-blue-500/10 blur-[80px] rounded-full" />
+              <img 
+                src={appMockup2} 
+                alt="Bitget Wallet - Connected" 
+                className="relative w-[220px] sm:w-[260px] lg:w-[280px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" 
+                loading="lazy" 
+                width={896} 
+                height={1344} 
+              />
+              <div className="text-center mt-4">
+                <span className="text-xs font-mono text-blue-400/80 bg-blue-400/[0.08] px-3 py-1.5 rounded-full border border-blue-400/15">Bitget Wallet</span>
               </div>
             </div>
           </div>
