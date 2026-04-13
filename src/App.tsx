@@ -25,6 +25,7 @@ import AdminVision from "./pages/admin/AdminVision.tsx";
 import AdminWallets from "./pages/admin/AdminWallets.tsx";
 import AdminTrustIndicators from "./pages/admin/AdminTrustIndicators.tsx";
 import AdminTrustPartners from "./pages/admin/AdminTrustPartners.tsx";
+import AdminChangePassword from "./pages/admin/AdminChangePassword.tsx";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ const App = () => (
               <Route path="wallets" element={<AdminWallets />} />
               <Route path="trust-indicators" element={<AdminTrustIndicators />} />
               <Route path="trust-partners" element={<AdminTrustPartners />} />
+              <Route path="change-password" element={<AdminChangePassword />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

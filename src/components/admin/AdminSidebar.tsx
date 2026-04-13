@@ -7,7 +7,7 @@ import {
 import {
   LayoutDashboard, Languages, Mountain, Wallet, Link2, Settings, Zap, Gift,
   Globe, HelpCircle, Footprints, Shield, Star, BarChart3, MessageSquare,
-  BadgeCheck, Handshake, LogOut,
+  BadgeCheck, Handshake, LogOut, KeyRound,
 } from "lucide-react";
 
 const menuGroups = [
@@ -103,6 +103,12 @@ export function AdminSidebar() {
 
       <SidebarFooter className="border-t border-slate-700 p-2 !bg-slate-800">
         <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton onClick={() => navigate("/admin/change-password")} tooltip={collapsed ? "Change Password" : undefined} className={`transition-all ${isActive("/admin/change-password") ? "!bg-amber-500/20 !text-amber-400 font-medium" : "!text-slate-300 hover:!text-white hover:!bg-slate-700"}`}>
+              <KeyRound size={16} />
+              {!collapsed && <span className="text-sm">Change Password</span>}
+            </SidebarMenuButton>
+          </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton onClick={() => navigate("/")} className="!text-slate-300 hover:!text-white hover:!bg-slate-700">
               <Globe size={16} />
