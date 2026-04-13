@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
+import { useSiteLinks } from "@/hooks/useDbData";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -15,40 +16,35 @@ const FacebookIcon = () => (
 
 export default function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: socialLinks } = useSiteLinks("social");
+
+  const iconMap: Record<string, React.FC> = { WhatsApp: WhatsAppIcon, Facebook: FacebookIcon };
+  const colorMap: Record<string, string> = {
+    WhatsApp: "bg-[hsl(142,70%,41%)] shadow-[hsla(142,70%,41%,0.3)] hover:shadow-[hsla(142,70%,41%,0.4)]",
+    Facebook: "bg-[hsl(220,46%,48%)] shadow-[hsla(220,46%,48%,0.3)] hover:shadow-[hsla(220,46%,48%,0.4)]",
+  };
+
+  const contactLinks = (socialLinks || []).filter(l => l.icon_name === "WhatsApp" || l.icon_name === "Facebook");
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {isOpen && (
         <div className="flex flex-col gap-3 animate-fade-up-1">
-          <a
-            href="https://wa.me/message/hmoobmining"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-[hsl(142,70%,41%)] text-foreground pl-5 pr-6 py-3 rounded-2xl shadow-lg shadow-[hsla(142,70%,41%,0.3)] hover:shadow-xl hover:shadow-[hsla(142,70%,41%,0.4)] hover:-translate-y-0.5 transition-all duration-300"
-          >
-            <WhatsAppIcon />
-            <span className="text-sm font-semibold text-white">WhatsApp</span>
-          </a>
-          <a
-            href="https://www.facebook.com/profile.php?id=61575614786498"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-[hsl(220,46%,48%)] text-foreground pl-5 pr-6 py-3 rounded-2xl shadow-lg shadow-[hsla(220,46%,48%,0.3)] hover:shadow-xl hover:shadow-[hsla(220,46%,48%,0.4)] hover:-translate-y-0.5 transition-all duration-300"
-          >
-            <FacebookIcon />
-            <span className="text-sm font-semibold text-white">Facebook</span>
-          </a>
+          {contactLinks.map((link) => {
+            const Icon = iconMap[link.icon_name || ""] || WhatsAppIcon;
+            const colors = colorMap[link.icon_name || ""] || colorMap.WhatsApp;
+            return (
+              <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer"
+                className={`group flex items-center gap-3 text-foreground pl-5 pr-6 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 ${colors}`}>
+                <Icon />
+                <span className="text-sm font-semibold text-white">{link.name}</span>
+              </a>
+            );
+          })}
         </div>
       )}
-
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 ${
-          isOpen
-            ? "bg-muted text-foreground rotate-0"
-            : "bg-primary text-primary-foreground animate-glow-pulse"
-        }`}
-      >
+      <button onClick={() => setIsOpen(!isOpen)}
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 ${isOpen ? "bg-muted text-foreground rotate-0" : "bg-primary text-primary-foreground animate-glow-pulse"}`}>
         {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
       </button>
     </div>

@@ -1,8 +1,10 @@
 import logo from "@/assets/logo.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useSiteLinks } from "@/hooks/useDbData";
 
 export default function About() {
   const { t } = useLanguage();
+  const { data: partnerLinks } = useSiteLinks("about_partner");
 
   return (
     <section id="about" className="py-28 relative overflow-hidden">
@@ -25,21 +27,12 @@ export default function About() {
               {t("about.p2")}
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
-              <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-primary hover:text-primary/80 transition-colors border border-primary/20 px-4 py-2 rounded-lg hover:bg-primary/5">
-                Bitget Wallet ↗
-              </a>
-              <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
-                DannyChain ↗
-              </a>
-              <a href="https://danmarket.io" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
-                DanMarket ↗
-              </a>
-              <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
-                DanDEX ↗
-              </a>
-              <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5">
-                DanScan ↗
-              </a>
+              {(partnerLinks || []).map((link) => (
+                <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer"
+                  className="text-xs font-mono text-primary hover:text-primary/80 transition-colors border border-primary/20 px-4 py-2 rounded-lg hover:bg-primary/5">
+                  {link.name} ↗
+                </a>
+              ))}
             </div>
           </div>
           <div className="hidden md:flex justify-center">

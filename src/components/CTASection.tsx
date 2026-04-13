@@ -1,5 +1,6 @@
 import { ArrowRight, Download, Shield, Pickaxe, ArrowLeftRight, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCompatibleWallets } from "@/hooks/useDbData";
 import ctaBg from "@/assets/hero-bg.jpg";
 import hmoobLogo from "@/assets/logo.jpeg";
 import dandexLogo from "@/assets/dandex-logo.png";
@@ -11,14 +12,9 @@ const ctaApps = [
   { logo: danscanLogo, name: "DanScan", url: "https://danscan.io", icon: Search, ctaKey: "cta.exploreScan" },
 ];
 
-const walletOptions = [
-  { name: "Bitget Wallet", url: "https://play.google.com/store/apps/details?id=com.bitkeep.wallet", logo: "https://play-lh.googleusercontent.com/QbNP8A9GE_UM1s3RFNF8i599yWm_F37iwL4viYCueD9XhJaIZ2yZjMnEwsegeTaHa7Q=s128-rw" },
-  { name: "TokenPocket", url: "https://play.google.com/store/apps/details?id=vip.mytokenpocket", logo: "https://play-lh.googleusercontent.com/D752bekSu2KR_ERPvFiMve7UoQ-5isqXC7v1SP6eVMUaOhCGHJcgjc1k_o8qf1CH_VeFLecOXylysCA05VnY0Sk=s128-rw" },
-  { name: "SafePal", url: "https://play.google.com/store/apps/details?id=io.safepal.wallet", logo: "https://play-lh.googleusercontent.com/uT6ByyNvUeLRMDnMKEC91RrbHftl2EBB58r9vZaNbiYf1F5Twa33_Hx0zYvEfCtiG1kE=s128-rw" },
-];
-
 export default function CTASection() {
   const { t } = useLanguage();
+  const { data: wallets } = useCompatibleWallets();
 
   return (
     <section id="cta" className="py-28 bg-surface relative overflow-hidden">
@@ -37,16 +33,10 @@ export default function CTASection() {
             <p className="text-muted-foreground text-lg mb-5 leading-relaxed">{t("cta.desc")}</p>
             <p className="text-muted-foreground text-sm mb-10 max-w-lg mx-auto">{t("cta.steps")}</p>
 
-            {/* 3 App CTAs */}
             <div className="grid sm:grid-cols-3 gap-4 mb-8">
               {ctaApps.map((app) => (
-                <a
-                  key={app.name}
-                  href={app.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-surface/50 hover:bg-muted/30 hover:border-primary/20 transition-all duration-300 group hover:-translate-y-0.5"
-                >
+                <a key={app.name} href={app.url} target="_blank" rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-surface/50 hover:bg-muted/30 hover:border-primary/20 transition-all duration-300 group hover:-translate-y-0.5">
                   <img src={app.logo} alt={app.name} className="w-12 h-12 rounded-xl" loading="lazy" width={48} height={48} />
                   <span className="font-semibold text-sm">{app.name}</span>
                   <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary">
@@ -56,19 +46,14 @@ export default function CTASection() {
               ))}
             </div>
 
-            {/* Wallet Options */}
+            {/* Wallet Options from DB */}
             <div className="mb-8">
               <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">{t("cta.downloadWallet")}</p>
               <div className="flex justify-center gap-3">
-                {walletOptions.map((wallet) => (
-                  <a
-                    key={wallet.name}
-                    href={wallet.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border hover:bg-muted/30 hover:border-muted-foreground/20 transition-all duration-300 group"
-                  >
-                    <img src={wallet.logo} alt={wallet.name} className="w-7 h-7 rounded-lg" loading="lazy" width={28} height={28} />
+                {(wallets || []).map((wallet) => (
+                  <a key={wallet.id} href={wallet.play_url} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border hover:bg-muted/30 hover:border-muted-foreground/20 transition-all duration-300 group">
+                    <img src={wallet.logo_url} alt={wallet.name} className="w-7 h-7 rounded-lg" loading="lazy" width={28} height={28} />
                     <span className="text-sm font-medium hidden sm:inline">{wallet.name}</span>
                     <Download size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />
                   </a>
