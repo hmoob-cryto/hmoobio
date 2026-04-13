@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.jpeg";
+import miningIllustration from "@/assets/cion.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useSiteLinks } from "@/hooks/useDbData";
 
@@ -10,7 +10,7 @@ export default function About() {
     <section id="about" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[120px]" />
       <div className="container max-w-5xl relative">
-        <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-16 items-center">
+        <div className="grid md:grid-cols-[1fr_auto] lg:grid-cols-[1fr_1fr] gap-10 md:gap-16 items-center">
           <div>
             <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4">
               <span className="w-8 h-px bg-primary/50" />
@@ -37,9 +37,17 @@ export default function About() {
           </div>
           <div className="hidden md:flex justify-center">
             <div className="relative">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 blur-3xl scale-110" />
-              <div className="relative w-64 h-64 rounded-3xl bg-surface-elevated border border-border flex items-center justify-center overflow-hidden">
-                <img src={logo} alt="HMOOB Coin" className="w-40 h-40 rounded-full animate-float" />
+              {/* Glow behind image */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-amber-500/10 blur-3xl scale-110" />
+              <div className="relative rounded-3xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 w-[340px] lg:w-[420px] xl:w-[460px]">
+                <img
+                  src={miningIllustration}
+                  alt="Hmong Coin Mining Illustration"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                {/* Subtle bottom fade so it blends into the section */}
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/40 to-transparent" />
               </div>
             </div>
           </div>
