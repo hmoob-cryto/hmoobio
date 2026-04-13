@@ -1,17 +1,15 @@
-import { Quote, Target, Rocket, Globe, Users, Gem } from "lucide-react";
+import { Quote, Target, Rocket, Globe, Users, Gem, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useVisionMilestones } from "@/hooks/useDbData";
 import visionBg from "@/assets/vision-bg.jpg";
 
-const milestones = [
-  { icon: Rocket, titleKey: "vision.m1Title", descKey: "vision.m1Desc", status: "done" as const },
-  { icon: Globe, titleKey: "vision.m2Title", descKey: "vision.m2Desc", status: "done" as const },
-  { icon: Users, titleKey: "vision.m3Title", descKey: "vision.m3Desc", status: "current" as const },
-  { icon: Gem, titleKey: "vision.m4Title", descKey: "vision.m4Desc", status: "upcoming" as const },
-  { icon: Target, titleKey: "vision.m5Title", descKey: "vision.m5Desc", status: "upcoming" as const },
-];
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  Rocket, Globe, Users, Gem, Target, Star,
+};
 
 export default function Vision() {
   const { t } = useLanguage();
+  const { data: milestones } = useVisionMilestones();
 
   return (
     <section className="py-28 relative overflow-hidden">
@@ -48,34 +46,31 @@ export default function Vision() {
         </div>
 
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-6 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-primary/15 to-transparent sm:-translate-x-px" />
 
           <div className="space-y-8">
-            {milestones.map((ms, i) => {
+            {(milestones || []).map((ms, i) => {
               const isLeft = i % 2 === 0;
+              const Icon = iconMap[ms.icon_name] || Star;
               return (
-                <div key={i} className={`relative flex items-start gap-6 sm:gap-0 ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"}`}>
-                  {/* Content */}
+                <div key={ms.id} className={`relative flex items-start gap-6 sm:gap-0 ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"}`}>
                   <div className={`flex-1 ${isLeft ? "sm:pr-12 sm:text-right" : "sm:pl-12 sm:text-left"}`}>
                     <div className={`border-glow rounded-2xl p-5 bg-surface/80 inline-block max-w-sm ${isLeft ? "sm:ml-auto" : "sm:mr-auto"} ${ms.status === "current" ? "ring-1 ring-primary/30" : ""}`}>
                       <div className={`flex items-center gap-2 mb-2 ${isLeft ? "sm:justify-end" : ""}`}>
-                        <ms.icon size={16} className={ms.status === "done" ? "text-secondary" : ms.status === "current" ? "text-primary" : "text-muted-foreground/50"} />
-                        <h4 className="font-display font-bold text-sm">{t(ms.titleKey)}</h4>
+                        <Icon size={16} className={ms.status === "done" ? "text-secondary" : ms.status === "current" ? "text-primary" : "text-muted-foreground/50"} />
+                        <h4 className="font-display font-bold text-sm">{ms.title}</h4>
                         {ms.status === "current" && (
                           <span className="text-[10px] font-mono bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20">{t("vision.now")}</span>
                         )}
                       </div>
-                      <p className="text-muted-foreground text-xs leading-relaxed">{t(ms.descKey)}</p>
+                      <p className="text-muted-foreground text-xs leading-relaxed">{ms.description}</p>
                     </div>
                   </div>
-                  {/* Dot */}
                   <div className="absolute left-6 sm:left-1/2 top-5 w-3 h-3 rounded-full -translate-x-1.5 sm:-translate-x-1.5 z-10 border-2 border-background"
                     style={{
                       backgroundColor: ms.status === "done" ? "hsl(var(--secondary))" : ms.status === "current" ? "hsl(var(--primary))" : "hsl(var(--muted))",
                     }}
                   />
-                  {/* Spacer */}
                   <div className="hidden sm:block flex-1" />
                 </div>
               );

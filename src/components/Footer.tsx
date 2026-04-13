@@ -1,5 +1,6 @@
 import logo from "@/assets/logo.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useSiteLinks } from "@/hooks/useDbData";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -21,6 +22,20 @@ const TelegramIcon = () => (
 
 export default function Footer() {
   const { t } = useLanguage();
+  const { data: socialLinks } = useSiteLinks("social");
+  const { data: ecosystemLinks } = useSiteLinks("footer_ecosystem");
+
+  const socialIconMap: Record<string, React.FC> = {
+    WhatsApp: WhatsAppIcon,
+    Facebook: FacebookIcon,
+    Telegram: TelegramIcon,
+  };
+
+  const socialColorMap: Record<string, string> = {
+    WhatsApp: "hsl(142,70%,41%)",
+    Facebook: "hsl(220,46%,48%)",
+    Telegram: "hsl(200,80%,50%)",
+  };
 
   return (
     <footer className="relative border-t border-border pt-16 pb-8">
@@ -55,38 +70,50 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="font-display font-bold text-sm mb-4">{t("footer.ecosystem")}</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DannyChain ↗</a>
-              <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanDEX ↗</a>
-              <a href="https://danmarket.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanMarket ↗</a>
-              <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">DanScan ↗</a>
-              <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">Bitget Wallet ↗</a>
+              {(ecosystemLinks || []).map((link) => (
+                <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors duration-200">
+                  {link.name} ↗
+                </a>
+              ))}
             </div>
           </div>
           <div className="md:col-span-4">
             <h4 className="font-display font-bold text-sm mb-4">{t("footer.contactUs")}</h4>
             <div className="space-y-3 mb-6">
-              <a href="https://wa.me/message/hmoobmining" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group">
-                <div className="w-9 h-9 rounded-xl bg-[hsl(142,70%,41%)]/10 border border-[hsl(142,70%,41%)]/20 flex items-center justify-center text-[hsl(142,70%,41%)] group-hover:bg-[hsl(142,70%,41%)]/15 group-hover:border-[hsl(142,70%,41%)]/30 transition-all duration-300"><WhatsAppIcon /></div>
-                <span>{t("footer.whatsapp")}</span>
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=61575614786498" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group">
-                <div className="w-9 h-9 rounded-xl bg-[hsl(220,46%,48%)]/10 border border-[hsl(220,46%,48%)]/20 flex items-center justify-center text-[hsl(220,46%,48%)] group-hover:bg-[hsl(220,46%,48%)]/15 group-hover:border-[hsl(220,46%,48%)]/30 transition-all duration-300"><FacebookIcon /></div>
-                <span>{t("footer.facebook")}</span>
-              </a>
+              {(socialLinks || []).filter(l => l.icon_name === "WhatsApp" || l.icon_name === "Facebook").map((link) => {
+                const Icon = socialIconMap[link.icon_name || ""] || WhatsAppIcon;
+                const color = socialColorMap[link.icon_name || ""] || "hsl(var(--primary))";
+                return (
+                  <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group">
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300"
+                      style={{ backgroundColor: `${color}15`, borderColor: `${color}30`, borderWidth: 1, color }}>
+                      <Icon />
+                    </div>
+                    <span>{link.icon_name === "WhatsApp" ? t("footer.whatsapp") : t("footer.facebook")}</span>
+                  </a>
+                );
+              })}
             </div>
             <div className="flex gap-3">
-              <a href="https://www.facebook.com/profile.php?id=61575614786498" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"><FacebookIcon /></a>
-              <a href="https://wa.me/message/hmoobmining" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"><WhatsAppIcon /></a>
-              <a href="#" className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300"><TelegramIcon /></a>
+              {(socialLinks || []).map((link) => {
+                const Icon = socialIconMap[link.icon_name || ""] || TelegramIcon;
+                return (
+                  <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 hover:bg-muted/30 transition-all duration-300">
+                    <Icon />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hmoob.io — {t("footer.copyright")}</span>
           <div className="flex gap-6 text-xs text-muted-foreground">
-            <a href="https://dannychain.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DannyChain</a>
-            <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DanDEX</a>
-            <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">DanScan Explorer</a>
+            {(ecosystemLinks || []).slice(0, 3).map((link) => (
+              <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{link.name}</a>
+            ))}
           </div>
         </div>
       </div>
