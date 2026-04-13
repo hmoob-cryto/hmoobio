@@ -1,7 +1,15 @@
 import logo from "@/assets/logo.jpeg";
 import heroBg from "@/assets/hero-bg.jpg";
-import { Download, ArrowRight } from "lucide-react";
+import dandexLogo from "@/assets/dandex-logo.png";
+import danscanLogo from "@/assets/danscan-logo.png";
+import { Download, ArrowRight, Pickaxe, ArrowLeftRight, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const ecosystemPills = [
+  { icon: Pickaxe, label: "Mine", color: "text-primary" },
+  { icon: ArrowLeftRight, label: "Trade", color: "text-emerald-400" },
+  { icon: Search, label: "Explore", color: "text-sky-400" },
+];
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -40,14 +48,43 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.05] mb-8 animate-fade-up-2 tracking-tight">
+        <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.05] mb-6 animate-fade-up-2 tracking-tight">
           {t("hero.title1")} <span className="text-gradient-gold">{t("hero.title2")}</span>
           <br />
           {t("hero.title3")}
         </h1>
-        <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 animate-fade-up-3 leading-relaxed">
+
+        {/* Ecosystem pills: Mine · Trade · Explore */}
+        <div className="flex items-center justify-center gap-3 mb-8 animate-fade-up-2">
+          {ecosystemPills.map((pill, i) => (
+            <span key={pill.label} className="flex items-center gap-1.5">
+              {i > 0 && <span className="text-muted-foreground/30 mr-3">·</span>}
+              <pill.icon size={16} className={pill.color} />
+              <span className="text-sm font-semibold text-foreground/80">{pill.label}</span>
+            </span>
+          ))}
+        </div>
+
+        <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-10 animate-fade-up-3 leading-relaxed">
           {t("hero.desc")} <strong className="text-foreground">{t("hero.roi")}</strong> {t("hero.descEnd")}
         </p>
+
+        {/* Ecosystem logos */}
+        <div className="flex items-center justify-center gap-6 mb-10 animate-fade-up-3">
+          <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 group">
+            <img src={logo} alt="HMOOB Mining" className="w-10 h-10 rounded-xl ring-1 ring-border group-hover:ring-primary/40 transition-all" />
+            <span className="text-[10px] font-mono text-muted-foreground group-hover:text-foreground transition-colors">hmoob.io</span>
+          </a>
+          <a href="https://dandex.io" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 group">
+            <img src={dandexLogo} alt="DanDEX" className="w-10 h-10 rounded-xl ring-1 ring-border group-hover:ring-emerald-400/40 transition-all" />
+            <span className="text-[10px] font-mono text-muted-foreground group-hover:text-foreground transition-colors">dandex.io</span>
+          </a>
+          <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 group">
+            <img src={danscanLogo} alt="DanScan" className="w-10 h-10 rounded-xl ring-1 ring-border group-hover:ring-sky-400/40 transition-all" />
+            <span className="text-[10px] font-mono text-muted-foreground group-hover:text-foreground transition-colors">danscan.io</span>
+          </a>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-4">
           <a
             href="https://hmoob.io"

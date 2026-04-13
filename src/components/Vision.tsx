@@ -1,6 +1,14 @@
-import { Quote } from "lucide-react";
+import { Quote, Target, Rocket, Globe, Users, Gem } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import visionBg from "@/assets/vision-bg.jpg";
+
+const milestones = [
+  { icon: Rocket, titleKey: "vision.m1Title", descKey: "vision.m1Desc", status: "done" as const },
+  { icon: Globe, titleKey: "vision.m2Title", descKey: "vision.m2Desc", status: "done" as const },
+  { icon: Users, titleKey: "vision.m3Title", descKey: "vision.m3Desc", status: "current" as const },
+  { icon: Gem, titleKey: "vision.m4Title", descKey: "vision.m4Desc", status: "upcoming" as const },
+  { icon: Target, titleKey: "vision.m5Title", descKey: "vision.m5Desc", status: "upcoming" as const },
+];
 
 export default function Vision() {
   const { t } = useLanguage();
@@ -9,11 +17,13 @@ export default function Vision() {
     <section className="py-28 relative overflow-hidden">
       <img src={visionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-90" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background/60" />
-      <div className="container max-w-4xl text-center relative">
-        <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-8 mx-auto">
+      <div className="container max-w-5xl relative">
+        <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-8 mx-auto justify-center w-full">
           <span className="w-8 h-px bg-primary/50" />{t("vision.label")}<span className="w-8 h-px bg-primary/50" />
         </span>
-        <div className="relative p-10 sm:p-16 rounded-3xl border border-border bg-surface/50">
+
+        {/* Quote */}
+        <div className="relative p-10 sm:p-16 rounded-3xl border border-border bg-surface/50 mb-16">
           <div className="absolute top-8 left-8 sm:top-10 sm:left-10">
             <Quote className="text-primary/15" size={56} />
           </div>
@@ -27,6 +37,49 @@ export default function Vision() {
               <div className="text-muted-foreground text-sm">{t("vision.role")}</div>
             </div>
             <div className="w-12 h-px bg-gradient-to-l from-transparent to-primary/40" />
+          </div>
+        </div>
+
+        {/* Roadmap */}
+        <div className="text-center mb-12">
+          <h3 className="font-display text-2xl sm:text-3xl font-bold">
+            {t("vision.roadmapTitle1")} <span className="text-gradient-gold">{t("vision.roadmapTitle2")}</span>
+          </h3>
+        </div>
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-6 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-primary/15 to-transparent sm:-translate-x-px" />
+
+          <div className="space-y-8">
+            {milestones.map((ms, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <div key={i} className={`relative flex items-start gap-6 sm:gap-0 ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"}`}>
+                  {/* Content */}
+                  <div className={`flex-1 ${isLeft ? "sm:pr-12 sm:text-right" : "sm:pl-12 sm:text-left"}`}>
+                    <div className={`border-glow rounded-2xl p-5 bg-surface/80 inline-block max-w-sm ${isLeft ? "sm:ml-auto" : "sm:mr-auto"} ${ms.status === "current" ? "ring-1 ring-primary/30" : ""}`}>
+                      <div className={`flex items-center gap-2 mb-2 ${isLeft ? "sm:justify-end" : ""}`}>
+                        <ms.icon size={16} className={ms.status === "done" ? "text-secondary" : ms.status === "current" ? "text-primary" : "text-muted-foreground/50"} />
+                        <h4 className="font-display font-bold text-sm">{t(ms.titleKey)}</h4>
+                        {ms.status === "current" && (
+                          <span className="text-[10px] font-mono bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20">{t("vision.now")}</span>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground text-xs leading-relaxed">{t(ms.descKey)}</p>
+                    </div>
+                  </div>
+                  {/* Dot */}
+                  <div className="absolute left-6 sm:left-1/2 top-5 w-3 h-3 rounded-full -translate-x-1.5 sm:-translate-x-1.5 z-10 border-2 border-background"
+                    style={{
+                      backgroundColor: ms.status === "done" ? "hsl(var(--secondary))" : ms.status === "current" ? "hsl(var(--primary))" : "hsl(var(--muted))",
+                    }}
+                  />
+                  {/* Spacer */}
+                  <div className="hidden sm:block flex-1" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
