@@ -72,7 +72,6 @@ export default function AppPreview() {
                   <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-muted/20">
                     <img src={app.logo} alt={app.name} className="w-full h-full object-cover" />
                   </div>
-                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold">{app.name}</span>
