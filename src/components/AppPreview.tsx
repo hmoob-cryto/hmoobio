@@ -19,28 +19,22 @@ const ecosystemApps = [
   {
     name: "HMOOB Mining",
     url: "https://hmoob.io",
-    icon: Zap,
+    logo: hmoobLogo,
     descKey: "appPreview.hmoobDesc",
-    color: "text-primary",
-    bgColor: "bg-primary/[0.08]",
     borderColor: "hover:border-primary/30",
   },
   {
     name: "DanDEX",
     url: "https://dandex.io",
-    icon: BarChart3,
+    logo: dandexLogo,
     descKey: "appPreview.dandexDesc",
-    color: "text-emerald-400",
-    bgColor: "bg-emerald-400/[0.08]",
     borderColor: "hover:border-emerald-400/30",
   },
   {
     name: "DanScan",
     url: "https://danscan.io",
-    icon: Search,
+    logo: danscanLogo,
     descKey: "appPreview.danscanDesc",
-    color: "text-sky-400",
-    bgColor: "bg-sky-400/[0.08]",
     borderColor: "hover:border-sky-400/30",
   },
 ];
@@ -75,8 +69,9 @@ export default function AppPreview() {
                   rel="noopener noreferrer"
                   className={`flex items-center gap-4 p-4 rounded-xl border border-border bg-surface ${app.borderColor} transition-all duration-300 group hover:bg-muted/20`}
                 >
-                  <div className={`w-10 h-10 rounded-lg ${app.bgColor} flex items-center justify-center shrink-0`}>
-                    <app.icon size={18} className={app.color} />
+                  <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-muted/20">
+                    <img src={app.logo} alt={app.name} className="w-full h-full object-cover" />
+                  </div>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
