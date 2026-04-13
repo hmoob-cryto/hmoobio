@@ -86,6 +86,51 @@ export type Database = {
         }
         Relationships: []
       }
+      compatible_wallets: {
+        Row: {
+          created_at: string
+          description: string
+          downloads: string
+          id: string
+          is_active: boolean
+          is_recommended: boolean
+          logo_url: string
+          name: string
+          play_url: string
+          rating: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          downloads?: string
+          id?: string
+          is_active?: boolean
+          is_recommended?: boolean
+          logo_url: string
+          name: string
+          play_url: string
+          rating?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          downloads?: string
+          id?: string
+          is_active?: boolean
+          is_recommended?: boolean
+          logo_url?: string
+          name?: string
+          play_url?: string
+          rating?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       ecosystem_items: {
         Row: {
           created_at: string
@@ -266,6 +311,78 @@ export type Database = {
         }
         Relationships: []
       }
+      site_links: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          icon_name: string | null
+          id: string
+          is_active: boolean
+          locale: string
+          logo_url: string | null
+          name: string
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          icon_name?: string | null
+          id?: string
+          is_active?: boolean
+          locale?: string
+          logo_url?: string | null
+          name: string
+          sort_order?: number
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          icon_name?: string | null
+          id?: string
+          is_active?: boolean
+          locale?: string
+          logo_url?: string | null
+          name?: string
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       site_stats: {
         Row: {
           created_at: string
@@ -359,6 +476,33 @@ export type Database = {
         }
         Relationships: []
       }
+      translations: {
+        Row: {
+          created_at: string
+          id: string
+          key: string
+          locale: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          key: string
+          locale?: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          key?: string
+          locale?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       trust_indicators: {
         Row: {
           created_at: string
@@ -422,6 +566,45 @@ export type Database = {
           sort_order?: number
           updated_at?: string
           url?: string
+        }
+        Relationships: []
+      }
+      vision_milestones: {
+        Row: {
+          created_at: string
+          description: string
+          icon_name: string
+          id: string
+          is_active: boolean
+          locale: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          locale?: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          locale?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
