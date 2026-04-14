@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminLayout from "./components/admin/AdminLayout.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
-import AdminTranslations from "./pages/admin/AdminTranslations.tsx";
+
 import AdminSiteSettings from "./pages/admin/AdminSiteSettings.tsx";
 import AdminSiteLinks from "./pages/admin/AdminSiteLinks.tsx";
 import AdminBoostPlans from "./pages/admin/AdminBoostPlans.tsx";
@@ -41,7 +41,7 @@ const App = () => (
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
-              <Route path="translations" element={<AdminTranslations />} />
+              
               <Route path="site-settings" element={<AdminSiteSettings />} />
               <Route path="site-links" element={<AdminSiteLinks />} />
               <Route path="boost-plans" element={<AdminBoostPlans />} />

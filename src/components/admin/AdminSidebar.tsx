@@ -5,7 +5,7 @@ import {
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, useSidebar,
 } from "@/components/ui/sidebar";
 import {
-  LayoutDashboard, Languages, Mountain, Wallet, Link2, Settings, Zap, Gift,
+  LayoutDashboard, Mountain, Wallet, Link2, Settings, Zap, Gift,
   Globe, HelpCircle, Footprints, Shield, Star, BarChart3, MessageSquare,
   BadgeCheck, Handshake, LogOut, KeyRound,
 } from "lucide-react";
@@ -20,7 +20,7 @@ const menuGroups = [
   {
     label: "Content",
     items: [
-      { title: "Translations", path: "/admin/translations", icon: Languages },
+      
       { title: "Site Settings", path: "/admin/site-settings", icon: Settings },
       { title: "Site Links", path: "/admin/site-links", icon: Link2 },
     ],
