@@ -20,7 +20,7 @@ const menuGroups = [
   {
     label: "Content",
     items: [
-      { title: "Translations", path: "/admin/translations", icon: Languages },
+      
       { title: "Site Settings", path: "/admin/site-settings", icon: Settings },
       { title: "Site Links", path: "/admin/site-links", icon: Link2 },
     ],
