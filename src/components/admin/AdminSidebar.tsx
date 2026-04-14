@@ -5,7 +5,7 @@ import {
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, useSidebar,
 } from "@/components/ui/sidebar";
 import {
-  LayoutDashboard, Languages, Mountain, Wallet, Link2, Settings, Zap, Gift,
+  LayoutDashboard, Mountain, Wallet, Link2, Settings, Zap, Gift,
   Globe, HelpCircle, Footprints, Shield, Star, BarChart3, MessageSquare,
   BadgeCheck, Handshake, LogOut, KeyRound,
 } from "lucide-react";
