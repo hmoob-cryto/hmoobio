@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -41,7 +41,22 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const toggleLang = () => setLocale(locale === "en" ? "hmn" : "en");
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+  const locales = [
+    { code: "en" as const, label: "EN", name: "English" },
+    { code: "hmn" as const, label: "HM", name: "Hmong" },
+    { code: "th" as const, label: "TH", name: "ไทย" },
+  ];
+  const currentLabel = locales.find((l) => l.code === locale)?.label ?? "EN";
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass border-b border-border shadow-lg shadow-background/50" : ""}`}>
