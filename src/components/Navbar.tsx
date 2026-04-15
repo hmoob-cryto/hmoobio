@@ -82,15 +82,30 @@ export default function Navbar() {
             </button>
           ))}
           <div className="w-px h-6 bg-border mx-2" />
-          {/* Language toggle */}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200 font-mono"
-            title={locale === "en" ? "Switch to Hmong" : "Switch to English"}
-          >
-            <Globe size={15} />
-            <span className="text-xs font-bold uppercase">{locale === "en" ? "EN" : "HM"}</span>
-          </button>
+          {/* Language dropdown */}
+          <div className="relative" ref={langRef}>
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200 font-mono"
+            >
+              <Globe size={15} />
+              <span className="text-xs font-bold uppercase">{currentLabel}</span>
+            </button>
+            {langOpen && (
+              <div className="absolute top-full right-0 mt-1 glass border border-border rounded-lg overflow-hidden shadow-xl min-w-[120px] z-50">
+                {locales.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => { setLocale(l.code); setLangOpen(false); }}
+                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
+                  >
+                    <span className="font-mono font-bold text-xs mr-2">{l.label}</span>
+                    {l.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <div className="w-px h-6 bg-border mx-2" />
           <button
             onClick={() => scrollTo("cta")}
@@ -101,12 +116,26 @@ export default function Navbar() {
         </div>
         <div className="lg:hidden flex items-center gap-2">
           <button
-            onClick={toggleLang}
+            onClick={() => setLangOpen(!langOpen)}
             className="flex items-center gap-1 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors font-mono text-xs font-bold"
           >
             <Globe size={15} />
-            {locale === "en" ? "EN" : "HM"}
+            {currentLabel}
           </button>
+          {langOpen && (
+            <div className="absolute top-14 right-12 glass border border-border rounded-lg overflow-hidden shadow-xl min-w-[120px] z-50">
+              {locales.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => { setLocale(l.code); setLangOpen(false); }}
+                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
+                >
+                  <span className="font-mono font-bold text-xs mr-2">{l.label}</span>
+                  {l.name}
+                </button>
+              ))}
+            </div>
+          )}
           <button className="text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors" onClick={() => setOpen(!open)}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
