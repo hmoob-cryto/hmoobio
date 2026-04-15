@@ -44,9 +44,9 @@ export default function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const locales = [
-    { code: "en" as const, label: "EN", name: "English" },
-    { code: "hmn" as const, label: "HM", name: "Hmong" },
-    { code: "th" as const, label: "TH", name: "ไทย" },
+    { code: "en" as const, label: "EN", name: "English", flag: "🇺🇸" },
+    { code: "hmn" as const, label: "HM", name: "Hmong", flag: "🇱🇦" },
+    { code: "th" as const, label: "TH", name: "ไทย", flag: "🇹🇭" },
   ];
   const currentLabel = locales.find((l) => l.code === locale)?.label ?? "EN";
 
