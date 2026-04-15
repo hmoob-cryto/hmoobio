@@ -120,9 +120,9 @@ export default function Navbar() {
         <div className="lg:hidden flex items-center gap-2">
           <button
             onClick={() => setLangOpen(!langOpen)}
-            className="flex items-center gap-1 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors font-mono text-xs font-bold"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors text-xs font-bold"
           >
-            <Globe size={15} />
+            <span className="text-base leading-none">{currentFlag}</span>
             {currentLabel}
           </button>
           {langOpen && (
