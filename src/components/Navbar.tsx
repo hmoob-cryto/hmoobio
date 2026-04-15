@@ -44,11 +44,13 @@ export default function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const locales = [
-    { code: "en" as const, label: "EN", name: "English" },
-    { code: "hmn" as const, label: "HM", name: "Hmong" },
-    { code: "th" as const, label: "TH", name: "ไทย" },
+    { code: "en" as const, label: "EN", name: "English", flag: "🇺🇸" },
+    { code: "hmn" as const, label: "HM", name: "Hmong", flag: "🇱🇦" },
+    { code: "th" as const, label: "TH", name: "ไทย", flag: "🇹🇭" },
   ];
-  const currentLabel = locales.find((l) => l.code === locale)?.label ?? "EN";
+  const currentLocale = locales.find((l) => l.code === locale);
+  const currentLabel = currentLocale?.label ?? "EN";
+  const currentFlag = currentLocale?.flag ?? "🇺🇸";
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -88,7 +90,7 @@ export default function Navbar() {
               onClick={() => setLangOpen(!langOpen)}
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200 font-mono"
             >
-              <Globe size={15} />
+              <span className="text-base leading-none">{currentFlag}</span>
               <span className="text-xs font-bold uppercase">{currentLabel}</span>
             </button>
             {langOpen && (
@@ -97,10 +99,11 @@ export default function Navbar() {
                   <button
                     key={l.code}
                     onClick={() => { setLocale(l.code); setLangOpen(false); }}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
-                  >
-                    <span className="font-mono font-bold text-xs mr-2">{l.label}</span>
-                    {l.name}
+                    className={`w-full flex items-center gap-2 text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
+                   >
+                     <span className="text-base leading-none">{l.flag}</span>
+                     <span className="font-mono font-bold text-xs">{l.label}</span>
+                     {l.name}
                   </button>
                 ))}
               </div>
@@ -117,9 +120,9 @@ export default function Navbar() {
         <div className="lg:hidden flex items-center gap-2">
           <button
             onClick={() => setLangOpen(!langOpen)}
-            className="flex items-center gap-1 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors font-mono text-xs font-bold"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors text-xs font-bold"
           >
-            <Globe size={15} />
+            <span className="text-base leading-none">{currentFlag}</span>
             {currentLabel}
           </button>
           {langOpen && (
@@ -128,9 +131,10 @@ export default function Navbar() {
                 <button
                   key={l.code}
                   onClick={() => { setLocale(l.code); setLangOpen(false); }}
-                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
+                  className={`w-full flex items-center gap-2 text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
                 >
-                  <span className="font-mono font-bold text-xs mr-2">{l.label}</span>
+                  <span className="text-base leading-none">{l.flag}</span>
+                  <span className="font-mono font-bold text-xs">{l.label}</span>
                   {l.name}
                 </button>
               ))}
