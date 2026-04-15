@@ -48,7 +48,9 @@ export default function Navbar() {
     { code: "hmn" as const, label: "HM", name: "Hmong", flag: "🇱🇦" },
     { code: "th" as const, label: "TH", name: "ไทย", flag: "🇹🇭" },
   ];
-  const currentLabel = locales.find((l) => l.code === locale)?.label ?? "EN";
+  const currentLocale = locales.find((l) => l.code === locale);
+  const currentLabel = currentLocale?.label ?? "EN";
+  const currentFlag = currentLocale?.flag ?? "🇺🇸";
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
