@@ -13,7 +13,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     const saved = localStorage.getItem("hmoob-locale");
-    return (saved === "hmn" ? "hmn" : "en") as Locale;
+    if (saved === "hmn" || saved === "th") return saved;
+    return "en";
   });
 
   const setLocale = useCallback((l: Locale) => {
