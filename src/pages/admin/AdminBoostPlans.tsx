@@ -10,7 +10,7 @@ export default function AdminBoostPlans() {
       orderBy="sort_order"
       columns={[
         { key: "name", label: "Name", width: "120px" },
-        { key: "locale", label: "Locale", type: "select", options: ["en", "hmn"], width: "80px" },
+        { key: "locale", label: "Locale", type: "select", options: ["en", "hmn", "th"], width: "80px" },
         { key: "usd_price", label: "USD Price", width: "100px" },
         { key: "hmoob_amount", label: "HMOOB Amount", type: "number", width: "120px" },
         { key: "hash_rate", label: "Hash Rate", width: "100px" },
