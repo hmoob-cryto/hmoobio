@@ -203,6 +203,45 @@ export type Database = {
         }
         Relationships: []
       }
+      history_timeline: {
+        Row: {
+          created_at: string
+          description: string
+          icon_name: string
+          id: string
+          is_active: boolean
+          locale: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          locale?: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          locale?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       how_it_works_steps: {
         Row: {
           created_at: string
@@ -473,6 +512,51 @@ export type Database = {
           role?: string
           sort_order?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      token_platforms: {
+        Row: {
+          created_at: string
+          description: string
+          gradient: string
+          icon_name: string
+          id: string
+          is_active: boolean
+          locale: string
+          name: string
+          platform_type: string
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          gradient?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          locale?: string
+          name: string
+          platform_type?: string
+          sort_order?: number
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          gradient?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          locale?: string
+          name?: string
+          platform_type?: string
+          sort_order?: number
+          updated_at?: string
+          url?: string
         }
         Relationships: []
       }
