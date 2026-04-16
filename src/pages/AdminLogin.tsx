@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Shield, Eye, EyeOff, Loader2 } from "lucide-react";
@@ -9,8 +9,20 @@ export default function AdminLogin() {
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, user, isAdmin, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!authLoading && user && isAdmin) {
+      navigate("/admin", { replace: true });
+      return;
+    }
+
+    if (!authLoading && user && !isAdmin) {
+      setLoading(false);
+      setError("This account does not have admin access.");
+    }
+  }, [authLoading, user, isAdmin, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,9 +32,10 @@ export default function AdminLogin() {
     if (err) {
       setError(err.message);
       setLoading(false);
-    } else {
-      navigate("/admin");
+      return;
     }
+
+    setLoading(false);
   };
 
   return (
@@ -71,7 +84,7 @@ export default function AdminLogin() {
           </div>
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || authLoading}
             className="w-full py-3 rounded-xl bg-amber-500 text-white font-semibold text-sm hover:bg-amber-600 hover:shadow-lg hover:shadow-amber-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading ? <Loader2 size={16} className="animate-spin" /> : <Shield size={16} />}
