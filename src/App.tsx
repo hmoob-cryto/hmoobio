@@ -26,6 +26,8 @@ import AdminWallets from "./pages/admin/AdminWallets.tsx";
 import AdminTrustIndicators from "./pages/admin/AdminTrustIndicators.tsx";
 import AdminTrustPartners from "./pages/admin/AdminTrustPartners.tsx";
 import AdminChangePassword from "./pages/admin/AdminChangePassword.tsx";
+import AdminHistoryTimeline from "./pages/admin/AdminHistoryTimeline.tsx";
+import AdminTokenPlatforms from "./pages/admin/AdminTokenPlatforms.tsx";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +60,8 @@ const App = () => (
               <Route path="trust-indicators" element={<AdminTrustIndicators />} />
               <Route path="trust-partners" element={<AdminTrustPartners />} />
               <Route path="change-password" element={<AdminChangePassword />} />
+              <Route path="history-timeline" element={<AdminHistoryTimeline />} />
+              <Route path="token-platforms" element={<AdminTokenPlatforms />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
