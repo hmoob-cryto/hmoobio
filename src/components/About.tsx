@@ -60,40 +60,21 @@ export default function About() {
             </div>
           </div>
           <div className="hidden md:flex justify-center">
-            <div className="relative">
-              {/* Coin image as background glow */}
-              <div className="absolute inset-0 scale-125">
-                <img
-                  src={miningIllustration}
-                  alt=""
-                  className="w-full h-full object-cover rounded-[3rem] opacity-20 blur-sm"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-amber-500/20 rounded-[3rem] mix-blend-overlay" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30 rounded-[3rem]" />
-              </div>
-
-              {/* DanScan Mobile App Mockup - larger */}
-              <div className="relative z-10">
-                <div className="w-[260px] lg:w-[300px] xl:w-[320px]">
-                  {/* Phone frame */}
-                  <div className="rounded-[2.5rem] border-[3px] border-muted/30 bg-background/60 p-2 shadow-2xl shadow-primary/20 backdrop-blur-sm">
-                    {/* Notch */}
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-1.5 rounded-full bg-muted/40 z-10" />
-                    {/* Screen */}
-                    <div className="rounded-[2rem] overflow-hidden">
-                      <img
-                        src={danscanMobile}
-                        alt="DanScan Blockchain Explorer"
-                        className="w-full h-auto object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                  {/* Label */}
-                  <p className="text-center text-xs font-mono text-primary/70 mt-4 tracking-wider">DanScan Explorer</p>
+            <div className="relative w-[260px] lg:w-[300px] xl:w-[320px]">
+              <div className="absolute -inset-8 rounded-[3rem] bg-primary/[0.06] blur-3xl" />
+              {/* Phone frame */}
+              <div className="relative rounded-[2.5rem] border-[3px] border-muted/25 p-2 shadow-2xl shadow-primary/15">
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-1.5 rounded-full bg-muted/30 z-10" />
+                <div className="rounded-[2rem] overflow-hidden">
+                  <img
+                    src={danscanMobile}
+                    alt="DanScan Blockchain Explorer"
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
                 </div>
               </div>
+              <p className="text-center text-xs font-mono text-primary/60 mt-4 tracking-wider">DanScan Explorer</p>
             </div>
           </div>
         </div>
