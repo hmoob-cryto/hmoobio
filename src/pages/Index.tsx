@@ -13,7 +13,7 @@ import BoostPlans from "@/components/BoostPlans";
 import EcosystemFlow from "@/components/EcosystemFlow";
 import HistoryVision from "@/components/HistoryVision";
 import TokenUsage from "@/components/TokenUsage";
-import Vision from "@/components/Vision";
+
 import VideoSection from "@/components/VideoSection";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
