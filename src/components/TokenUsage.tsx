@@ -1,6 +1,6 @@
 import { Pickaxe, ArrowRightLeft, Wallet, Globe, ExternalLink, Star, ArrowRight, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useTokenPlatforms, useCompatibleWallets } from "@/hooks/useDbData";
+import { useTokenPlatforms } from "@/hooks/useDbData";
 
 const iconMap: Record<string, LucideIcon> = {
   Pickaxe, ArrowRightLeft, Globe, Wallet, Star,
@@ -9,7 +9,6 @@ const iconMap: Record<string, LucideIcon> = {
 export default function TokenUsage() {
   const { locale } = useLanguage();
   const { data: platforms } = useTokenPlatforms();
-  const { data: wallets } = useCompatibleWallets();
 
   const sectionTitle =
     locale === "hmn" ? "Tsim & Siv HMOOB Token" : locale === "th" ? "การสร้างและการใช้ HMOOB Token" : "Create & Use HMOOB Token";
@@ -21,14 +20,6 @@ export default function TokenUsage() {
       : locale === "th"
         ? "เรียนรู้วิธีขุด แลกเปลี่ยน และใช้ HMOOB token ในระบบนิเวศ Danny Chain"
         : "Learn how to mine, trade, and use HMOOB token across the Danny Chain ecosystem";
-  const walletsTitle =
-    locale === "hmn" ? "Cov Wallets Uas Siv Tau" : locale === "th" ? "กระเป๋าเงินที่รองรับ" : "Compatible Wallets";
-  const walletsDesc =
-    locale === "hmn"
-      ? "Khaws koj HMOOB tokens ruaj ntseg hauv cov wallets no"
-      : locale === "th"
-        ? "เก็บ HMOOB token ของคุณอย่างปลอดภัยในกระเป๋าเงินเหล่านี้"
-        : "Store your HMOOB tokens securely in these trusted wallets";
   const visitLabel =
     locale === "hmn" ? "Mus Saib" : locale === "th" ? "เยี่ยมชม" : "Visit";
 
@@ -49,7 +40,7 @@ export default function TokenUsage() {
           <p className="text-muted-foreground text-base max-w-2xl mx-auto">{sectionSubtitle}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6">
           {(platforms || []).map((p) => {
             const Icon = iconMap[p.icon_name] || Star;
             return (
@@ -71,7 +62,6 @@ export default function TokenUsage() {
                   {p.platform_type}
                 </span>
                 <p className="text-muted-foreground text-sm leading-relaxed flex-1">{p.description}</p>
-                {/* CTA Button */}
                 <div className="mt-4 pt-3 border-t border-border">
                   <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
                     {visitLabel} {p.name} <ArrowRight size={14} />
@@ -81,44 +71,6 @@ export default function TokenUsage() {
             );
           })}
         </div>
-
-        {(wallets || []).length > 0 && (
-          <div className="border-glow rounded-2xl p-6 sm:p-8 bg-surface/50">
-            <div className="flex items-center gap-3 mb-2">
-              <Wallet size={20} className="text-primary" />
-              <h3 className="font-display font-bold text-xl">{walletsTitle}</h3>
-            </div>
-            <p className="text-muted-foreground text-sm mb-6">{walletsDesc}</p>
-            <div className="grid sm:grid-cols-3 gap-4">
-              {(wallets || []).map((w) => (
-                <a
-                  key={w.id}
-                  href={w.play_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border hover:border-primary/30 hover:bg-primary/[0.03] transition-all duration-300 group"
-                >
-                  <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0">
-                    {w.logo_url ? (
-                      <img src={w.logo_url} alt={w.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-primary/15 to-secondary/10 flex items-center justify-center">
-                        <Wallet size={18} className="text-primary" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-display font-bold text-sm">{w.name}</div>
-                    <div className="text-[11px] text-muted-foreground">
-                      ⭐ {w.rating} · {w.downloads} downloads
-                    </div>
-                  </div>
-                  <ExternalLink size={14} className="text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
