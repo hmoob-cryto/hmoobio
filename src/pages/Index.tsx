@@ -9,7 +9,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import SecuritySection from "@/components/SecuritySection";
 import BoostPlans from "@/components/BoostPlans";
-import Ecosystem from "@/components/Ecosystem";
+import EcosystemFlow from "@/components/EcosystemFlow";
 import HistoryVision from "@/components/HistoryVision";
 import TokenUsage from "@/components/TokenUsage";
 import Vision from "@/components/Vision";
@@ -45,7 +45,7 @@ export default function Index() {
       <div className="section-divider" />
       <div className="section-fade"><TokenUsage /></div>
       <div className="section-divider" />
-      <div className="section-fade"><Ecosystem /></div>
+      <div className="section-fade"><EcosystemFlow /></div>
       <div className="section-fade"><Vision /></div>
       <div className="section-fade"><VideoSection /></div>
       <div className="section-fade"><Testimonials /></div>

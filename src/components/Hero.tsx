@@ -2,8 +2,9 @@ import logo from "@/assets/logo.jpeg";
 import heroBg from "@/assets/hero-bg.jpg";
 import dandexLogo from "@/assets/dandex-logo.png";
 import danscanLogo from "@/assets/danscan-logo.png";
-import { Download, ArrowRight, Pickaxe, ArrowLeftRight, Search } from "lucide-react";
+import { ArrowRight, Pickaxe, ArrowLeftRight, Search, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCompatibleWallets } from "@/hooks/useDbData";
 
 const ecosystemPills = [
   { icon: Pickaxe, label: "Mine", color: "text-primary" },
@@ -13,6 +14,7 @@ const ecosystemPills = [
 
 export default function Hero() {
   const { t } = useLanguage();
+  const { data: wallets } = useCompatibleWallets();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -85,6 +87,7 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Main CTA */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-up-4">
           <a
             href="https://hmoob.io"
@@ -96,15 +99,29 @@ export default function Hero() {
             <ArrowRight size={18} className="relative z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-border px-6 sm:px-10 py-3.5 sm:py-4 rounded-xl font-semibold text-base sm:text-lg text-foreground hover:bg-muted/30 hover:border-muted-foreground/30 transition-all duration-300"
-          >
-            <Download size={18} />
-            {t("hero.downloadWallet")}
-          </a>
+        </div>
+
+        {/* 3 Wallet Download Buttons */}
+        <div className="mt-5 animate-fade-up-4">
+          <p className="text-xs font-mono text-muted-foreground/60 mb-3">{t("hero.downloadWallet")}</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {(wallets || []).map((w) => (
+              <a
+                key={w.id}
+                href={w.play_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 border border-border px-4 py-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-muted/30 hover:border-muted-foreground/30 transition-all duration-300 group"
+              >
+                {w.logo_url ? (
+                  <img src={w.logo_url} alt={w.name} className="w-6 h-6 rounded-lg" loading="lazy" width={24} height={24} />
+                ) : (
+                  <Download size={16} />
+                )}
+                <span>{w.name}</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mt-10 animate-fade-up-4">
