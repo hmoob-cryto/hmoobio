@@ -1,154 +1,236 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Flame, Users, Briefcase, Code, Heart, Gift } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const SEGMENTS = [
-  { key: "business", pct: 40, color: "hsl(var(--primary))", icon: Briefcase },
-  { key: "burn", pct: 25, color: "hsl(0, 72%, 51%)", icon: Flame },
-  { key: "team", pct: 10, color: "hsl(199, 89%, 48%)", icon: Code },
-  { key: "charity", pct: 10, color: "hsl(280, 65%, 60%)", icon: Heart },
-  { key: "growth", pct: 10, color: "hsl(25, 95%, 53%)", icon: Gift },
-  { key: "airdrop", pct: 5, color: "hsl(45, 93%, 47%)", icon: Users },
+  { key: "business", pct: 40, color: "hsl(36, 90%, 55%)", colorVar: "--primary", icon: Briefcase },
+  { key: "burn", pct: 25, color: "hsl(0, 72%, 51%)", colorVar: null, icon: Flame },
+  { key: "team", pct: 10, color: "hsl(199, 89%, 48%)", colorVar: null, icon: Code },
+  { key: "charity", pct: 10, color: "hsl(280, 65%, 60%)", colorVar: null, icon: Heart },
+  { key: "growth", pct: 10, color: "hsl(25, 95%, 53%)", colorVar: null, icon: Gift },
+  { key: "airdrop", pct: 5, color: "hsl(45, 93%, 47%)", colorVar: null, icon: Users },
 ];
 
-function PieChart({ animate }: { animate: boolean }) {
-  const size = 280;
+const TOTAL_SUPPLY = "999,999,999";
+
+function DonutChart({ animate, hovered, onHover }: {
+  animate: boolean;
+  hovered: number | null;
+  onHover: (i: number | null) => void;
+}) {
+  const size = 340;
   const cx = size / 2;
   const cy = size / 2;
-  const r = 110;
+  const outerR = 145;
+  const innerR = 95;
 
   let cumulative = 0;
-  const paths = SEGMENTS.map((seg) => {
+  const arcs = SEGMENTS.map((seg, i) => {
     const startAngle = (cumulative / 100) * 360 - 90;
     cumulative += seg.pct;
     const endAngle = (cumulative / 100) * 360 - 90;
     const largeArc = seg.pct > 50 ? 1 : 0;
+
+    const isHovered = hovered === i;
+    const r = isHovered ? outerR + 6 : outerR;
+    const ir = innerR;
+
     const x1 = cx + r * Math.cos((startAngle * Math.PI) / 180);
     const y1 = cy + r * Math.sin((startAngle * Math.PI) / 180);
     const x2 = cx + r * Math.cos((endAngle * Math.PI) / 180);
     const y2 = cy + r * Math.sin((endAngle * Math.PI) / 180);
-    const midAngle = ((startAngle + endAngle) / 2 * Math.PI) / 180;
-    const labelR = r * 0.7;
-    const lx = cx + labelR * Math.cos(midAngle);
-    const ly = cy + labelR * Math.sin(midAngle);
+    const ix1 = cx + ir * Math.cos((endAngle * Math.PI) / 180);
+    const iy1 = cy + ir * Math.sin((endAngle * Math.PI) / 180);
+    const ix2 = cx + ir * Math.cos((startAngle * Math.PI) / 180);
+    const iy2 = cy + ir * Math.sin((startAngle * Math.PI) / 180);
 
-    return {
-      ...seg,
-      d: `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`,
-      lx,
-      ly,
-    };
+    const d = `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${ir} ${ir} 0 ${largeArc} 0 ${ix2} ${iy2} Z`;
+
+    return { ...seg, d, isHovered, index: i };
   });
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[280px] mx-auto drop-shadow-2xl">
-      {paths.map((p, i) => (
-        <g key={p.key}>
+    <div className="relative">
+      {/* Glow behind chart */}
+      <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-125" />
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        className="w-full max-w-[340px] mx-auto relative"
+      >
+        {/* Subtle grid rings */}
+        {[120, 130, 140].map((r) => (
+          <circle key={r} cx={cx} cy={cy} r={r} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="0.5" strokeDasharray="2 4" opacity={0.3} />
+        ))}
+        {arcs.map((arc, i) => (
           <path
-            d={p.d}
-            fill={p.color}
+            key={arc.key}
+            d={arc.d}
+            fill={arc.color}
             stroke="hsl(var(--background))"
             strokeWidth="2"
-            className="transition-all duration-700"
+            className="cursor-pointer"
             style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "scale(1)" : "scale(0.8)",
+              opacity: animate ? (hovered !== null && !arc.isHovered ? 0.4 : 1) : 0,
+              filter: arc.isHovered ? `drop-shadow(0 0 12px ${arc.color})` : "none",
+              transform: animate ? "scale(1)" : "scale(0.85)",
               transformOrigin: `${cx}px ${cy}px`,
-              transitionDelay: `${i * 100}ms`,
+              transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+              transitionDelay: animate ? `${i * 80}ms` : "0ms",
             }}
+            onMouseEnter={() => onHover(i)}
+            onMouseLeave={() => onHover(null)}
           />
-          <text
-            x={p.lx}
-            y={p.ly}
-            textAnchor="middle"
-            dominantBaseline="central"
-            fill="white"
-            fontSize="12"
-            fontWeight="bold"
-            fontFamily="monospace"
-            style={{
-              opacity: animate ? 1 : 0,
-              transitionDelay: `${600 + i * 80}ms`,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            {p.pct}%
-          </text>
-        </g>
-      ))}
-      {/* Center hole */}
-      <circle cx={cx} cy={cy} r={40} fill="hsl(var(--background))" />
-      <text x={cx} y={cy - 6} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="bold" fontFamily="monospace">
-        999M
-      </text>
-      <text x={cx} y={cy + 10} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="8" fontFamily="monospace">
-        HMOOB
-      </text>
-    </svg>
+        ))}
+        {/* Center circle */}
+        <circle cx={cx} cy={cy} r={innerR - 2} fill="hsl(var(--background))" />
+        <circle cx={cx} cy={cy} r={innerR - 2} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="1" />
+        {/* Center text */}
+        <text x={cx} y={cy - 14} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="'JetBrains Mono', monospace" letterSpacing="0.1em">
+          TOTAL SUPPLY
+        </text>
+        <text x={cx} y={cy + 8} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="20" fontWeight="bold" fontFamily="'Space Grotesk', sans-serif">
+          999M
+        </text>
+        <text x={cx} y={cy + 26} textAnchor="middle" fill="hsl(var(--primary))" fontSize="11" fontWeight="600" fontFamily="'JetBrains Mono', monospace">
+          HMOOB
+        </text>
+      </svg>
+    </div>
   );
+}
+
+function CountUp({ target, animate, suffix = "%" }: { target: number; animate: boolean; suffix?: string }) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!animate) return;
+    let start = 0;
+    const duration = 1200;
+    const startTime = performance.now();
+    function tick(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }, [animate, target]);
+  return <>{value}{suffix}</>;
 }
 
 export default function Tokenomics() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const onHover = useCallback((i: number | null) => setHovered(i), []);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
   return (
-    <section id="tokenomics" className="py-16 sm:py-28 relative overflow-hidden" ref={ref}>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[150px]" />
+    <section id="tokenomics" className="py-20 sm:py-32 relative overflow-hidden" ref={ref}>
+      {/* Background effects */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/[0.02] blur-[200px]" />
+
       <div className="container relative">
-        <div className="text-center mb-12 sm:mb-16">
+        {/* Header */}
+        <div className="text-center mb-16 sm:mb-20">
           <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
             <span className="w-8 h-px bg-primary/50" />{t("tokenomics.label")}<span className="w-8 h-px bg-primary/50" />
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2">
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold mt-2">
             {t("tokenomics.title1")} <span className="text-gradient-gold">{t("tokenomics.title2")}</span>
           </h2>
-          <p className="text-muted-foreground text-lg mt-4 max-w-lg mx-auto">{t("tokenomics.desc")}</p>
+          <p className="text-muted-foreground text-base sm:text-lg mt-4 max-w-xl mx-auto leading-relaxed">{t("tokenomics.desc")}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center max-w-4xl mx-auto">
-          {/* Pie Chart */}
-          <div className="flex justify-center">
-            <PieChart animate={visible} />
+        <div className="grid md:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-center max-w-5xl mx-auto">
+          {/* Donut Chart */}
+          <div className="flex justify-center order-1 md:order-1">
+            <DonutChart animate={visible} hovered={hovered} onHover={onHover} />
           </div>
 
-          {/* Legend */}
-          <div className="space-y-4">
+          {/* Legend with progress bars */}
+          <div className="space-y-3 order-2 md:order-2">
             {SEGMENTS.map((seg, i) => {
               const Icon = seg.icon;
+              const isActive = hovered === i;
               return (
                 <div
                   key={seg.key}
-                  className="flex items-center gap-4 p-3 rounded-xl border border-border bg-background hover:border-primary/20 transition-all duration-500"
+                  className="group flex items-center gap-4 p-3.5 rounded-xl border transition-all duration-500 cursor-pointer"
                   style={{
                     opacity: visible ? 1 : 0,
-                    transform: visible ? "translateX(0)" : "translateX(20px)",
-                    transitionDelay: `${i * 100}ms`,
-                    transition: "opacity 0.5s ease, transform 0.5s ease",
+                    transform: visible ? "translateX(0)" : "translateX(24px)",
+                    transitionDelay: `${i * 80}ms`,
+                    borderColor: isActive ? seg.color : "hsl(var(--border))",
+                    backgroundColor: isActive ? `${seg.color}08` : "transparent",
+                    boxShadow: isActive ? `0 0 20px ${seg.color}15` : "none",
                   }}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
                 >
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${seg.color}20` }}>
-                    <Icon size={20} style={{ color: seg.color }} />
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
+                    style={{
+                      backgroundColor: `${seg.color}${isActive ? "25" : "12"}`,
+                    }}
+                  >
+                    <Icon size={18} style={{ color: seg.color }} />
                   </div>
+
                   <div className="flex-1 min-w-0">
-                    <p className="font-display font-bold text-sm">{t(`tokenomics.${seg.key}`)}</p>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <p className="font-display font-semibold text-sm">{t(`tokenomics.${seg.key}`)}</p>
+                      <span className="font-mono font-bold text-base tabular-nums" style={{ color: seg.color }}>
+                        <CountUp target={seg.pct} animate={visible} />
+                      </span>
+                    </div>
+                    {/* Progress bar */}
+                    <div className="h-1.5 rounded-full bg-muted/40 overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-1000 ease-out"
+                        style={{
+                          width: visible ? `${seg.pct * 2.5}%` : "0%",
+                          backgroundColor: seg.color,
+                          transitionDelay: `${400 + i * 80}ms`,
+                          opacity: isActive ? 1 : 0.7,
+                        }}
+                      />
+                    </div>
                   </div>
-                  <span className="font-mono font-bold text-lg" style={{ color: seg.color }}>{seg.pct}%</span>
                 </div>
               );
             })}
+
+            {/* Total supply card */}
+            <div
+              className="mt-6 p-4 rounded-xl border border-border bg-surface/50 flex items-center justify-between"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(16px)",
+                transition: "all 0.6s ease",
+                transitionDelay: "800ms",
+              }}
+            >
+              <div>
+                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Total Supply</p>
+                <p className="font-display font-bold text-lg text-foreground mt-0.5">{TOTAL_SUPPLY} <span className="text-primary">HMOOB</span></p>
+              </div>
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <span className="text-primary font-mono font-bold text-sm">∞</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
