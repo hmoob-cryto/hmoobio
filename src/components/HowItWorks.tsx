@@ -51,15 +51,7 @@ export default function HowItWorks() {
           })}
         </div>
         <div className="mt-10 sm:mt-16">
-          <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-surface-elevated border border-border hover:border-primary/20 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 group">
-            <div className="w-10 h-10 rounded-xl bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/[0.15] transition-colors">
-              <Download size={20} className="text-primary" />
-            </div>
-            <div className="text-left">
-              <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">{t("howItWorks.cta")}</div>
-              <div className="font-display font-bold">{t("howItWorks.wallet")}</div>
-            </div>
-          </a>
+          <WalletButtons t={t} />
         </div>
       </div>
     </section>

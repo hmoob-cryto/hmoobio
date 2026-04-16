@@ -88,9 +88,6 @@ export default function AppPreview() {
               <a href="https://hmoob.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5">
                 <ExternalLink size={18} />{t("appPreview.openApp")}
               </a>
-              <a href="https://play.google.com/store/apps/details?id=com.bitkeep.wallet" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-border px-8 py-3.5 rounded-xl font-semibold hover:bg-muted/30 hover:border-muted-foreground/30 transition-all duration-300">
-                <Download size={18} />{t("appPreview.getWallet")}
-              </a>
             </div>
           </div>
           <div className="flex justify-center items-center relative min-h-[300px] sm:min-h-[520px] lg:min-h-[680px] xl:min-h-[740px]">
@@ -106,9 +103,9 @@ export default function AppPreview() {
             {/* Secondary phone — hidden on mobile to prevent overflow */}
             <div className="hidden sm:block relative z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500 -ml-8 lg:-ml-12 translate-y-8">
               <div className="absolute -inset-8 bg-blue-500/10 blur-[80px] rounded-full" />
-              <img src={appMockup2} alt="Bitget Wallet - Connected" className="relative w-[180px] sm:w-[230px] lg:w-[310px] xl:w-[345px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
+              <img src={appMockup2} alt="Web3 Wallet - Connected" className="relative w-[180px] sm:w-[230px] lg:w-[310px] xl:w-[345px] drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-transform duration-500 rounded-[2rem]" loading="lazy" width={896} height={1344} />
               <div className="text-center mt-4">
-                <span className="text-xs font-mono text-blue-400/80 bg-blue-400/[0.08] px-3 py-1.5 rounded-full border border-blue-400/15">Bitget Wallet</span>
+                <span className="text-xs font-mono text-blue-400/80 bg-blue-400/[0.08] px-3 py-1.5 rounded-full border border-blue-400/15">Web3 Wallet</span>
               </div>
             </div>
           </div>
