@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Globe } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import defaultLogo from "@/assets/logo.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useSiteSettings } from "@/hooks/useDbData";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

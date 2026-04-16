@@ -1,6 +1,6 @@
-import logo from "@/assets/logo.jpeg";
+import defaultLogo from "@/assets/logo.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useSiteLinks } from "@/hooks/useDbData";
+import { useSiteLinks, useSiteSettings } from "@/hooks/useDbData";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
