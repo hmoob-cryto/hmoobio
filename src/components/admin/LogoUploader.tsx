@@ -10,24 +10,23 @@ export default function LogoUploader() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
-  const { data: settings, isLoading } = useQuery({
-    queryKey: ["site_settings"],
+  const { data: settingsRaw, isLoading } = useQuery({
+    queryKey: ["site_settings_admin_logo"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("site_settings")
-        .select("key, value, id");
+        .select("key, value")
+        .in("key", ["logo_url", "site_name", "site_name_suffix"]);
       if (error) throw error;
-      const map: Record<string, { value: string; id: string }> = {};
-      data?.forEach((row) => {
-        map[row.key] = { value: row.value, id: row.id };
-      });
+      const map: Record<string, string> = {};
+      data?.forEach((row) => { map[row.key] = row.value; });
       return map;
     },
   });
 
-  const logoUrl = settings?.logo_url?.value || "";
-  const siteName = settings?.site_name?.value || "hmoob";
-  const siteSuffix = settings?.site_name_suffix?.value || ".io";
+  const logoUrl = settingsRaw?.logo_url || "";
+  const siteName = settingsRaw?.site_name || "hmoob";
+  const siteSuffix = settingsRaw?.site_name_suffix || ".io";
 
   const updateSetting = useMutation({
     mutationFn: async ({ key, value }: { key: string; value: string }) => {
@@ -38,6 +37,7 @@ export default function LogoUploader() {
       if (error) throw error;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["site_settings_admin_logo"] });
       queryClient.invalidateQueries({ queryKey: ["site_settings"] });
     },
   });
