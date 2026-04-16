@@ -10,15 +10,12 @@ export default function WelcomeDialog() {
   const { data: settings } = useSiteSettings();
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("welcome_dismissed");
-    if (dismissed) return;
-    const timer = setTimeout(() => setOpen(true), 3000);
+    const timer = setTimeout(() => setOpen(true), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setOpen(false);
-    sessionStorage.setItem("welcome_dismissed", "1");
   };
 
   const suffix = locale === "hmn" ? "_hmn" : locale === "th" ? "_th" : "_en";
