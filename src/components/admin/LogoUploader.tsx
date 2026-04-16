@@ -37,6 +37,7 @@ export default function LogoUploader() {
       if (error) throw error;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["site_settings_admin_logo"] });
       queryClient.invalidateQueries({ queryKey: ["site_settings"] });
     },
   });
