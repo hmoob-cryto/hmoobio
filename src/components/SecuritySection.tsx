@@ -22,8 +22,8 @@ export default function SecuritySection() {
 
   return (
     <section id="security" className="py-16 sm:py-28 relative overflow-hidden">
-      <img src={securityBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" loading="lazy" width={1920} height={1080} />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      <img src={securityBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" loading="lazy" width={1920} height={1080} />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/70" />
       <div className="container relative">
         <div className="text-center mb-10 sm:mb-16">
           <span className="inline-flex items-center gap-2 text-secondary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
