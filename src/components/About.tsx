@@ -60,31 +60,28 @@ export default function About() {
             </div>
           </div>
           <div className="hidden md:flex justify-center">
-            <div className="relative flex items-end gap-6">
-              {/* Coin illustration */}
-              <div className="relative">
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-amber-500/10 blur-3xl scale-110" />
-                <div className="relative rounded-3xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 w-[200px] lg:w-[240px]">
-                  <img
-                    src={miningIllustration}
-                    alt="Hmong Coin Mining Illustration"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/40 to-transparent" />
-                </div>
+            <div className="relative">
+              {/* Coin image as background glow */}
+              <div className="absolute inset-0 scale-125">
+                <img
+                  src={miningIllustration}
+                  alt=""
+                  className="w-full h-full object-cover rounded-[3rem] opacity-20 blur-sm"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-amber-500/20 rounded-[3rem] mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30 rounded-[3rem]" />
               </div>
 
-              {/* DanScan Mobile App Mockup */}
-              <div className="relative">
-                <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-sky-500/20 to-primary/10 blur-3xl scale-110" />
-                <div className="relative w-[180px] lg:w-[220px]">
+              {/* DanScan Mobile App Mockup - larger */}
+              <div className="relative z-10">
+                <div className="w-[260px] lg:w-[300px] xl:w-[320px]">
                   {/* Phone frame */}
-                  <div className="rounded-[2rem] border-[3px] border-muted/30 bg-background/80 p-1.5 shadow-2xl shadow-primary/10 backdrop-blur-sm">
+                  <div className="rounded-[2.5rem] border-[3px] border-muted/30 bg-background/60 p-2 shadow-2xl shadow-primary/20 backdrop-blur-sm">
                     {/* Notch */}
-                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-1.5 rounded-full bg-muted/40 z-10" />
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-1.5 rounded-full bg-muted/40 z-10" />
                     {/* Screen */}
-                    <div className="rounded-[1.5rem] overflow-hidden">
+                    <div className="rounded-[2rem] overflow-hidden">
                       <img
                         src={danscanMobile}
                         alt="DanScan Blockchain Explorer"
@@ -94,7 +91,7 @@ export default function About() {
                     </div>
                   </div>
                   {/* Label */}
-                  <p className="text-center text-xs font-mono text-primary/70 mt-3 tracking-wider">DanScan Explorer</p>
+                  <p className="text-center text-xs font-mono text-primary/70 mt-4 tracking-wider">DanScan Explorer</p>
                 </div>
               </div>
             </div>
