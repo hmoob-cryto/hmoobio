@@ -97,7 +97,7 @@ export default function Navbar() {
               onClick={() => setLangOpen(!langOpen)}
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200 font-mono"
             >
-              <span className="text-base leading-none">{currentFlag}</span>
+              <FlagIcon code={locale} />
               <span className="text-xs font-bold uppercase">{currentLabel}</span>
             </button>
             {langOpen && (
@@ -108,7 +108,7 @@ export default function Navbar() {
                     onClick={() => { setLocale(l.code); setLangOpen(false); }}
                     className={`w-full flex items-center gap-2 text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
                    >
-                     <span className="text-base leading-none">{l.flag}</span>
+                     <FlagIcon code={l.code} />
                      <span className="font-mono font-bold text-xs">{l.label}</span>
                      {l.name}
                   </button>
@@ -129,7 +129,7 @@ export default function Navbar() {
             onClick={() => setLangOpen(!langOpen)}
             className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors text-xs font-bold"
           >
-            <span className="text-base leading-none">{currentFlag}</span>
+            <FlagIcon code={locale} />
             {currentLabel}
           </button>
           {langOpen && (
@@ -140,7 +140,7 @@ export default function Navbar() {
                   onClick={() => { setLocale(l.code); setLangOpen(false); }}
                   className={`w-full flex items-center gap-2 text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
                 >
-                  <span className="text-base leading-none">{l.flag}</span>
+                  <FlagIcon code={l.code} />
                   <span className="font-mono font-bold text-xs">{l.label}</span>
                   {l.name}
                 </button>
