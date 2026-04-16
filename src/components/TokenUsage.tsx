@@ -1,4 +1,4 @@
-import { Pickaxe, ArrowRightLeft, Wallet, Globe, ExternalLink, Star, type LucideIcon } from "lucide-react";
+import { Pickaxe, ArrowRightLeft, Wallet, Globe, ExternalLink, Star, ArrowRight, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTokenPlatforms, useCompatibleWallets } from "@/hooks/useDbData";
 
@@ -29,6 +29,8 @@ export default function TokenUsage() {
       : locale === "th"
         ? "เก็บ HMOOB token ของคุณอย่างปลอดภัยในกระเป๋าเงินเหล่านี้"
         : "Store your HMOOB tokens securely in these trusted wallets";
+  const visitLabel =
+    locale === "hmn" ? "Mus Saib" : locale === "th" ? "เยี่ยมชม" : "Visit";
 
   return (
     <section id="token-usage" className="py-16 sm:py-28 relative overflow-hidden">
@@ -56,7 +58,7 @@ export default function TokenUsage() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group border-glow rounded-2xl p-6 bg-surface/80 hover:bg-surface transition-all duration-300 hover:-translate-y-1"
+                className="group border-glow rounded-2xl p-6 bg-surface/80 hover:bg-surface transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${p.gradient} flex items-center justify-center mb-4`}>
                   <Icon size={22} className="text-primary" />
@@ -65,10 +67,16 @@ export default function TokenUsage() {
                   <h3 className="font-display font-bold text-base">{p.name}</h3>
                   <ExternalLink size={12} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20 inline-block mb-3">
+                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20 inline-block mb-3 w-fit">
                   {p.platform_type}
                 </span>
-                <p className="text-muted-foreground text-sm leading-relaxed">{p.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed flex-1">{p.description}</p>
+                {/* CTA Button */}
+                <div className="mt-4 pt-3 border-t border-border">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
+                    {visitLabel} {p.name} <ArrowRight size={14} />
+                  </span>
+                </div>
               </a>
             );
           })}
