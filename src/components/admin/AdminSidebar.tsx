@@ -54,12 +54,8 @@ const menuGroups = [
     ],
   },
   {
-    label: "Other",
+    label: "Trust & Branding",
     items: [
-      { title: "History Timeline", path: "/admin/history-timeline", icon: History },
-      { title: "Token Platforms", path: "/admin/token-platforms", icon: Coins },
-      { title: "Vision Milestones", path: "/admin/vision", icon: Mountain },
-      { title: "Wallets", path: "/admin/wallets", icon: Wallet },
       { title: "Trust Indicators", path: "/admin/trust-indicators", icon: BadgeCheck },
       { title: "Trust Partners", path: "/admin/trust-partners", icon: Handshake },
     ],
