@@ -169,8 +169,9 @@ export default function AdminCrudTable({
           <select value={filterValue} onChange={(e) => setFilterValue(e.target.value)}
             className="px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 text-sm">
             <option value="">All</option>
-            <option value="en">English</option>
-            <option value="hmn">Hmong</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="hmn">🇱🇦 Hmong</option>
+            <option value="th">🇹🇭 ไทย</option>
           </select>
         )}
         <div className="relative flex-1 max-w-xs">

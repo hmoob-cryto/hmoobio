@@ -21,15 +21,16 @@ export default function WelcomeDialog() {
     sessionStorage.setItem("welcome_dismissed", "1");
   };
 
-  const isHmn = locale === "hmn";
+  const suffix = locale === "hmn" ? "_hmn" : locale === "th" ? "_th" : "_en";
   const s = settings || {};
 
-  const title = isHmn ? (s["welcome_title_hmn"] || "Zoo siab txais tos txhua tus los koom Hmoob kev lag luam") : (s["welcome_title_en"] || "Welcome to Hmong Project");
-  const desc = isHmn ? (s["welcome_desc_hmn"] || "") : (s["welcome_desc_en"] || "");
-  const cta = isHmn ? (s["welcome_cta_hmn"] || "Pib Tam Sim") : (s["welcome_cta_en"] || "Get Started");
+  const title = s[`welcome_title${suffix}`] || s["welcome_title_en"] || "Welcome to Hmong Project";
+  const desc = s[`welcome_desc${suffix}`] || s["welcome_desc_en"] || "";
+  const cta = s[`welcome_cta${suffix}`] || s["welcome_cta_en"] || "Get Started";
 
+  const stat1LabelKey = `welcome_stat1_label${suffix}`;
   const stats = [
-    { value: s["welcome_stat1_value"] || "3,310+", label: isHmn ? (s["welcome_stat1_label_hmn"] || "Neeg Khawb") : (s["welcome_stat1_label_en"] || "Miners") },
+    { value: s["welcome_stat1_value"] || "3,310+", label: s[stat1LabelKey] || s["welcome_stat1_label_en"] || "Miners" },
     { value: s["welcome_stat2_value"] || "365%", label: s["welcome_stat2_label"] || "ROI" },
     { value: s["welcome_stat3_value"] || "3", label: s["welcome_stat3_label"] || "Platforms" },
   ];
