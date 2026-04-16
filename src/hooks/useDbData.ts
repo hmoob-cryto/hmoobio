@@ -52,14 +52,20 @@ export function useSiteLinks(category: string) {
 
 export function useSiteSettings() {
   return useQuery({
-    queryKey: ["site_settings"],
+    queryKey: ["site_settings_global"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value");
       if (error) throw error;
       const map: Record<string, string> = {};
-      data?.forEach((row) => { map[row.key] = row.value; });
+      data?.forEach((row) => {
+        // Safety: always extract plain string value
+        const v = row.value;
+        map[row.key] = (typeof v === "object" && v !== null && "value" in (v as any))
+          ? (v as any).value
+          : String(v ?? "");
+      });
       return map;
     },
   });
