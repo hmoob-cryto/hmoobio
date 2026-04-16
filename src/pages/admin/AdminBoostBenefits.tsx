@@ -10,7 +10,7 @@ export default function AdminBoostBenefits() {
       orderBy="sort_order"
       columns={[
         { key: "text", label: "Text", type: "textarea" },
-        { key: "locale", label: "Locale", type: "select", options: ["en", "hmn"], width: "80px" },
+        { key: "locale", label: "Locale", type: "select", options: ["en", "hmn", "th"], width: "80px" },
         { key: "sort_order", label: "Order", type: "number", width: "70px" },
         { key: "is_active", label: "Active", type: "boolean", width: "70px" },
       ]}

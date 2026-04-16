@@ -33,19 +33,29 @@ const menuGroups = [
       { title: "Features", path: "/admin/features", icon: Star },
       { title: "How It Works", path: "/admin/how-it-works", icon: Footprints },
       { title: "Security", path: "/admin/security-features", icon: Shield },
-      { title: "Ecosystem", path: "/admin/ecosystem", icon: Globe },
       { title: "FAQs", path: "/admin/faqs", icon: HelpCircle },
       { title: "Stats", path: "/admin/stats", icon: BarChart3 },
       { title: "Testimonials", path: "/admin/testimonials", icon: MessageSquare },
     ],
   },
   {
-    label: "Other",
+    label: "History & Vision",
     items: [
       { title: "History Timeline", path: "/admin/history-timeline", icon: History },
-      { title: "Token Platforms", path: "/admin/token-platforms", icon: Coins },
       { title: "Vision Milestones", path: "/admin/vision", icon: Mountain },
+    ],
+  },
+  {
+    label: "Ecosystem & Tokens",
+    items: [
+      { title: "Token Platforms", path: "/admin/token-platforms", icon: Coins },
       { title: "Wallets", path: "/admin/wallets", icon: Wallet },
+      { title: "Ecosystem Items", path: "/admin/ecosystem", icon: Globe },
+    ],
+  },
+  {
+    label: "Trust & Branding",
+    items: [
       { title: "Trust Indicators", path: "/admin/trust-indicators", icon: BadgeCheck },
       { title: "Trust Partners", path: "/admin/trust-partners", icon: Handshake },
     ],
