@@ -70,3 +70,37 @@ export function useSiteSettings() {
     },
   });
 }
+
+export function useHistoryTimeline() {
+  const { locale } = useLanguage();
+  return useQuery({
+    queryKey: ["history_timeline", locale],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("history_timeline")
+        .select("*")
+        .eq("locale", locale)
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+}
+
+export function useTokenPlatforms() {
+  const { locale } = useLanguage();
+  return useQuery({
+    queryKey: ["token_platforms", locale],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("token_platforms")
+        .select("*")
+        .eq("locale", locale)
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+}
