@@ -16,7 +16,6 @@ export default function WelcomeDialog() {
 
   const handleClose = () => {
     setOpen(false);
-    sessionStorage.setItem("welcome_dismissed", "1");
   };
 
   const suffix = locale === "hmn" ? "_hmn" : locale === "th" ? "_th" : "_en";
