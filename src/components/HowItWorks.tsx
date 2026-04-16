@@ -5,6 +5,7 @@ import { Download } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
 import howitworksBg from "@/assets/howitworks-bg.jpg";
 import { SectionSkeleton } from "@/components/SectionSkeleton";
+import { useCompatibleWallets } from "@/hooks/useDbData";
 
 export default function HowItWorks() {
   const { locale, t } = useLanguage();
@@ -16,6 +17,7 @@ export default function HowItWorks() {
       return data;
     },
   });
+  const { data: wallets } = useCompatibleWallets();
 
   if (isLoading) return <SectionSkeleton rows={4} />;
   if (!steps) return null;
@@ -51,7 +53,22 @@ export default function HowItWorks() {
           })}
         </div>
         <div className="mt-10 sm:mt-16">
-          <WalletButtons t={t} />
+          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">{t("howItWorks.cta")}</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {(wallets || []).map((w) => (
+              <a key={w.id} href={w.play_url} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-surface-elevated border border-border hover:border-primary/20 px-5 py-3 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 group">
+                {w.logo_url ? (
+                  <img src={w.logo_url} alt={w.name} className="w-8 h-8 rounded-xl" loading="lazy" width={32} height={32} />
+                ) : (
+                  <div className="w-8 h-8 rounded-xl bg-primary/[0.08] flex items-center justify-center">
+                    <Download size={16} className="text-primary" />
+                  </div>
+                )}
+                <span className="font-display font-bold text-sm">{w.name}</span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
