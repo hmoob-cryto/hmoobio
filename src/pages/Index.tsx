@@ -4,6 +4,7 @@ import WelcomeDialog from "@/components/WelcomeDialog";
 import TrustBanner from "@/components/TrustBanner";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
+import Tokenomics from "@/components/Tokenomics";
 import AppPreview from "@/components/AppPreview";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
@@ -32,6 +33,7 @@ export default function Index() {
       <TrustBanner />
       <StatsBar />
       <div className="section-fade"><About /></div>
+      <div className="section-fade"><Tokenomics /></div>
       <div className="section-divider" />
       <div className="section-fade"><AppPreview /></div>
       <div className="section-divider" />
