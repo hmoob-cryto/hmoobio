@@ -48,7 +48,7 @@ export default function Index() {
       <div className="section-fade"><TokenUsage /></div>
       <div className="section-divider" />
       <div className="section-fade"><EcosystemFlow /></div>
-      <div className="section-fade"><Vision /></div>
+      <div className="section-divider" />
       <div className="section-fade"><VideoSection /></div>
       <div className="section-fade"><Testimonials /></div>
       <div className="section-fade"><FAQ /></div>
