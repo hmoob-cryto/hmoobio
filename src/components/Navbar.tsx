@@ -1,13 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Globe } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import defaultLogo from "@/assets/logo.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useSiteSettings } from "@/hooks/useDbData";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const { locale, setLocale, t } = useLanguage();
+  const { data: settings } = useSiteSettings();
+  const siteName = settings?.site_name || "hmoob";
+  const siteSuffix = settings?.site_name_suffix || ".io";
+  const logo = settings?.logo_url || defaultLogo;
 
   const links = [
     { label: t("nav.about"), id: "about" },
@@ -65,12 +70,12 @@ export default function Navbar() {
       <div className="container flex items-center justify-between h-18 py-3">
         <a href="#" className="flex items-center gap-2.5 group">
           <div className="relative">
-            <img src={logo} alt="Hmoob.io" className="w-11 h-11 rounded-full ring-2 ring-primary/20 group-hover:ring-primary/50 transition-all duration-300" />
+            <img src={logo} alt={`${siteName}${siteSuffix}`} className="w-11 h-11 rounded-full ring-2 ring-primary/20 group-hover:ring-primary/50 transition-all duration-300" />
             <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
           <span className="font-display text-lg font-bold text-foreground">
-            <span className="text-gradient-gold">hmoob</span>
-            <span className="text-muted-foreground">.io</span>
+            <span className="text-gradient-gold">{siteName}</span>
+            <span className="text-muted-foreground">{siteSuffix}</span>
           </span>
         </a>
         <div className="hidden lg:flex items-center gap-1">
