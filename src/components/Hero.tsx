@@ -1,7 +1,20 @@
 import logo from "@/assets/logo.jpeg";
 import heroBg from "@/assets/hero-bg.jpg";
+import bitgetLogo from "@/assets/bitget-wallet-logo.png";
+import dannychainLogo from "@/assets/dannychain-logo.png";
+import dandexLogo from "@/assets/dandex-logo.png";
+import danmarketLogo from "@/assets/danmarket-logo.png";
+import danscanLogo from "@/assets/danscan-logo.png";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const ecosystemPartners = [
+  { name: "Bitget Wallet", logo: bitgetLogo, url: "https://web3.bitget.com", border: "hover:ring-emerald-400/40" },
+  { name: "DannyChain", logo: dannychainLogo, url: "https://dannychain.io", border: "hover:ring-primary/40" },
+  { name: "DanDEX", logo: dandexLogo, url: "https://dandex.io", border: "hover:ring-sky-400/40" },
+  { name: "DanMarket", logo: danmarketLogo, url: "https://danmarket.io", border: "hover:ring-secondary/40" },
+  { name: "DanScan", logo: danscanLogo, url: "https://danscan.io", border: "hover:ring-violet-400/40" },
+];
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -40,12 +53,12 @@ export default function Hero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 animate-fade-up-3 leading-relaxed">
+        <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-10 animate-fade-up-3 leading-relaxed">
           {t("hero.desc")} <strong className="text-foreground">{t("hero.roi")}</strong> {t("hero.descEnd")}
         </p>
 
         {/* Single primary CTA + subtle secondary */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-up-4">
           <a
             href="https://hmoob.io"
             target="_blank"
@@ -60,13 +73,45 @@ export default function Hero() {
             href="#about"
             className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors inline-flex items-center gap-1.5"
           >
-            {t("hero.learnMore") || "Learn More"}
+            {t("hero.learnMore")}
             <ChevronDown size={16} />
           </a>
         </div>
 
+        {/* Ecosystem partners */}
+        <div className="animate-fade-up-4">
+          <p className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest mb-4">
+            {t("hero.ecosystem") || "Ecosystem Partners"}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            {ecosystemPartners.map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex flex-col items-center gap-2 p-3 rounded-xl ring-1 ring-border/50 bg-background/30 backdrop-blur-sm ${partner.border} transition-all duration-300 hover:bg-muted/20 hover:-translate-y-0.5 w-[76px] sm:w-[88px]`}
+              >
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-muted/20 flex items-center justify-center">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="w-full h-full object-cover rounded-xl"
+                    loading="lazy"
+                    width={44}
+                    height={44}
+                  />
+                </div>
+                <span className="text-[9px] sm:text-[10px] font-mono text-muted-foreground group-hover:text-foreground transition-colors leading-tight text-center">
+                  {partner.name}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* Scroll indicator */}
-        <div className="mt-20 animate-fade-up-4">
+        <div className="mt-14 animate-fade-up-4">
           <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/20 mx-auto flex items-start justify-center p-1.5">
             <div className="w-1 h-2.5 rounded-full bg-muted-foreground/40 animate-bounce" />
           </div>
