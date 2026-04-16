@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "./AdminSidebar";
@@ -7,14 +6,7 @@ import { Loader2 } from "lucide-react";
 
 export default function AdminLayout() {
   const { user, isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
-
-  useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
-      navigate("/admin/login");
-    }
-  }, [user, isAdmin, loading, navigate]);
 
   if (loading) {
     return (
@@ -24,7 +16,9 @@ export default function AdminLayout() {
     );
   }
 
-  if (!user || !isAdmin) return null;
+  if (!user || !isAdmin) {
+    return <Navigate to="/admin/login" replace />;
+  }
 
   return (
     <SidebarProvider>
