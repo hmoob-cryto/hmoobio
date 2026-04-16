@@ -24,6 +24,10 @@ export default function Footer() {
   const { t } = useLanguage();
   const { data: socialLinks } = useSiteLinks("social");
   const { data: ecosystemLinks } = useSiteLinks("footer_ecosystem");
+  const { data: settings } = useSiteSettings();
+  const siteName = settings?.site_name || "hmoob";
+  const siteSuffix = settings?.site_name_suffix || ".io";
+  const logo = settings?.logo_url || defaultLogo;
 
   const socialIconMap: Record<string, React.FC> = {
     WhatsApp: WhatsAppIcon,
@@ -44,9 +48,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-12 gap-10 mb-14">
           <div className="md:col-span-4">
             <div className="flex items-center gap-2.5 mb-4">
-              <img src={logo} alt="Hmoob.io" className="w-11 h-11 rounded-full ring-2 ring-primary/20" />
+              <img src={logo} alt={`${siteName}${siteSuffix}`} className="w-11 h-11 rounded-full ring-2 ring-primary/20" />
               <span className="font-display text-xl font-bold">
-                <span className="text-gradient-gold">hmoob</span><span className="text-muted-foreground">.io</span>
+                <span className="text-gradient-gold">{siteName}</span><span className="text-muted-foreground">{siteSuffix}</span>
               </span>
             </div>
             <p className="text-muted-foreground text-sm leading-[1.8] max-w-xs mb-4">{t("footer.desc")}</p>
@@ -109,7 +113,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hmoob.io — {t("footer.copyright")}</span>
+          <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} {siteName}{siteSuffix} — {t("footer.copyright")}</span>
           <div className="flex gap-6 text-xs text-muted-foreground">
             {(ecosystemLinks || []).slice(0, 3).map((link) => (
               <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{link.name}</a>
