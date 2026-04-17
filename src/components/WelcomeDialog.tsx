@@ -34,8 +34,12 @@ export default function WelcomeDialog() {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-lg p-0 border-0 bg-transparent overflow-hidden gap-0 [&>button]:hidden shadow-2xl shadow-black/60 rounded-2xl">
-        <div className="relative rounded-2xl overflow-hidden">
+      <DialogContent className="sm:max-w-lg p-0 border-0 bg-transparent overflow-visible gap-0 [&>button]:hidden rounded-2xl">
+        {/* Outer glow halo */}
+        <div className="absolute -inset-6 rounded-[2rem] bg-primary/20 blur-3xl pointer-events-none" />
+        <div className="absolute -inset-2 rounded-[1.75rem] bg-gradient-to-br from-primary/40 via-primary/10 to-primary/40 blur-xl pointer-events-none" />
+
+        <div className="relative rounded-2xl overflow-hidden border-2 border-primary/40 shadow-[0_0_60px_-10px_hsl(var(--primary)/0.6),0_25px_50px_-12px_rgba(0,0,0,0.8)] ring-1 ring-primary/20">
           {/* Full background image */}
           <img
             src={welcomeHero}
@@ -44,11 +48,13 @@ export default function WelcomeDialog() {
           />
           {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
+          {/* Inner gold edge highlight */}
+          <div className="absolute inset-0 rounded-2xl pointer-events-none ring-1 ring-inset ring-primary/30" />
 
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/50 transition-all z-10"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/60 transition-all z-20 border border-white/20"
           >
             <X size={14} />
           </button>
