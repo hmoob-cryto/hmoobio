@@ -50,7 +50,8 @@ export default function Navbar() {
   };
 
   const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef<HTMLDivElement>(null);
+  const langRefDesktop = useRef<HTMLDivElement>(null);
+  const langRefMobile = useRef<HTMLDivElement>(null);
   const locales = [
     { code: "en" as const, label: "EN", name: "English" },
     { code: "hmn" as const, label: "HM", name: "Hmong" },
@@ -61,7 +62,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+      const target = e.target as Node;
+      const insideDesktop = langRefDesktop.current?.contains(target);
+      const insideMobile = langRefMobile.current?.contains(target);
+      if (!insideDesktop && !insideMobile) setLangOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
@@ -92,7 +96,7 @@ export default function Navbar() {
           ))}
           <div className="w-px h-6 bg-border mx-2" />
           {/* Language dropdown */}
-          <div className="relative" ref={langRef}>
+          <div className="relative" ref={langRefDesktop}>
             <button
               onClick={() => setLangOpen(!langOpen)}
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted/30 transition-all duration-200 font-mono"
@@ -125,7 +129,7 @@ export default function Navbar() {
           </button>
         </div>
         <div className="lg:hidden flex items-center gap-2">
-          <div className="relative" ref={langRef}>
+          <div className="relative" ref={langRefMobile}>
             <button
               onClick={(e) => { e.stopPropagation(); setLangOpen(!langOpen); setOpen(false); }}
               className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors text-xs font-bold"
