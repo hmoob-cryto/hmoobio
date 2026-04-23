@@ -19,14 +19,14 @@ function DonutChart({ animate, hovered, onHover, labels }: {
   onHover: (i: number | null) => void;
   labels: Record<string, string>;
 }) {
-  const size = 520; // expanded canvas to fit outer labels
+  const size = 640; // expanded canvas to fit full-name outer labels
   const chartCx = size / 2;
   const chartCy = size / 2;
   const outerR = 145;
   const innerR = 95;
   const leaderInnerR = outerR + 6;
   const leaderBendR = outerR + 28;
-  const labelR = outerR + 70;
+  const labelR = outerR + 110;
 
   let cumulative = 0;
   const arcs = SEGMENTS.map((seg, i) => {
@@ -71,7 +71,7 @@ function DonutChart({ animate, hovered, onHover, labels }: {
       <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-110" />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[520px] mx-auto relative"
+        className="w-full max-w-[640px] mx-auto relative"
       >
         {/* Subtle grid rings */}
         {[120, 130, 140].map((r) => (
@@ -222,9 +222,9 @@ export default function Tokenomics() {
           {t("tokenomics.desc")}
         </p>
 
-        <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start">
+        <div className="max-w-3xl mx-auto">
           {/* Donut Chart with surrounding labels */}
-          <div className="flex justify-center order-1 md:order-1">
+          <div className="flex justify-center">
             <DonutChart
               animate={visible}
               hovered={hovered}
@@ -236,77 +236,22 @@ export default function Tokenomics() {
             />
           </div>
 
-          {/* Legend with progress bars — fixed sizing to prevent hover jump */}
-          <div className="space-y-3 order-2 md:order-2">
-            {SEGMENTS.map((seg, i) => {
-              const Icon = seg.icon;
-              const isActive = hovered === i;
-              return (
-                <div
-                  key={seg.key}
-                  className="group flex items-center gap-4 p-3.5 rounded-xl border-2 cursor-pointer"
-                  style={{
-                    opacity: visible ? 1 : 0,
-                    transform: visible ? "translateX(0)" : "translateX(24px)",
-                    transition: "opacity 0.5s ease, transform 0.5s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
-                    transitionDelay: `${i * 80}ms`,
-                    borderColor: isActive ? seg.color : "hsl(var(--border) / 0.6)",
-                    backgroundColor: isActive ? `${seg.color}10` : "transparent",
-                    boxShadow: isActive ? `0 0 20px ${seg.color}20` : "none",
-                  }}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300"
-                    style={{
-                      backgroundColor: `${seg.color}${isActive ? "25" : "12"}`,
-                    }}
-                  >
-                    <Icon size={18} style={{ color: seg.color }} />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <p className="font-display font-semibold text-sm">{t(`tokenomics.${seg.key}`)}</p>
-                      <span className="font-mono font-bold text-base tabular-nums" style={{ color: seg.color }}>
-                        <CountUp target={seg.pct} animate={visible} />
-                      </span>
-                    </div>
-                    {/* Progress bar */}
-                    <div className="h-1.5 rounded-full bg-muted/40 overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all duration-1000 ease-out"
-                        style={{
-                          width: visible ? `${seg.pct * 2.5}%` : "0%",
-                          backgroundColor: seg.color,
-                          transitionDelay: `${400 + i * 80}ms`,
-                          opacity: isActive ? 1 : 0.7,
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Total supply card — matches Contract Address card style */}
-            <div
-              className="mt-6 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] flex items-center justify-between"
-              style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(16px)",
-                transition: "all 0.6s ease",
-                transitionDelay: "800ms",
-              }}
-            >
-              <div>
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Total Supply</p>
-                <p className="font-display font-bold text-lg text-foreground mt-0.5">{TOTAL_SUPPLY} <span className="text-primary">HMOOB</span></p>
-              </div>
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <span className="text-primary font-mono font-bold text-sm">∞</span>
-              </div>
+          {/* Total supply card — matches Contract Address card style */}
+          <div
+            className="mt-8 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] flex items-center justify-between max-w-md mx-auto"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(16px)",
+              transition: "all 0.6s ease",
+              transitionDelay: "800ms",
+            }}
+          >
+            <div>
+              <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Total Supply</p>
+              <p className="font-display font-bold text-lg text-foreground mt-0.5">{TOTAL_SUPPLY} <span className="text-primary">HMOOB</span></p>
+            </div>
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <span className="text-primary font-mono font-bold text-sm">∞</span>
             </div>
           </div>
         </div>
