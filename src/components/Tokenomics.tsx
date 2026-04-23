@@ -19,6 +19,15 @@ function DonutChart({ animate, hovered, onHover, labels }: {
   onHover: (i: number | null) => void;
   labels: Record<string, string>;
 }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
+
+  const updateTooltip = (clientX: number, clientY: number) => {
+    const rect = wrapperRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setTooltipPos({ x: clientX - rect.left, y: clientY - rect.top });
+  };
+
   const size = 640; // expanded canvas to fit full-name outer labels
   const chartCx = size / 2;
   const chartCy = size / 2;
@@ -66,12 +75,12 @@ function DonutChart({ animate, hovered, onHover, labels }: {
   });
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={wrapperRef}>
       {/* Glow behind chart */}
       <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-110" />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[640px] mx-auto relative"
+        className="w-full max-w-[640px] mx-auto relative touch-none"
       >
         {/* Subtle grid rings */}
         {[120, 130, 140].map((r) => (
@@ -93,9 +102,22 @@ function DonutChart({ animate, hovered, onHover, labels }: {
               transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
               transitionDelay: animate ? `${i * 80}ms` : "0ms",
             }}
-            onMouseEnter={() => onHover(i)}
-            onMouseLeave={() => onHover(null)}
-          />
+            onMouseEnter={(e) => { onHover(i); updateTooltip(e.clientX, e.clientY); }}
+            onMouseMove={(e) => updateTooltip(e.clientX, e.clientY)}
+            onMouseLeave={() => { onHover(null); setTooltipPos(null); }}
+            onTouchStart={(e) => {
+              const touch = e.touches[0];
+              onHover(i);
+              updateTooltip(touch.clientX, touch.clientY);
+            }}
+            onTouchMove={(e) => {
+              const touch = e.touches[0];
+              updateTooltip(touch.clientX, touch.clientY);
+            }}
+            onTouchEnd={() => { onHover(null); setTooltipPos(null); }}
+          >
+            <title>{`${labels[arc.key]} — ${arc.pct}%`}</title>
+          </path>
         ))}
 
         {/* Leader lines + outside labels */}
@@ -162,6 +184,36 @@ function DonutChart({ animate, hovered, onHover, labels }: {
           HMOOB
         </text>
       </svg>
+
+      {/* Floating tooltip — follows pointer/touch */}
+      {hovered !== null && tooltipPos && (
+        <div
+          className="pointer-events-none absolute z-20 px-3 py-2 rounded-lg border shadow-xl backdrop-blur-md bg-background/90 transition-opacity duration-150"
+          style={{
+            left: tooltipPos.x,
+            top: tooltipPos.y,
+            transform: "translate(-50%, calc(-100% - 14px))",
+            borderColor: SEGMENTS[hovered].color,
+            boxShadow: `0 8px 24px ${SEGMENTS[hovered].color}40`,
+          }}
+        >
+          <div className="flex items-center gap-2 whitespace-nowrap">
+            <span
+              className="w-2.5 h-2.5 rounded-full shrink-0"
+              style={{ backgroundColor: SEGMENTS[hovered].color }}
+            />
+            <span className="font-display font-semibold text-sm text-foreground">
+              {labels[SEGMENTS[hovered].key]}
+            </span>
+            <span
+              className="font-mono font-bold text-sm tabular-nums"
+              style={{ color: SEGMENTS[hovered].color }}
+            >
+              {SEGMENTS[hovered].pct}%
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
