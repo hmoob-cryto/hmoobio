@@ -66,12 +66,12 @@ function DonutChart({ animate, hovered, onHover, labels }: {
   });
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={wrapperRef}>
       {/* Glow behind chart */}
       <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-110" />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[640px] mx-auto relative"
+        className="w-full max-w-[640px] mx-auto relative touch-none"
       >
         {/* Subtle grid rings */}
         {[120, 130, 140].map((r) => (
@@ -93,9 +93,22 @@ function DonutChart({ animate, hovered, onHover, labels }: {
               transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
               transitionDelay: animate ? `${i * 80}ms` : "0ms",
             }}
-            onMouseEnter={() => onHover(i)}
-            onMouseLeave={() => onHover(null)}
-          />
+            onMouseEnter={(e) => { onHover(i); updateTooltip(e.clientX, e.clientY); }}
+            onMouseMove={(e) => updateTooltip(e.clientX, e.clientY)}
+            onMouseLeave={() => { onHover(null); setTooltipPos(null); }}
+            onTouchStart={(e) => {
+              const touch = e.touches[0];
+              onHover(i);
+              updateTooltip(touch.clientX, touch.clientY);
+            }}
+            onTouchMove={(e) => {
+              const touch = e.touches[0];
+              updateTooltip(touch.clientX, touch.clientY);
+            }}
+            onTouchEnd={() => { onHover(null); setTooltipPos(null); }}
+          >
+            <title>{`${labels[arc.key]} — ${arc.pct}%`}</title>
+          </path>
         ))}
 
         {/* Leader lines + outside labels */}
