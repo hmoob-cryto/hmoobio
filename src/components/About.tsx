@@ -35,9 +35,20 @@ export default function About() {
             <p className="text-muted-foreground text-base leading-[1.8] mb-5">
               {t("about.p1")} <strong className="text-gradient-gold font-bold">{t("about.supply")}</strong> {t("about.p1End")}
             </p>
-            <p className="text-muted-foreground text-base leading-[1.8] mb-5">
-              {t("about.p2")}
-            </p>
+            {/* HMOOB Mining sub-heading — matches HMOOB Coin heading style */}
+            <div className="mt-10 pt-8 border-t border-primary/10">
+              <span className="inline-flex items-center gap-2 text-secondary font-mono text-xs tracking-widest uppercase mb-4">
+                <span className="w-8 h-px bg-secondary/50" />
+                {t("about.miningLabel")}
+              </span>
+              <h3 className="font-display text-2xl sm:text-4xl font-bold mt-2 mb-6 leading-tight">
+                {t("about.miningTitle1")} <span className="text-gradient-gold">{t("about.miningTitle2")}</span>
+                <br />{t("about.miningTitleEnd")}
+              </h3>
+              <p className="text-muted-foreground text-base leading-[1.8] mb-5">
+                {t("about.p2")}
+              </p>
+            </div>
 
             {/* Contract Address */}
             <div className="mt-6 p-4 rounded-xl border border-primary/20 bg-primary/[0.04]">
