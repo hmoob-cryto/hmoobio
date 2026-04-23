@@ -21,7 +21,7 @@ export default function Navbar() {
     { label: t("nav.features"), id: "features" },
     { label: t("nav.security"), id: "security" },
     { label: t("nav.boostPlans"), id: "boost" },
-    { label: locale === "hmn" ? "Keeb Kwm" : locale === "th" ? "ประวัติ" : "History", id: "history" },
+    { label: locale === "hmn" ? "Peb Lub Zeem Muag" : locale === "th" ? "วิสัยทัศน์ของเรา" : "Our Vision", id: "history" },
     { label: locale === "hmn" ? "Token" : locale === "th" ? "Token" : "Token", id: "token-usage" },
     { label: t("nav.ecosystem"), id: "ecosystem" },
     { label: t("nav.faq"), id: "faq" },
