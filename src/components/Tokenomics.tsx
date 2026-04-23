@@ -138,29 +138,30 @@ export default function Tokenomics() {
   }, []);
 
   return (
-    <section id="tokenomics" className="py-20 sm:py-32 relative overflow-hidden" ref={ref}>
-      {/* Background effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/[0.02] blur-[200px]" />
+    <div id="tokenomics" className="relative" ref={ref}>
+      {/* Subtle background glow — matches About section style */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[120px] pointer-events-none" />
 
-      <div className="container relative">
-        {/* Header */}
-        <div className="text-center mb-16 sm:mb-20">
-          <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4 mx-auto">
-            <span className="w-8 h-px bg-primary/50" />{t("tokenomics.label")}<span className="w-8 h-px bg-primary/50" />
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold mt-2">
-            {t("tokenomics.title1")} <span className="text-gradient-gold">{t("tokenomics.title2")}</span>
-          </h2>
-          <p className="text-muted-foreground text-base sm:text-lg mt-4 max-w-xl mx-auto leading-relaxed">{t("tokenomics.desc")}</p>
-        </div>
+      <div className="relative">
+        {/* Header — matches About sub-section style (left-aligned, primary accent) */}
+        <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4">
+          <span className="w-8 h-px bg-primary/50" />
+          {t("tokenomics.label")}
+        </span>
+        <h3 className="font-display text-2xl sm:text-4xl font-bold mt-2 mb-6 leading-tight max-w-3xl">
+          {t("tokenomics.title1")} <span className="text-gradient-gold">{t("tokenomics.title2")}</span>
+        </h3>
+        <p className="text-muted-foreground text-base leading-[1.8] mb-10 max-w-3xl">
+          {t("tokenomics.desc")}
+        </p>
 
-        <div className="grid md:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-center max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-start">
           {/* Donut Chart */}
-          <div className="flex justify-center order-1 md:order-1">
+          <div className="flex justify-center order-1 md:order-1 md:pt-2">
             <DonutChart animate={visible} hovered={hovered} onHover={onHover} />
           </div>
 
-          {/* Legend with progress bars */}
+          {/* Legend with progress bars — fixed sizing to prevent hover jump */}
           <div className="space-y-3 order-2 md:order-2">
             {SEGMENTS.map((seg, i) => {
               const Icon = seg.icon;
@@ -168,20 +169,21 @@ export default function Tokenomics() {
               return (
                 <div
                   key={seg.key}
-                  className="group flex items-center gap-4 p-3.5 rounded-xl border transition-all duration-500 cursor-pointer"
+                  className="group flex items-center gap-4 p-3.5 rounded-xl border-2 cursor-pointer"
                   style={{
                     opacity: visible ? 1 : 0,
                     transform: visible ? "translateX(0)" : "translateX(24px)",
+                    transition: "opacity 0.5s ease, transform 0.5s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
                     transitionDelay: `${i * 80}ms`,
-                    borderColor: isActive ? seg.color : "hsl(var(--border))",
-                    backgroundColor: isActive ? `${seg.color}08` : "transparent",
-                    boxShadow: isActive ? `0 0 20px ${seg.color}15` : "none",
+                    borderColor: isActive ? seg.color : "hsl(var(--border) / 0.6)",
+                    backgroundColor: isActive ? `${seg.color}10` : "transparent",
+                    boxShadow: isActive ? `0 0 20px ${seg.color}20` : "none",
                   }}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
                 >
                   <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
+                    className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300"
                     style={{
                       backgroundColor: `${seg.color}${isActive ? "25" : "12"}`,
                     }}
@@ -213,9 +215,9 @@ export default function Tokenomics() {
               );
             })}
 
-            {/* Total supply card */}
+            {/* Total supply card — matches Contract Address card style */}
             <div
-              className="mt-6 p-4 rounded-xl border border-border bg-surface/50 flex items-center justify-between"
+              className="mt-6 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] flex items-center justify-between"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(16px)",
@@ -234,6 +236,6 @@ export default function Tokenomics() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
