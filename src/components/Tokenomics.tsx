@@ -13,53 +13,69 @@ const SEGMENTS = [
 
 const TOTAL_SUPPLY = "999,999,999";
 
-function DonutChart({ animate, hovered, onHover }: {
+function DonutChart({ animate, hovered, onHover, labels }: {
   animate: boolean;
   hovered: number | null;
   onHover: (i: number | null) => void;
+  labels: Record<string, string>;
 }) {
-  const size = 340;
-  const cx = size / 2;
-  const cy = size / 2;
+  const size = 520; // expanded canvas to fit outer labels
+  const chartCx = size / 2;
+  const chartCy = size / 2;
   const outerR = 145;
   const innerR = 95;
+  const leaderInnerR = outerR + 6;
+  const leaderBendR = outerR + 28;
+  const labelR = outerR + 70;
 
   let cumulative = 0;
   const arcs = SEGMENTS.map((seg, i) => {
     const startAngle = (cumulative / 100) * 360 - 90;
     cumulative += seg.pct;
     const endAngle = (cumulative / 100) * 360 - 90;
+    const midAngle = (startAngle + endAngle) / 2;
     const largeArc = seg.pct > 50 ? 1 : 0;
 
     const isHovered = hovered === i;
     const r = isHovered ? outerR + 6 : outerR;
     const ir = innerR;
 
-    const x1 = cx + r * Math.cos((startAngle * Math.PI) / 180);
-    const y1 = cy + r * Math.sin((startAngle * Math.PI) / 180);
-    const x2 = cx + r * Math.cos((endAngle * Math.PI) / 180);
-    const y2 = cy + r * Math.sin((endAngle * Math.PI) / 180);
-    const ix1 = cx + ir * Math.cos((endAngle * Math.PI) / 180);
-    const iy1 = cy + ir * Math.sin((endAngle * Math.PI) / 180);
-    const ix2 = cx + ir * Math.cos((startAngle * Math.PI) / 180);
-    const iy2 = cy + ir * Math.sin((startAngle * Math.PI) / 180);
+    const x1 = chartCx + r * Math.cos((startAngle * Math.PI) / 180);
+    const y1 = chartCy + r * Math.sin((startAngle * Math.PI) / 180);
+    const x2 = chartCx + r * Math.cos((endAngle * Math.PI) / 180);
+    const y2 = chartCy + r * Math.sin((endAngle * Math.PI) / 180);
+    const ix1 = chartCx + ir * Math.cos((endAngle * Math.PI) / 180);
+    const iy1 = chartCy + ir * Math.sin((endAngle * Math.PI) / 180);
+    const ix2 = chartCx + ir * Math.cos((startAngle * Math.PI) / 180);
+    const iy2 = chartCy + ir * Math.sin((startAngle * Math.PI) / 180);
 
     const d = `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${ir} ${ir} 0 ${largeArc} 0 ${ix2} ${iy2} Z`;
 
-    return { ...seg, d, isHovered, index: i };
+    // Leader-line points (using mid angle of slice)
+    const rad = (midAngle * Math.PI) / 180;
+    const cosA = Math.cos(rad);
+    const sinA = Math.sin(rad);
+    const lp1 = { x: chartCx + leaderInnerR * cosA, y: chartCy + leaderInnerR * sinA };
+    const lp2 = { x: chartCx + leaderBendR * cosA, y: chartCy + leaderBendR * sinA };
+    const isRight = cosA >= 0;
+    const lp3 = { x: chartCx + (isRight ? labelR : -labelR), y: lp2.y };
+    const labelX = lp3.x + (isRight ? 6 : -6);
+    const labelAnchor: "start" | "end" = isRight ? "start" : "end";
+
+    return { ...seg, d, isHovered, index: i, lp1, lp2, lp3, labelX, labelAnchor };
   });
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {/* Glow behind chart */}
-      <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-125" />
+      <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-110" />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[340px] mx-auto relative"
+        className="w-full max-w-[520px] mx-auto relative"
       >
         {/* Subtle grid rings */}
         {[120, 130, 140].map((r) => (
-          <circle key={r} cx={cx} cy={cy} r={r} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="0.5" strokeDasharray="2 4" opacity={0.3} />
+          <circle key={r} cx={chartCx} cy={chartCy} r={r} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="0.5" strokeDasharray="2 4" opacity={0.3} />
         ))}
         {arcs.map((arc, i) => (
           <path
@@ -73,7 +89,7 @@ function DonutChart({ animate, hovered, onHover }: {
               opacity: animate ? (hovered !== null && !arc.isHovered ? 0.4 : 1) : 0,
               filter: arc.isHovered ? `drop-shadow(0 0 12px ${arc.color})` : "none",
               transform: animate ? "scale(1)" : "scale(0.85)",
-              transformOrigin: `${cx}px ${cy}px`,
+              transformOrigin: `${chartCx}px ${chartCy}px`,
               transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
               transitionDelay: animate ? `${i * 80}ms` : "0ms",
             }}
@@ -81,17 +97,68 @@ function DonutChart({ animate, hovered, onHover }: {
             onMouseLeave={() => onHover(null)}
           />
         ))}
+
+        {/* Leader lines + outside labels */}
+        {arcs.map((arc, i) => {
+          const isActive = arc.isHovered;
+          const baseOpacity = animate ? (hovered !== null && !isActive ? 0.35 : 1) : 0;
+          return (
+            <g
+              key={`label-${arc.key}`}
+              style={{
+                opacity: baseOpacity,
+                transition: "opacity 0.4s ease",
+                transitionDelay: animate ? `${500 + i * 80}ms` : "0ms",
+              }}
+              onMouseEnter={() => onHover(i)}
+              onMouseLeave={() => onHover(null)}
+              className="cursor-pointer"
+            >
+              <polyline
+                points={`${arc.lp1.x},${arc.lp1.y} ${arc.lp2.x},${arc.lp2.y} ${arc.lp3.x},${arc.lp3.y}`}
+                fill="none"
+                stroke={arc.color}
+                strokeWidth={isActive ? 1.5 : 1}
+                opacity={isActive ? 1 : 0.6}
+              />
+              <circle cx={arc.lp3.x} cy={arc.lp3.y} r={2.5} fill={arc.color} />
+              <text
+                x={arc.labelX}
+                y={arc.lp3.y - 4}
+                textAnchor={arc.labelAnchor}
+                fill="hsl(var(--foreground))"
+                fontSize="13"
+                fontWeight="600"
+                fontFamily="'Space Grotesk', sans-serif"
+              >
+                {labels[arc.key]}
+              </text>
+              <text
+                x={arc.labelX}
+                y={arc.lp3.y + 12}
+                textAnchor={arc.labelAnchor}
+                fill={arc.color}
+                fontSize="14"
+                fontWeight="700"
+                fontFamily="'JetBrains Mono', monospace"
+              >
+                {arc.pct}%
+              </text>
+            </g>
+          );
+        })}
+
         {/* Center circle */}
-        <circle cx={cx} cy={cy} r={innerR - 2} fill="hsl(var(--background))" />
-        <circle cx={cx} cy={cy} r={innerR - 2} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="1" />
+        <circle cx={chartCx} cy={chartCy} r={innerR - 2} fill="hsl(var(--background))" />
+        <circle cx={chartCx} cy={chartCy} r={innerR - 2} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="1" />
         {/* Center text */}
-        <text x={cx} y={cy - 14} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="'JetBrains Mono', monospace" letterSpacing="0.1em">
+        <text x={chartCx} y={chartCy - 14} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="'JetBrains Mono', monospace" letterSpacing="0.1em">
           TOTAL SUPPLY
         </text>
-        <text x={cx} y={cy + 8} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="20" fontWeight="bold" fontFamily="'Space Grotesk', sans-serif">
+        <text x={chartCx} y={chartCy + 8} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="20" fontWeight="bold" fontFamily="'Space Grotesk', sans-serif">
           999M
         </text>
-        <text x={cx} y={cy + 26} textAnchor="middle" fill="hsl(var(--primary))" fontSize="11" fontWeight="600" fontFamily="'JetBrains Mono', monospace">
+        <text x={chartCx} y={chartCy + 26} textAnchor="middle" fill="hsl(var(--primary))" fontSize="11" fontWeight="600" fontFamily="'JetBrains Mono', monospace">
           HMOOB
         </text>
       </svg>
@@ -155,10 +222,18 @@ export default function Tokenomics() {
           {t("tokenomics.desc")}
         </p>
 
-        <div className="grid md:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-start">
-          {/* Donut Chart */}
-          <div className="flex justify-center order-1 md:order-1 md:pt-2">
-            <DonutChart animate={visible} hovered={hovered} onHover={onHover} />
+        <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start">
+          {/* Donut Chart with surrounding labels */}
+          <div className="flex justify-center order-1 md:order-1">
+            <DonutChart
+              animate={visible}
+              hovered={hovered}
+              onHover={onHover}
+              labels={SEGMENTS.reduce((acc, s) => {
+                acc[s.key] = t(`tokenomics.${s.key}`);
+                return acc;
+              }, {} as Record<string, string>)}
+            />
           </div>
 
           {/* Legend with progress bars — fixed sizing to prevent hover jump */}
