@@ -81,7 +81,7 @@ function DonutChart({ animate, hovered, onHover, labels }: {
       <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-110" />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[640px] mx-auto relative touch-none"
+        className="w-full max-w-[760px] mx-auto relative touch-none"
       >
         {/* Subtle grid rings */}
         {[120, 130, 140].map((r) => (
