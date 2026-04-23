@@ -13,7 +13,6 @@ import BoostPlans from "@/components/BoostPlans";
 import EcosystemFlow from "@/components/EcosystemFlow";
 import HistoryVision from "@/components/HistoryVision";
 import TokenUsage from "@/components/TokenUsage";
-import SectionDivider from "@/components/SectionDivider";
 
 import VideoSection from "@/components/VideoSection";
 import Testimonials from "@/components/Testimonials";
@@ -33,10 +32,8 @@ export default function Index() {
       <Hero />
       <TrustBanner />
       <StatsBar />
-
-      {/* ============ PART 01 — HMOOB MINING (Platform) ============ */}
-      <SectionDivider variant="mining" id="mining" />
       <div className="section-fade"><About /></div>
+      <div className="section-fade"><Tokenomics /></div>
       <div className="section-divider" />
       <div className="section-fade"><AppPreview /></div>
       <div className="section-divider" />
@@ -45,16 +42,12 @@ export default function Index() {
       <div className="section-divider" />
       <div className="section-fade"><SecuritySection /></div>
       <div className="section-fade"><BoostPlans /></div>
-
-      {/* ============ PART 02 — HMOOB COIN (Token) ============ */}
-      <SectionDivider variant="coin" id="coin" />
-      <div className="section-fade"><Tokenomics /></div>
+      <div className="section-divider" />
+      <div className="section-fade"><HistoryVision /></div>
       <div className="section-divider" />
       <div className="section-fade"><TokenUsage /></div>
       <div className="section-divider" />
       <div className="section-fade"><EcosystemFlow /></div>
-      <div className="section-divider" />
-      <div className="section-fade"><HistoryVision /></div>
       <div className="section-divider" />
       <div className="section-fade"><VideoSection /></div>
       <div className="section-fade"><Testimonials /></div>
