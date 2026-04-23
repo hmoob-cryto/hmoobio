@@ -187,9 +187,6 @@ function DonutChart({ animate, hovered, onHover, labels }: {
                   </div>
                 </div>
               </foreignObject>
-              >
-                {arc.pct}%
-              </text>
             </g>
           );
         })}
