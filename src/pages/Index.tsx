@@ -34,6 +34,8 @@ export default function Index() {
       <StatsBar />
       <div className="section-fade"><About /></div>
       <div className="section-divider" />
+      <div className="section-fade"><HistoryVision /></div>
+      <div className="section-divider" />
       <div className="section-fade"><AppPreview /></div>
       <div className="section-divider" />
       <div className="section-fade"><HowItWorks /></div>
@@ -41,8 +43,6 @@ export default function Index() {
       <div className="section-divider" />
       <div className="section-fade"><SecuritySection /></div>
       <div className="section-fade"><BoostPlans /></div>
-      <div className="section-divider" />
-      <div className="section-fade"><HistoryVision /></div>
       <div className="section-divider" />
       <div className="section-fade"><TokenUsage /></div>
       <div className="section-divider" />
