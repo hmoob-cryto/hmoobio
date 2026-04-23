@@ -153,7 +153,6 @@ function DonutChart({ animate, hovered, onHover, labels }: {
                 style={{ overflow: "visible" }}
               >
                 <div
-                  xmlns="http://www.w3.org/1999/xhtml"
                   style={{
                     display: "flex",
                     flexDirection: "column",
