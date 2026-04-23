@@ -222,10 +222,18 @@ export default function Tokenomics() {
           {t("tokenomics.desc")}
         </p>
 
-        <div className="grid md:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-start">
-          {/* Donut Chart */}
-          <div className="flex justify-center order-1 md:order-1 md:pt-2">
-            <DonutChart animate={visible} hovered={hovered} onHover={onHover} />
+        <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start">
+          {/* Donut Chart with surrounding labels */}
+          <div className="flex justify-center order-1 md:order-1">
+            <DonutChart
+              animate={visible}
+              hovered={hovered}
+              onHover={onHover}
+              labels={SEGMENTS.reduce((acc, s) => {
+                acc[s.key] = t(`tokenomics.${s.key}`);
+                return acc;
+              }, {} as Record<string, string>)}
+            />
           </div>
 
           {/* Legend with progress bars — fixed sizing to prevent hover jump */}
