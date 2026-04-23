@@ -125,29 +125,32 @@ export default function Navbar() {
           </button>
         </div>
         <div className="lg:hidden flex items-center gap-2">
-          <button
-            onClick={() => setLangOpen(!langOpen)}
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors text-xs font-bold"
-          >
-            <FlagIcon code={locale} />
-            {currentLabel}
-          </button>
-          {langOpen && (
-            <div className="absolute top-14 right-12 glass border border-border rounded-lg overflow-hidden shadow-xl min-w-[120px] z-50">
-              {locales.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => { setLocale(l.code); setLangOpen(false); }}
-                  className={`w-full flex items-center gap-2 text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
-                >
-                  <FlagIcon code={l.code} />
-                  <span className="font-mono font-bold text-xs">{l.label}</span>
-                  {l.name}
-                </button>
-              ))}
-            </div>
-          )}
-          <button className="text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors" onClick={() => setOpen(!open)}>
+          <div className="relative" ref={langRef}>
+            <button
+              onClick={(e) => { e.stopPropagation(); setLangOpen(!langOpen); setOpen(false); }}
+              className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors text-xs font-bold"
+              aria-label="Change language"
+            >
+              <FlagIcon code={locale} />
+              {currentLabel}
+            </button>
+            {langOpen && (
+              <div className="absolute top-full right-0 mt-2 glass border border-border rounded-lg overflow-hidden shadow-xl min-w-[140px] z-[60]">
+                {locales.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => { setLocale(l.code); setLangOpen(false); }}
+                    className={`w-full flex items-center gap-2 text-left px-4 py-2.5 text-sm transition-colors ${locale === l.code ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"}`}
+                  >
+                    <FlagIcon code={l.code} />
+                    <span className="font-mono font-bold text-xs">{l.label}</span>
+                    {l.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button className="text-foreground p-2 rounded-lg hover:bg-muted/30 transition-colors" onClick={() => { setOpen(!open); setLangOpen(false); }} aria-label="Toggle menu">
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
