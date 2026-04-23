@@ -28,14 +28,15 @@ function DonutChart({ animate, hovered, onHover, labels }: {
     setTooltipPos({ x: clientX - rect.left, y: clientY - rect.top });
   };
 
-  const size = 640; // expanded canvas to fit full-name outer labels
+  const size = 760; // expanded canvas to fit full-name outer labels comfortably
   const chartCx = size / 2;
   const chartCy = size / 2;
   const outerR = 145;
   const innerR = 95;
   const leaderInnerR = outerR + 6;
   const leaderBendR = outerR + 28;
-  const labelR = outerR + 110;
+  const labelR = outerR + 95;
+  const labelBoxW = 200;
 
   let cumulative = 0;
   const arcs = SEGMENTS.map((seg, i) => {
@@ -146,10 +147,10 @@ function DonutChart({ animate, hovered, onHover, labels }: {
               <circle cx={arc.lp3.x} cy={arc.lp3.y} r={3} fill={arc.color} />
               {/* HTML pill label rendered via foreignObject so long names wrap */}
               <foreignObject
-                x={arc.labelAnchor === "start" ? arc.lp3.x + 6 : arc.lp3.x - 156}
-                y={arc.lp3.y - 26}
-                width={150}
-                height={56}
+                x={arc.labelAnchor === "start" ? arc.lp3.x + 6 : arc.lp3.x - labelBoxW - 6}
+                y={arc.lp3.y - 28}
+                width={labelBoxW}
+                height={60}
                 style={{ overflow: "visible" }}
               >
                 <div
