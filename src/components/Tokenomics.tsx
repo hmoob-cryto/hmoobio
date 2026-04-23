@@ -19,6 +19,15 @@ function DonutChart({ animate, hovered, onHover, labels }: {
   onHover: (i: number | null) => void;
   labels: Record<string, string>;
 }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
+
+  const updateTooltip = (clientX: number, clientY: number) => {
+    const rect = wrapperRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setTooltipPos({ x: clientX - rect.left, y: clientY - rect.top });
+  };
+
   const size = 640; // expanded canvas to fit full-name outer labels
   const chartCx = size / 2;
   const chartCy = size / 2;
