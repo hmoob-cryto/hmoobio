@@ -184,6 +184,36 @@ function DonutChart({ animate, hovered, onHover, labels }: {
           HMOOB
         </text>
       </svg>
+
+      {/* Floating tooltip — follows pointer/touch */}
+      {hovered !== null && tooltipPos && (
+        <div
+          className="pointer-events-none absolute z-20 px-3 py-2 rounded-lg border shadow-xl backdrop-blur-md bg-background/90 transition-opacity duration-150"
+          style={{
+            left: tooltipPos.x,
+            top: tooltipPos.y,
+            transform: "translate(-50%, calc(-100% - 14px))",
+            borderColor: SEGMENTS[hovered].color,
+            boxShadow: `0 8px 24px ${SEGMENTS[hovered].color}40`,
+          }}
+        >
+          <div className="flex items-center gap-2 whitespace-nowrap">
+            <span
+              className="w-2.5 h-2.5 rounded-full shrink-0"
+              style={{ backgroundColor: SEGMENTS[hovered].color }}
+            />
+            <span className="font-display font-semibold text-sm text-foreground">
+              {labels[SEGMENTS[hovered].key]}
+            </span>
+            <span
+              className="font-mono font-bold text-sm tabular-nums"
+              style={{ color: SEGMENTS[hovered].color }}
+            >
+              {SEGMENTS[hovered].pct}%
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
