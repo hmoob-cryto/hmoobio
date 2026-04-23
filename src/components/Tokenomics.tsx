@@ -140,29 +140,53 @@ function DonutChart({ animate, hovered, onHover, labels }: {
                 points={`${arc.lp1.x},${arc.lp1.y} ${arc.lp2.x},${arc.lp2.y} ${arc.lp3.x},${arc.lp3.y}`}
                 fill="none"
                 stroke={arc.color}
-                strokeWidth={isActive ? 1.5 : 1}
-                opacity={isActive ? 1 : 0.6}
+                strokeWidth={isActive ? 2 : 1.25}
+                opacity={isActive ? 1 : 0.7}
               />
-              <circle cx={arc.lp3.x} cy={arc.lp3.y} r={2.5} fill={arc.color} />
-              <text
-                x={arc.labelX}
-                y={arc.lp3.y - 4}
-                textAnchor={arc.labelAnchor}
-                fill="hsl(var(--foreground))"
-                fontSize="13"
-                fontWeight="600"
-                fontFamily="'Space Grotesk', sans-serif"
+              <circle cx={arc.lp3.x} cy={arc.lp3.y} r={3} fill={arc.color} />
+              {/* HTML pill label rendered via foreignObject so long names wrap */}
+              <foreignObject
+                x={arc.labelAnchor === "start" ? arc.lp3.x + 6 : arc.lp3.x - 156}
+                y={arc.lp3.y - 26}
+                width={150}
+                height={56}
+                style={{ overflow: "visible" }}
               >
-                {labels[arc.key]}
-              </text>
-              <text
-                x={arc.labelX}
-                y={arc.lp3.y + 12}
-                textAnchor={arc.labelAnchor}
-                fill={arc.color}
-                fontSize="14"
-                fontWeight="700"
-                fontFamily="'JetBrains Mono', monospace"
+                <div
+                  xmlns="http://www.w3.org/1999/xhtml"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: arc.labelAnchor === "start" ? "flex-start" : "flex-end",
+                    gap: 2,
+                    fontFamily: "'Space Grotesk', sans-serif",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      lineHeight: 1.2,
+                      color: "hsl(var(--foreground))",
+                      textAlign: arc.labelAnchor === "start" ? "left" : "right",
+                      whiteSpace: "normal",
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {labels[arc.key]}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 700,
+                      fontFamily: "'JetBrains Mono', monospace",
+                      color: arc.color,
+                    }}
+                  >
+                    {arc.pct}%
+                  </div>
+                </div>
+              </foreignObject>
               >
                 {arc.pct}%
               </text>
