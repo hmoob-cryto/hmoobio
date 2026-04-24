@@ -497,6 +497,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/jetbrains-mono/-/jetbrains-mono-5.2.8.tgz#56a1bbb8a36a47fe480d3e90b30b520c89853aa5"
   integrity sha512-6w8/SG4kqvIMu7xd7wt6x3idn1Qux3p9N62s6G3rfldOUYHpWcc2FKrqf+Vo44jRvqWj2oAtTHrZXEP23oSKwQ==
 
+"@fontsource/noto-sans-thai@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-thai/-/noto-sans-thai-5.2.8.tgz#1ef8b813021682cca8c9b6e9082deeffb8fc774d"
+  integrity sha512-HUQAxOzclod9PXQx4uMoGRAsor+64snW91QuBg39jT9lbsp7jJx1i3jAtHPJ7mQxHEHnhRjNp54fb8GqPPC6zg==
+
 "@fontsource/space-grotesk@^5.2.10":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@fontsource/space-grotesk/-/space-grotesk-5.2.10.tgz#36eef6a105be125d1025c206eb48f1a3d37ad512"
