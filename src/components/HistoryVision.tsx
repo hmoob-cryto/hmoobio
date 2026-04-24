@@ -23,7 +23,9 @@ export default function HistoryVision() {
         ? "จาก Danny Chain สู่ HMOOB Token — ดูเส้นทางการเติบโตของเรา"
         : "From Danny Chain to HMOOB Token — follow our path of growth";
 
-  const titleParts = sectionTitle.split("&");
+  const titleWords = sectionTitle.split(" ");
+  const lastWord = titleWords.pop() || "";
+  const firstPart = titleWords.join(" ");
 
   return (
     <section id="history" className="py-16 sm:py-28 relative overflow-hidden">
@@ -36,8 +38,8 @@ export default function HistoryVision() {
             <span className="w-8 h-px bg-primary/50" />
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-bold mt-2 mb-4">
-            {titleParts[0]}
-            <span className="text-gradient-gold">&{titleParts[1] || " Vision"}</span>
+            {firstPart && <>{firstPart} </>}
+            <span className="text-gradient-gold">{lastWord}</span>
           </h2>
           <p className="text-muted-foreground text-base max-w-2xl mx-auto">{sectionSubtitle}</p>
         </div>
