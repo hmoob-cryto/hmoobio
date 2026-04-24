@@ -72,7 +72,7 @@ export default function AdminDashboard() {
           <ul className="space-y-2 text-sm text-slate-500">
             <li>• <strong className="text-slate-700">Site Settings</strong> controls Welcome Dialog, Video URL, etc.</li>
             <li>• <strong className="text-slate-700">Site Links</strong> manages all external links by category</li>
-            <li>• Filter by locale (EN/HMN) on tables with multilingual content</li>
+            <li>• Filter by locale (EN / HMN / TH) on tables with multilingual content</li>
             <li>• Language switching is managed in frontend code, not in admin</li>
           </ul>
         </div>
