@@ -13,7 +13,7 @@ export default function HistoryVision() {
   const { data: milestones } = useVisionMilestones();
 
   const sectionTitle =
-    locale === "hmn" ? "Peb Lub & Zeem Muag" : locale === "th" ? "วิสัยทัศน์ & ของเรา" : "Our & Vision";
+    locale === "hmn" ? "Peb Lub Zeem Muag" : locale === "th" ? "วิสัยทัศน์ของเรา" : "Our Vision";
   const sectionLabel =
     locale === "hmn" ? "Peb Txoj Kev Taug" : locale === "th" ? "เส้นทางของเรา" : "Our Journey";
   const sectionSubtitle =
