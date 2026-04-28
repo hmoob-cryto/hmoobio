@@ -3,12 +3,12 @@ import { Flame, Users, Briefcase, Code, Heart, Gift } from "lucide-react";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const SEGMENTS = [
-  { key: "business", pct: 40, color: "hsl(36, 90%, 55%)", colorVar: "--primary", icon: Briefcase },
-  { key: "burn", pct: 25, color: "hsl(0, 72%, 51%)", colorVar: null, icon: Flame },
-  { key: "team", pct: 10, color: "hsl(199, 89%, 48%)", colorVar: null, icon: Code },
-  { key: "charity", pct: 10, color: "hsl(280, 65%, 60%)", colorVar: null, icon: Heart },
-  { key: "growth", pct: 10, color: "hsl(25, 95%, 53%)", colorVar: null, icon: Gift },
-  { key: "airdrop", pct: 5, color: "hsl(45, 93%, 47%)", colorVar: null, icon: Users },
+  { key: "business", pct: 40, color: "hsl(36, 90%, 55%)", icon: Briefcase },
+  { key: "burn", pct: 25, color: "hsl(0, 72%, 51%)", icon: Flame },
+  { key: "team", pct: 10, color: "hsl(199, 89%, 48%)", icon: Code },
+  { key: "charity", pct: 10, color: "hsl(280, 65%, 60%)", icon: Heart },
+  { key: "growth", pct: 10, color: "hsl(25, 95%, 53%)", icon: Gift },
+  { key: "airdrop", pct: 5, color: "hsl(45, 93%, 47%)", icon: Users },
 ];
 
 const TOTAL_SUPPLY = "999,999,999";
@@ -28,22 +28,17 @@ function DonutChart({ animate, hovered, onHover, labels }: {
     setTooltipPos({ x: clientX - rect.left, y: clientY - rect.top });
   };
 
-  const size = 760; // expanded canvas to fit full-name outer labels comfortably
+  const size = 360;
   const chartCx = size / 2;
   const chartCy = size / 2;
-  const outerR = 145;
+  const outerR = 150;
   const innerR = 95;
-  const leaderInnerR = outerR + 6;
-  const leaderBendR = outerR + 28;
-  const labelR = outerR + 95;
-  const labelBoxW = 200;
 
   let cumulative = 0;
   const arcs = SEGMENTS.map((seg, i) => {
     const startAngle = (cumulative / 100) * 360 - 90;
     cumulative += seg.pct;
     const endAngle = (cumulative / 100) * 360 - 90;
-    const midAngle = (startAngle + endAngle) / 2;
     const largeArc = seg.pct > 50 ? 1 : 0;
 
     const isHovered = hovered === i;
@@ -61,29 +56,16 @@ function DonutChart({ animate, hovered, onHover, labels }: {
 
     const d = `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${ir} ${ir} 0 ${largeArc} 0 ${ix2} ${iy2} Z`;
 
-    // Leader-line points (using mid angle of slice)
-    const rad = (midAngle * Math.PI) / 180;
-    const cosA = Math.cos(rad);
-    const sinA = Math.sin(rad);
-    const lp1 = { x: chartCx + leaderInnerR * cosA, y: chartCy + leaderInnerR * sinA };
-    const lp2 = { x: chartCx + leaderBendR * cosA, y: chartCy + leaderBendR * sinA };
-    const isRight = cosA >= 0;
-    const lp3 = { x: chartCx + (isRight ? labelR : -labelR), y: lp2.y };
-    const labelX = lp3.x + (isRight ? 6 : -6);
-    const labelAnchor: "start" | "end" = isRight ? "start" : "end";
-
-    return { ...seg, d, isHovered, index: i, lp1, lp2, lp3, labelX, labelAnchor };
+    return { ...seg, d, isHovered, index: i };
   });
 
   return (
     <div className="relative w-full" ref={wrapperRef}>
-      {/* Glow behind chart */}
       <div className="absolute inset-0 bg-primary/[0.04] blur-[80px] rounded-full scale-110" />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[760px] mx-auto relative touch-none"
+        className="w-full max-w-[360px] mx-auto relative touch-none"
       >
-        {/* Subtle grid rings */}
         {[120, 130, 140].map((r) => (
           <circle key={r} cx={chartCx} cy={chartCy} r={r} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="0.5" strokeDasharray="2 4" opacity={0.3} />
         ))}
@@ -121,80 +103,8 @@ function DonutChart({ animate, hovered, onHover, labels }: {
           </path>
         ))}
 
-        {/* Leader lines + outside labels */}
-        {arcs.map((arc, i) => {
-          const isActive = arc.isHovered;
-          const baseOpacity = animate ? (hovered !== null && !isActive ? 0.35 : 1) : 0;
-          return (
-            <g
-              key={`label-${arc.key}`}
-              style={{
-                opacity: baseOpacity,
-                transition: "opacity 0.4s ease",
-                transitionDelay: animate ? `${500 + i * 80}ms` : "0ms",
-              }}
-              onMouseEnter={() => onHover(i)}
-              onMouseLeave={() => onHover(null)}
-              className="cursor-pointer"
-            >
-              <polyline
-                points={`${arc.lp1.x},${arc.lp1.y} ${arc.lp2.x},${arc.lp2.y} ${arc.lp3.x},${arc.lp3.y}`}
-                fill="none"
-                stroke={arc.color}
-                strokeWidth={isActive ? 2 : 1.25}
-                opacity={isActive ? 1 : 0.7}
-              />
-              <circle cx={arc.lp3.x} cy={arc.lp3.y} r={3} fill={arc.color} />
-              {/* HTML pill label rendered via foreignObject so long names wrap */}
-              <foreignObject
-                x={arc.labelAnchor === "start" ? arc.lp3.x + 6 : arc.lp3.x - labelBoxW - 6}
-                y={arc.lp3.y - 28}
-                width={labelBoxW}
-                height={60}
-                style={{ overflow: "visible" }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: arc.labelAnchor === "start" ? "flex-start" : "flex-end",
-                    gap: 2,
-                    fontFamily: "'Space Grotesk', sans-serif",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      lineHeight: 1.2,
-                      color: "hsl(var(--foreground))",
-                      textAlign: arc.labelAnchor === "start" ? "left" : "right",
-                      whiteSpace: "normal",
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    {labels[arc.key]}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 700,
-                      fontFamily: "'JetBrains Mono', monospace",
-                      color: arc.color,
-                    }}
-                  >
-                    {arc.pct}%
-                  </div>
-                </div>
-              </foreignObject>
-            </g>
-          );
-        })}
-
-        {/* Center circle */}
         <circle cx={chartCx} cy={chartCy} r={innerR - 2} fill="hsl(var(--background))" />
         <circle cx={chartCx} cy={chartCy} r={innerR - 2} fill="none" stroke="hsl(240, 10%, 20%)" strokeWidth="1" />
-        {/* Center text */}
         <text x={chartCx} y={chartCy - 14} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="'JetBrains Mono', monospace" letterSpacing="0.1em">
           TOTAL SUPPLY
         </text>
@@ -206,7 +116,6 @@ function DonutChart({ animate, hovered, onHover, labels }: {
         </text>
       </svg>
 
-      {/* Floating tooltip — follows pointer/touch */}
       {hovered !== null && tooltipPos && (
         <div
           className="pointer-events-none absolute z-20 px-3 py-2 rounded-lg border shadow-xl backdrop-blur-md bg-background/90 transition-opacity duration-150"
@@ -236,6 +145,56 @@ function DonutChart({ animate, hovered, onHover, labels }: {
         </div>
       )}
     </div>
+  );
+}
+
+function LegendList({ animate, hovered, onHover, labels }: {
+  animate: boolean;
+  hovered: number | null;
+  onHover: (i: number | null) => void;
+  labels: Record<string, string>;
+}) {
+  return (
+    <ul className="flex flex-col gap-2 w-full">
+      {SEGMENTS.map((seg, i) => {
+        const Icon = seg.icon;
+        const isActive = hovered === i;
+        const isDimmed = hovered !== null && !isActive;
+        return (
+          <li
+            key={seg.key}
+            onMouseEnter={() => onHover(i)}
+            onMouseLeave={() => onHover(null)}
+            className="cursor-pointer rounded-xl border border-border/40 bg-card/40 backdrop-blur-sm px-4 py-3 flex items-center gap-3 transition-all duration-300"
+            style={{
+              opacity: animate ? (isDimmed ? 0.45 : 1) : 0,
+              transform: animate ? "translateX(0)" : "translateX(20px)",
+              transitionDelay: animate ? `${i * 70}ms` : "0ms",
+              borderColor: isActive ? seg.color : undefined,
+              boxShadow: isActive ? `0 6px 20px ${seg.color}30` : undefined,
+            }}
+          >
+            <span
+              className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+              style={{ backgroundColor: `${seg.color}1f`, color: seg.color }}
+            >
+              <Icon className="w-4 h-4" />
+            </span>
+            <div className="flex-1 min-w-0">
+              <p className="font-display font-semibold text-sm text-foreground truncate">
+                {labels[seg.key]}
+              </p>
+            </div>
+            <span
+              className="font-mono font-bold text-base tabular-nums shrink-0"
+              style={{ color: seg.color }}
+            >
+              {seg.pct}%
+            </span>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -277,13 +236,16 @@ export default function Tokenomics() {
     return () => obs.disconnect();
   }, []);
 
+  const labels = SEGMENTS.reduce((acc, s) => {
+    acc[s.key] = t(`tokenomics.${s.key}`);
+    return acc;
+  }, {} as Record<string, string>);
+
   return (
     <div id="tokenomics" className="relative" ref={ref}>
-      {/* Subtle background glow — matches About section style */}
       <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[120px] pointer-events-none" />
 
       <div className="relative">
-        {/* Header — matches About sub-section style (left-aligned, primary accent) */}
         <span className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-widest uppercase mb-4">
           <span className="w-8 h-px bg-primary/50" />
           {t("tokenomics.label")}
@@ -295,36 +257,41 @@ export default function Tokenomics() {
           {t("tokenomics.desc")}
         </p>
 
-        <div className="max-w-3xl mx-auto">
-          {/* Donut Chart with surrounding labels */}
-          <div className="flex justify-center">
+        {/* Two-column layout: chart left, legend right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div className="flex justify-center lg:justify-start">
             <DonutChart
               animate={visible}
               hovered={hovered}
               onHover={onHover}
-              labels={SEGMENTS.reduce((acc, s) => {
-                acc[s.key] = t(`tokenomics.${s.key}`);
-                return acc;
-              }, {} as Record<string, string>)}
+              labels={labels}
             />
           </div>
 
-          {/* Total supply card — matches Contract Address card style */}
-          <div
-            className="mt-8 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] flex items-center justify-between max-w-md mx-auto"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(16px)",
-              transition: "all 0.6s ease",
-              transitionDelay: "800ms",
-            }}
-          >
-            <div>
-              <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Total Supply</p>
-              <p className="font-display font-bold text-lg text-foreground mt-0.5">{TOTAL_SUPPLY} <span className="text-primary">HMOOB</span></p>
-            </div>
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <span className="text-primary font-mono font-bold text-sm">∞</span>
+          <div className="w-full">
+            <LegendList
+              animate={visible}
+              hovered={hovered}
+              onHover={onHover}
+              labels={labels}
+            />
+
+            <div
+              className="mt-6 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] flex items-center justify-between"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(16px)",
+                transition: "all 0.6s ease",
+                transitionDelay: "800ms",
+              }}
+            >
+              <div>
+                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Total Supply</p>
+                <p className="font-display font-bold text-lg text-foreground mt-0.5">{TOTAL_SUPPLY} <span className="text-primary">HMOOB</span></p>
+              </div>
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <span className="text-primary font-mono font-bold text-sm">∞</span>
+              </div>
             </div>
           </div>
         </div>
