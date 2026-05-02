@@ -112,25 +112,27 @@ export default function AdminVideos() {
     }
   };
 
+  const inputCls = "w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition-colors";
+  const labelCls = "text-xs font-semibold text-slate-700 mb-1.5 block";
+
   const renderForm = (data: Partial<VideoRow>, setData: (d: Partial<VideoRow>) => void, mode: "new" | "edit") => (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid gap-4 sm:grid-cols-2">
       <div className="sm:col-span-2">
-        <label className="text-xs font-medium text-slate-500 mb-1 block">Title</label>
+        <label className={labelCls}>Title</label>
         <input value={data.title || ""} onChange={(e) => setData({ ...data, title: e.target.value })}
-          className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm" />
+          placeholder="ชื่อวิดีโอ" className={inputCls} />
       </div>
       <div className="sm:col-span-2">
-        <label className="text-xs font-medium text-slate-500 mb-1 block">Description</label>
+        <label className={labelCls}>Description</label>
         <textarea value={data.description || ""} onChange={(e) => setData({ ...data, description: e.target.value })}
-          className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm min-h-[60px]" />
+          placeholder="คำอธิบายสั้น ๆ" className={`${inputCls} min-h-[72px] resize-y`} />
       </div>
       <div className="sm:col-span-2">
-        <label className="text-xs font-medium text-slate-500 mb-1 block">Video URL</label>
+        <label className={labelCls}>Video URL</label>
         <div className="flex gap-2">
           <input value={data.video_url || ""} onChange={(e) => setData({ ...data, video_url: e.target.value })}
-            placeholder="https://..."
-            className="flex-1 px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm" />
-          <label className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-amber-500 text-white text-sm font-medium hover:bg-amber-600 cursor-pointer disabled:opacity-50">
+            placeholder="https://... หรืออัปโหลดไฟล์" className={`flex-1 ${inputCls}`} />
+          <label className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-amber-500 text-white text-sm font-medium hover:bg-amber-600 cursor-pointer disabled:opacity-50 whitespace-nowrap">
             {uploading ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
             Upload
             <input type="file" accept="video/*" className="hidden"
@@ -142,30 +144,30 @@ export default function AdminVideos() {
         )}
       </div>
       <div>
-        <label className="text-xs font-medium text-slate-500 mb-1 block">Thumbnail URL (optional)</label>
+        <label className={labelCls}>Thumbnail URL (optional)</label>
         <input value={data.thumbnail_url || ""} onChange={(e) => setData({ ...data, thumbnail_url: e.target.value })}
-          className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm" />
+          placeholder="https://..." className={inputCls} />
       </div>
       <div>
-        <label className="text-xs font-medium text-slate-500 mb-1 block">Locale</label>
+        <label className={labelCls}>Locale</label>
         <select value={data.locale || "en"} onChange={(e) => setData({ ...data, locale: e.target.value })}
-          className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm">
+          className={inputCls}>
           <option value="en">English</option>
           <option value="hmn">Hmong</option>
           <option value="th">ไทย</option>
         </select>
       </div>
       <div>
-        <label className="text-xs font-medium text-slate-500 mb-1 block">Sort Order</label>
-        <input type="number" value={data.sort_order || 0} onChange={(e) => setData({ ...data, sort_order: Number(e.target.value) })}
-          className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm" />
+        <label className={labelCls}>Sort Order</label>
+        <input type="number" value={data.sort_order ?? 0} onChange={(e) => setData({ ...data, sort_order: Number(e.target.value) })}
+          className={inputCls} />
       </div>
-      <div className="flex items-center gap-2">
-        <button onClick={() => setData({ ...data, is_active: !data.is_active })}
+      <div className="flex items-center gap-2 pt-6">
+        <button type="button" onClick={() => setData({ ...data, is_active: !data.is_active })}
           className={`w-10 h-5 rounded-full transition-colors ${data.is_active ? "bg-amber-500" : "bg-slate-300"}`}>
           <div className={`w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${data.is_active ? "translate-x-5" : "translate-x-0.5"}`} />
         </button>
-        <span className="text-sm text-slate-600">Active</span>
+        <span className="text-sm text-slate-700 font-medium">Active</span>
       </div>
     </div>
   );
