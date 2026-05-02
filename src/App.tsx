@@ -28,6 +28,7 @@ import AdminTrustPartners from "./pages/admin/AdminTrustPartners.tsx";
 import AdminChangePassword from "./pages/admin/AdminChangePassword.tsx";
 import AdminHistoryTimeline from "./pages/admin/AdminHistoryTimeline.tsx";
 import AdminTokenPlatforms from "./pages/admin/AdminTokenPlatforms.tsx";
+import AdminVideos from "./pages/admin/AdminVideos.tsx";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => (
               <Route path="change-password" element={<AdminChangePassword />} />
               <Route path="history-timeline" element={<AdminHistoryTimeline />} />
               <Route path="token-platforms" element={<AdminTokenPlatforms />} />
+              <Route path="videos" element={<AdminVideos />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
