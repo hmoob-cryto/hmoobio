@@ -7,7 +7,7 @@ import {
 import {
   LayoutDashboard, Mountain, Wallet, Link2, Settings, Zap, Gift,
   Globe, HelpCircle, Footprints, Shield, Star, BarChart3, MessageSquare,
-  BadgeCheck, Handshake, LogOut, KeyRound, History, Coins,
+  BadgeCheck, Handshake, LogOut, KeyRound, History, Coins, Video,
 } from "lucide-react";
 
 const menuGroups = [
@@ -36,6 +36,7 @@ const menuGroups = [
       { title: "FAQs", path: "/admin/faqs", icon: HelpCircle },
       { title: "Stats", path: "/admin/stats", icon: BarChart3 },
       { title: "Testimonials", path: "/admin/testimonials", icon: MessageSquare },
+      { title: "Videos", path: "/admin/videos", icon: Video },
     ],
   },
   {
