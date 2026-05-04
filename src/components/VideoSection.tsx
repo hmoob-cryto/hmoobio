@@ -5,6 +5,22 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import ecosystemVideo from "@/assets/ecosystem-promo.mp4";
 
+interface VideoTranslation {
+  locale: string;
+  title: string;
+  description: string | null;
+}
+
+interface VideoRow {
+  id: string;
+  title: string | null;
+  description: string | null;
+  video_url: string;
+  thumbnail_url: string | null;
+  sort_order: number;
+  video_translations: VideoTranslation[];
+}
+
 interface VideoItem {
   id: string;
   title: string;
@@ -22,26 +38,39 @@ export default function VideoSection() {
   const { t, locale } = useLanguage();
 
   const { data: videos } = useQuery({
-    queryKey: ["videos_public", locale],
+    queryKey: ["videos_public"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("videos")
-        .select("*")
-        .eq("locale", locale)
+        .select("*, video_translations(locale, title, description)")
         .eq("is_active", true)
         .order("sort_order");
       if (error) throw error;
-      return data as VideoItem[];
+      return data as unknown as VideoRow[];
     },
   });
 
+  const pickTranslation = (row: VideoRow): VideoItem => {
+    const tr =
+      row.video_translations?.find((x) => x.locale === locale) ||
+      row.video_translations?.find((x) => x.locale === "en") ||
+      row.video_translations?.[0];
+    return {
+      id: row.id,
+      title: tr?.title || row.title || "",
+      description: tr?.description ?? row.description ?? null,
+      video_url: row.video_url.startsWith("/src/") ? ecosystemVideo : row.video_url,
+      thumbnail_url: row.thumbnail_url,
+      sort_order: row.sort_order,
+    };
+  };
+
   const list: VideoItem[] = videos && videos.length > 0
-    ? videos.map((v) => ({ ...v, video_url: v.video_url.startsWith("/src/") ? ecosystemVideo : v.video_url }))
+    ? videos.map(pickTranslation)
     : [{ id: "default", title: t("video.title1"), description: t("video.desc"), video_url: ecosystemVideo, thumbnail_url: null, sort_order: 0 }];
 
   const current = list[activeIndex] || list[0];
 
-  // Reset playback when switching videos
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
@@ -93,7 +122,6 @@ export default function VideoSection() {
         </div>
 
         <div className="grid lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
-          {/* Player - portrait/vertical */}
           <div className="lg:col-span-3 flex justify-center">
             <div className="relative group rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-colors duration-500 shadow-2xl shadow-background/50 w-full max-w-[360px] mx-auto">
               <video
@@ -126,7 +154,6 @@ export default function VideoSection() {
                 </button>
               </div>
 
-              {/* Title overlay bottom-left */}
               <div className="absolute bottom-5 left-5 max-w-[60%]">
                 <div className="text-xs font-mono text-primary mb-1">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(list.length).padStart(2, "0")}
@@ -136,7 +163,6 @@ export default function VideoSection() {
             </div>
           </div>
 
-          {/* Playlist */}
           <div className="lg:col-span-2">
             <div className="rounded-2xl border border-border bg-surface/50 backdrop-blur p-3 lg:max-h-[480px] overflow-y-auto">
               <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground px-2 py-2 mb-1">
