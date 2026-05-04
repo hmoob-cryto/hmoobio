@@ -137,7 +137,7 @@ export default function VideoSection() {
           </div>
 
           {/* Playlist */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <div className="rounded-2xl border border-border bg-surface/50 backdrop-blur p-3 lg:max-h-[480px] overflow-y-auto">
               <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground px-2 py-2 mb-1">
                 Playlist · {list.length}
