@@ -92,15 +92,15 @@ export default function VideoSection() {
           <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">{t("video.desc")}</p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Player */}
-          <div className="lg:col-span-2">
-            <div className="relative group rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-colors duration-500 shadow-2xl shadow-background/50">
+        <div className="grid lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+          {/* Player - portrait/vertical */}
+          <div className="lg:col-span-3 flex justify-center">
+            <div className="relative group rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-colors duration-500 shadow-2xl shadow-background/50 w-full max-w-[360px] mx-auto">
               <video
                 key={current.id}
                 ref={videoRef}
                 src={current.video_url}
-                className="w-full aspect-video object-cover bg-black"
+                className="w-full aspect-[9/16] object-contain bg-black"
                 muted={muted}
                 playsInline
                 onEnded={handleEnded}
