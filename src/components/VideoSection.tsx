@@ -156,7 +156,7 @@ export default function VideoSection() {
                           : "border border-transparent hover:bg-foreground/5"
                       }`}
                     >
-                      <div className="relative w-20 h-14 shrink-0 rounded-lg overflow-hidden bg-background border border-border">
+                      <div className="relative w-12 h-20 shrink-0 rounded-lg overflow-hidden bg-background border border-border">
                         {v.thumbnail_url ? (
                           <img src={v.thumbnail_url} alt={v.title} className="w-full h-full object-cover" />
                         ) : (
