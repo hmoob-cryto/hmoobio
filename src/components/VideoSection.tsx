@@ -92,15 +92,15 @@ export default function VideoSection() {
           <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">{t("video.desc")}</p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Player */}
-          <div className="lg:col-span-2">
-            <div className="relative group rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-colors duration-500 shadow-2xl shadow-background/50">
+        <div className="grid lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+          {/* Player - portrait/vertical */}
+          <div className="lg:col-span-3 flex justify-center">
+            <div className="relative group rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-colors duration-500 shadow-2xl shadow-background/50 w-full max-w-[360px] mx-auto">
               <video
                 key={current.id}
                 ref={videoRef}
                 src={current.video_url}
-                className="w-full aspect-video object-cover bg-black"
+                className="w-full aspect-[9/16] object-contain bg-black"
                 muted={muted}
                 playsInline
                 onEnded={handleEnded}
@@ -137,7 +137,7 @@ export default function VideoSection() {
           </div>
 
           {/* Playlist */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <div className="rounded-2xl border border-border bg-surface/50 backdrop-blur p-3 lg:max-h-[480px] overflow-y-auto">
               <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground px-2 py-2 mb-1">
                 Playlist · {list.length}
@@ -156,7 +156,7 @@ export default function VideoSection() {
                           : "border border-transparent hover:bg-foreground/5"
                       }`}
                     >
-                      <div className="relative w-20 h-14 shrink-0 rounded-lg overflow-hidden bg-background border border-border">
+                      <div className="relative w-12 h-20 shrink-0 rounded-lg overflow-hidden bg-background border border-border">
                         {v.thumbnail_url ? (
                           <img src={v.thumbnail_url} alt={v.title} className="w-full h-full object-cover" />
                         ) : (

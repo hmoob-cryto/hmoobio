@@ -232,7 +232,7 @@ export default function AdminVideos() {
               ) : (
                 <div className="flex items-start gap-4">
                   {row.video_url && (
-                    <video src={row.video_url} className="w-32 h-20 object-cover rounded-lg border border-slate-200 bg-slate-100" />
+                    <video src={row.video_url} className="w-16 h-28 object-cover rounded-lg border border-slate-200 bg-slate-100" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
