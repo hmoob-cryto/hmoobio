@@ -60,7 +60,7 @@ export default function VideoSection() {
       id: row.id,
       title: tr?.title || row.title || "",
       description: tr?.description ?? row.description ?? null,
-      video_url: row.video_url.startsWith("/src/") ? ecosystemVideo : row.video_url,
+      video_url: row.video_url.startsWith("/src/") ? ecosystemVideo : normalizeVideoUrl(row.video_url),
       thumbnail_url: row.thumbnail_url,
       sort_order: row.sort_order,
     };
