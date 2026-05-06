@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, Loader2, Video as VideoIcon, Plus, Pencil, Trash2, Save, X } from "lucide-react";
 import { toast } from "sonner";
+import { normalizeVideoUrl, isGoogleDriveUrl } from "@/lib/videoUrl";
 
 const LOCALES = [
   { code: "en", label: "🇺🇸 English" },
