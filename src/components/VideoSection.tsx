@@ -4,6 +4,7 @@ import { Play, Pause, Volume2, VolumeX, SkipForward, CheckCircle2 } from "lucide
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import ecosystemVideo from "@/assets/ecosystem-promo.mp4";
+import { normalizeVideoUrl } from "@/lib/videoUrl";
 
 interface VideoTranslation {
   locale: string;
