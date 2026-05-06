@@ -4,6 +4,7 @@ import { Play, Pause, Volume2, VolumeX, SkipForward, CheckCircle2 } from "lucide
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import ecosystemVideo from "@/assets/ecosystem-promo.mp4";
+import { normalizeVideoUrl } from "@/lib/videoUrl";
 
 interface VideoTranslation {
   locale: string;
@@ -59,7 +60,7 @@ export default function VideoSection() {
       id: row.id,
       title: tr?.title || row.title || "",
       description: tr?.description ?? row.description ?? null,
-      video_url: row.video_url.startsWith("/src/") ? ecosystemVideo : row.video_url,
+      video_url: row.video_url.startsWith("/src/") ? ecosystemVideo : normalizeVideoUrl(row.video_url),
       thumbnail_url: row.thumbnail_url,
       sort_order: row.sort_order,
     };
