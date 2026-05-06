@@ -1,27 +1,37 @@
 /**
- * Normalize video URLs from various sources into a directly playable URL.
- * Supports Google Drive share links and converts them to a streaming URL.
+ * Utilities for handling video URLs from various sources.
+ * Google Drive blocks <video> tag streaming, so we detect Drive URLs and
+ * render them via <iframe> using the /preview endpoint instead.
  */
-export function normalizeVideoUrl(url: string): string {
-  if (!url) return url;
+
+export function getDriveFileId(url: string): string | null {
+  if (!url) return null;
   const trimmed = url.trim();
-
-  // Google Drive patterns:
-  // https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-  // https://drive.google.com/open?id=FILE_ID
-  // https://drive.google.com/uc?id=FILE_ID
-  const driveFileMatch = trimmed.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
-  const driveOpenMatch = trimmed.match(/drive\.google\.com\/(?:open|uc)\?(?:.*&)?id=([a-zA-Z0-9_-]+)/);
-  const fileId = driveFileMatch?.[1] || driveOpenMatch?.[1];
-
-  if (fileId) {
-    // Direct streaming endpoint that works in <video> tags
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
-  }
-
-  return trimmed;
+  const m1 = trimmed.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  const m2 = trimmed.match(/drive\.google\.com\/(?:open|uc)\?(?:.*&)?id=([a-zA-Z0-9_-]+)/);
+  return m1?.[1] || m2?.[1] || null;
 }
 
 export function isGoogleDriveUrl(url: string): boolean {
-  return /drive\.google\.com/.test(url || "");
+  return !!getDriveFileId(url);
+}
+
+/**
+ * Returns a Google Drive preview URL suitable for use in an <iframe>.
+ */
+export function getDrivePreviewUrl(url: string): string | null {
+  const id = getDriveFileId(url);
+  return id ? `https://drive.google.com/file/d/${id}/preview` : null;
+}
+
+/**
+ * Normalize URL for use in a <video> tag. For non-Drive URLs returns as-is.
+ * For Drive URLs returns the (best-effort) direct stream URL — but prefer
+ * using getDrivePreviewUrl + <iframe> for Drive content.
+ */
+export function normalizeVideoUrl(url: string): string {
+  if (!url) return url;
+  const id = getDriveFileId(url);
+  if (id) return `https://drive.google.com/uc?export=download&id=${id}`;
+  return url.trim();
 }
