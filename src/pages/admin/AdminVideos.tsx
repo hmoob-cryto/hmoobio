@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, Loader2, Video as VideoIcon, Plus, Pencil, Trash2, Save, X } from "lucide-react";
 import { toast } from "sonner";
-import { normalizeVideoUrl, isGoogleDriveUrl } from "@/lib/videoUrl";
+import { normalizeVideoUrl, isGoogleDriveUrl, getDrivePreviewUrl } from "@/lib/videoUrl";
 
 const LOCALES = [
   { code: "en", label: "🇺🇸 English" },
@@ -201,12 +201,21 @@ export default function AdminVideos() {
           </p>
           {data.video_url && (
             <div className="mt-2">
-              {isGoogleDriveUrl(data.video_url) && (
-                <div className="text-[11px] text-amber-600 mb-1.5 px-2 py-1 bg-amber-50 rounded border border-amber-200">
-                  ✓ ตรวจพบ Google Drive — จะถูกแปลงเป็นลิงก์สตรีมอัตโนมัติ
-                </div>
+              {isGoogleDriveUrl(data.video_url) ? (
+                <>
+                  <div className="text-[11px] text-amber-600 mb-1.5 px-2 py-1 bg-amber-50 rounded border border-amber-200">
+                    ✓ Google Drive — แสดงผ่าน iframe preview (ต้องตั้งสิทธิ์ "Anyone with the link")
+                  </div>
+                  <iframe
+                    src={getDrivePreviewUrl(data.video_url) || ""}
+                    className="w-full max-w-[200px] aspect-[9/16] rounded-lg border border-slate-200 bg-black"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                </>
+              ) : (
+                <video src={normalizeVideoUrl(data.video_url)} controls className="w-full max-w-[200px] rounded-lg border border-slate-200" />
               )}
-              <video src={normalizeVideoUrl(data.video_url)} controls className="w-full max-w-[200px] rounded-lg border border-slate-200" />
             </div>
           )}
         </div>
@@ -334,7 +343,13 @@ export default function AdminVideos() {
                 ) : (
                   <div className="flex items-start gap-4">
                     {row.video_url && (
-                      <video src={row.video_url} className="w-16 h-28 object-cover rounded-lg border border-slate-200 bg-slate-100" />
+                      isGoogleDriveUrl(row.video_url) ? (
+                        <div className="w-16 h-28 rounded-lg border border-slate-200 bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center text-amber-600 text-[10px] font-semibold">
+                          Drive
+                        </div>
+                      ) : (
+                        <video src={row.video_url} className="w-16 h-28 object-cover rounded-lg border border-slate-200 bg-slate-100" />
+                      )
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
