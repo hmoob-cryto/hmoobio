@@ -343,7 +343,13 @@ export default function AdminVideos() {
                 ) : (
                   <div className="flex items-start gap-4">
                     {row.video_url && (
-                      <video src={row.video_url} className="w-16 h-28 object-cover rounded-lg border border-slate-200 bg-slate-100" />
+                      isGoogleDriveUrl(row.video_url) ? (
+                        <div className="w-16 h-28 rounded-lg border border-slate-200 bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center text-amber-600 text-[10px] font-semibold">
+                          Drive
+                        </div>
+                      ) : (
+                        <video src={row.video_url} className="w-16 h-28 object-cover rounded-lg border border-slate-200 bg-slate-100" />
+                      )
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
