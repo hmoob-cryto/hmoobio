@@ -201,12 +201,21 @@ export default function AdminVideos() {
           </p>
           {data.video_url && (
             <div className="mt-2">
-              {isGoogleDriveUrl(data.video_url) && (
-                <div className="text-[11px] text-amber-600 mb-1.5 px-2 py-1 bg-amber-50 rounded border border-amber-200">
-                  ✓ ตรวจพบ Google Drive — จะถูกแปลงเป็นลิงก์สตรีมอัตโนมัติ
-                </div>
+              {isGoogleDriveUrl(data.video_url) ? (
+                <>
+                  <div className="text-[11px] text-amber-600 mb-1.5 px-2 py-1 bg-amber-50 rounded border border-amber-200">
+                    ✓ Google Drive — แสดงผ่าน iframe preview (ต้องตั้งสิทธิ์ "Anyone with the link")
+                  </div>
+                  <iframe
+                    src={getDrivePreviewUrl(data.video_url) || ""}
+                    className="w-full max-w-[200px] aspect-[9/16] rounded-lg border border-slate-200 bg-black"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                </>
+              ) : (
+                <video src={normalizeVideoUrl(data.video_url)} controls className="w-full max-w-[200px] rounded-lg border border-slate-200" />
               )}
-              <video src={normalizeVideoUrl(data.video_url)} controls className="w-full max-w-[200px] rounded-lg border border-slate-200" />
             </div>
           )}
         </div>
