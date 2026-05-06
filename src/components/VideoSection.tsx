@@ -125,41 +125,53 @@ export default function VideoSection() {
         <div className="grid lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
           <div className="lg:col-span-3 flex justify-center">
             <div className="relative group rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-colors duration-500 shadow-2xl shadow-background/50 w-full max-w-[360px] mx-auto">
-              <video
-                key={current.id}
-                ref={videoRef}
-                src={current.video_url}
-                className="w-full aspect-[9/16] object-contain bg-black"
-                muted={muted}
-                playsInline
-                onEnded={handleEnded}
-                onPlay={() => setPlaying(true)}
-                onPause={() => setPlaying(false)}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/20 pointer-events-none" />
+              {isGoogleDriveUrl(current.video_url) ? (
+                <iframe
+                  key={current.id}
+                  src={getDrivePreviewUrl(current.video_url) || ""}
+                  className="w-full aspect-[9/16] bg-black"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+              ) : (
+                <>
+                  <video
+                    key={current.id}
+                    ref={videoRef}
+                    src={current.video_url}
+                    className="w-full aspect-[9/16] object-contain bg-black"
+                    muted={muted}
+                    playsInline
+                    onEnded={handleEnded}
+                    onPlay={() => setPlaying(true)}
+                    onPause={() => setPlaying(false)}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/20 pointer-events-none" />
 
-              <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
-                <button onClick={togglePlay} className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center hover:bg-primary hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary/30 ring-4 ring-primary/20">
-                  {playing ? <Pause className="text-primary-foreground" size={30} /> : <Play className="text-primary-foreground ml-1" size={30} />}
-                </button>
-              </div>
+                  <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
+                    <button onClick={togglePlay} className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center hover:bg-primary hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary/30 ring-4 ring-primary/20">
+                      {playing ? <Pause className="text-primary-foreground" size={30} /> : <Play className="text-primary-foreground ml-1" size={30} />}
+                    </button>
+                  </div>
 
-              <div className={`absolute bottom-5 right-5 flex gap-2 transition-all duration-500 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
-                {activeIndex < list.length - 1 && (
-                  <button onClick={() => selectVideo(activeIndex + 1)} className="w-10 h-10 rounded-xl glass border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary/30 transition-all">
-                    <SkipForward size={17} />
-                  </button>
-                )}
-                <button onClick={toggleMute} className="w-10 h-10 rounded-xl glass border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary/30 transition-all">
-                  {muted ? <VolumeX size={17} /> : <Volume2 size={17} />}
-                </button>
-              </div>
+                  <div className={`absolute bottom-5 right-5 flex gap-2 transition-all duration-500 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
+                    {activeIndex < list.length - 1 && (
+                      <button onClick={() => selectVideo(activeIndex + 1)} className="w-10 h-10 rounded-xl glass border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <SkipForward size={17} />
+                      </button>
+                    )}
+                    <button onClick={toggleMute} className="w-10 h-10 rounded-xl glass border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary/30 transition-all">
+                      {muted ? <VolumeX size={17} /> : <Volume2 size={17} />}
+                    </button>
+                  </div>
+                </>
+              )}
 
-              <div className="absolute bottom-5 left-5 max-w-[60%]">
+              <div className="absolute bottom-5 left-5 max-w-[60%] pointer-events-none">
                 <div className="text-xs font-mono text-primary mb-1">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(list.length).padStart(2, "0")}
                 </div>
-                <h3 className="font-display text-lg sm:text-xl font-bold text-foreground line-clamp-1">{current.title}</h3>
+                <h3 className="font-display text-lg sm:text-xl font-bold text-foreground line-clamp-1 drop-shadow-lg">{current.title}</h3>
               </div>
             </div>
           </div>
