@@ -198,6 +198,10 @@ export default function VideoSection() {
                       <div className="relative w-12 h-20 shrink-0 rounded-lg overflow-hidden bg-background border border-border">
                         {v.thumbnail_url ? (
                           <img src={v.thumbnail_url} alt={v.title} className="w-full h-full object-cover" />
+                        ) : isGoogleDriveUrl(v.video_url) ? (
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
+                            <Play size={20} className="text-primary" />
+                          </div>
                         ) : (
                           <video src={v.video_url} className="w-full h-full object-cover" muted preload="metadata" />
                         )}
