@@ -11,7 +11,7 @@ import Features from "@/components/Features";
 import SecuritySection from "@/components/SecuritySection";
 import BoostPlans from "@/components/BoostPlans";
 import EcosystemFlow from "@/components/EcosystemFlow";
-import HistoryVision from "@/components/HistoryVision";
+import OurVision from "@/components/OurVision";
 import TokenUsage from "@/components/TokenUsage";
 
 import VideoSection from "@/components/VideoSection";
@@ -34,7 +34,7 @@ export default function Index() {
       <StatsBar />
       <div className="section-fade"><About /></div>
       <div className="section-divider" />
-      <div className="section-fade"><HistoryVision /></div>
+      <div className="section-fade"><OurVision /></div>
       <div className="section-divider" />
       <div className="section-fade"><AppPreview /></div>
       <div className="section-divider" />
