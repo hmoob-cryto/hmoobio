@@ -3,7 +3,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Sparkles, Target, Rocket, Coins, Pickaxe, ArrowLeftRight, ShoppingBag,
   Home, Bot, Gamepad2, HandCoins, Quote, Flame, Users, HeartHandshake,
-  TrendingUp, Gift, Briefcase, Shield, FileText, Download, X,
+  TrendingUp, Gift, Briefcase, Shield, FileText, Download, X, ExternalLink,
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
