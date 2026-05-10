@@ -206,6 +206,14 @@ export default function OurVision() {
   const t = T[locale as Locale] || T.en;
   const eco = ECO_TEXT[locale as Locale] || ECO_TEXT.en;
   const dist = DIST_TEXT[locale as Locale] || DIST_TEXT.en;
+  const [pdfOpen, setPdfOpen] = useState(false);
+
+  const reviewLabel =
+    locale === "hmn" ? "Saib Daim Ntawv" : locale === "th" ? "รีวิวเอกสาร" : "Review Document";
+  const downloadLabel =
+    locale === "hmn" ? "Download PDF" : locale === "th" ? "ดาวน์โหลด PDF" : "Download PDF";
+  const docTitle =
+    locale === "hmn" ? "Hmoob Project — Daim Ntawv" : locale === "th" ? "เอกสาร Hmoob Project" : "Hmoob Project Document";
 
   return (
     <section id="history" className="py-16 sm:py-28 relative overflow-hidden">
@@ -226,7 +234,50 @@ export default function OurVision() {
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t.subtitle}
           </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={() => setPdfOpen(true)}
+              className="group inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl text-sm font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <FileText size={18} className="transition-transform group-hover:scale-110" />
+              {reviewLabel}
+            </button>
+            <a
+              href={PDF_URL}
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border bg-surface/60 text-foreground hover:border-primary/40 hover:bg-surface transition-all duration-300"
+            >
+              <Download size={18} />
+              {downloadLabel}
+            </a>
+          </div>
         </div>
+
+        <Dialog open={pdfOpen} onOpenChange={setPdfOpen}>
+          <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 gap-0 bg-surface border-border overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-border bg-background/50 shrink-0">
+              <DialogTitle className="flex items-center gap-2 font-display text-base">
+                <FileText size={18} className="text-primary" />
+                <span className="text-gradient-gold">{docTitle}</span>
+              </DialogTitle>
+              <div className="flex items-center gap-2">
+                <a
+                  href={PDF_URL}
+                  download
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-border bg-surface/80 text-foreground hover:border-primary/40 transition-colors"
+                >
+                  <Download size={14} />
+                  {downloadLabel}
+                </a>
+              </div>
+            </div>
+            <iframe
+              src={`${PDF_URL}#view=FitH`}
+              title={docTitle}
+              className="flex-1 w-full bg-background"
+            />
+          </DialogContent>
+        </Dialog>
 
         {/* Intro hero card */}
         <div className="relative rounded-3xl overflow-hidden mb-14 sm:mb-20 border border-border bg-surface/40 backdrop-blur-sm">
