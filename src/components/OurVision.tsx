@@ -263,6 +263,15 @@ export default function OurVision() {
               <div className="flex items-center gap-2">
                 <a
                   href={PDF_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-border bg-surface/80 text-foreground hover:border-primary/40 transition-colors"
+                >
+                  <ExternalLink size={14} />
+                  {locale === "th" ? "เปิดในแท็บใหม่" : locale === "hmn" ? "Qhib Tab Tshiab" : "Open in new tab"}
+                </a>
+                <a
+                  href={PDF_URL}
                   download
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-border bg-surface/80 text-foreground hover:border-primary/40 transition-colors"
                 >
@@ -271,11 +280,36 @@ export default function OurVision() {
                 </a>
               </div>
             </div>
-            <iframe
-              src={`${PDF_URL}#view=FitH`}
-              title={docTitle}
+            <object
+              data={`${PDF_URL}#view=FitH&toolbar=1`}
+              type="application/pdf"
               className="flex-1 w-full bg-background"
-            />
+            >
+              <iframe
+                src={`https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + PDF_URL)}&embedded=true`}
+                title={docTitle}
+                className="flex-1 w-full bg-background border-0"
+              />
+              <div className="flex flex-col items-center justify-center gap-3 p-10 text-center">
+                <FileText size={48} className="text-primary" />
+                <p className="text-sm text-muted-foreground">
+                  {locale === "th"
+                    ? "ไม่สามารถแสดงเอกสารในหน้านี้ได้ กรุณาเปิดในแท็บใหม่หรือดาวน์โหลด"
+                    : locale === "hmn"
+                    ? "Tsis tuaj yeem nthuav daim ntawv ntawm no. Qhib hauv tab tshiab los yog download."
+                    : "Unable to display the document inline. Please open in a new tab or download."}
+                </p>
+                <a
+                  href={PDF_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-semibold"
+                >
+                  <ExternalLink size={16} />
+                  {locale === "th" ? "เปิดเอกสาร" : locale === "hmn" ? "Qhib Daim Ntawv" : "Open Document"}
+                </a>
+              </div>
+            </object>
           </DialogContent>
         </Dialog>
 
