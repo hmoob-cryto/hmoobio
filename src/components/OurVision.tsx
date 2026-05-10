@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Sparkles, Target, Rocket, Coins, Pickaxe, ArrowLeftRight, ShoppingBag,
   Home, Bot, Gamepad2, HandCoins, Quote, Flame, Users, HeartHandshake,
-  TrendingUp, Gift, Briefcase, Shield,
+  TrendingUp, Gift, Briefcase, Shield, FileText, Download, X,
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import visionBg from "@/assets/vision-bg.jpg";
+
+const PDF_URL = "/Hmoob_Project.pdf";
 
 type Locale = "en" | "hmn" | "th";
 
