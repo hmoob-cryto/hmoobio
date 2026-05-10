@@ -104,3 +104,55 @@ export function useTokenPlatforms() {
     },
   });
 }
+
+export function useVisionSection() {
+  const { locale } = useLanguage();
+  return useQuery({
+    queryKey: ["vision_section", locale],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("vision_section")
+        .select("key, value")
+        .eq("locale", locale)
+        .eq("is_active", true);
+      if (error) throw error;
+      const map: Record<string, string> = {};
+      (data || []).forEach((r: any) => { map[r.key] = r.value ?? ""; });
+      return map;
+    },
+  });
+}
+
+export function useVisionDistribution() {
+  const { locale } = useLanguage();
+  return useQuery({
+    queryKey: ["vision_distribution", locale],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("vision_distribution")
+        .select("*")
+        .eq("locale", locale)
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data || [];
+    },
+  });
+}
+
+export function useEcosystemItems() {
+  const { locale } = useLanguage();
+  return useQuery({
+    queryKey: ["ecosystem_items", locale],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("ecosystem_items")
+        .select("*")
+        .eq("locale", locale)
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data || [];
+    },
+  });
+}

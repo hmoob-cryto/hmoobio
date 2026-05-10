@@ -745,6 +745,48 @@ export type Database = {
         }
         Relationships: []
       }
+      vision_distribution: {
+        Row: {
+          color: string
+          created_at: string
+          icon_name: string
+          id: string
+          is_active: boolean
+          key: string
+          label: string
+          locale: string
+          percent: number
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          key: string
+          label: string
+          locale?: string
+          percent?: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          key?: string
+          label?: string
+          locale?: string
+          percent?: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       vision_milestones: {
         Row: {
           created_at: string
@@ -781,6 +823,39 @@ export type Database = {
           status?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      vision_section: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          key: string
+          locale: string
+          sort_order: number
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          key: string
+          locale?: string
+          sort_order?: number
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          key?: string
+          locale?: string
+          sort_order?: number
+          updated_at?: string
+          value?: string
         }
         Relationships: []
       }
