@@ -482,12 +482,17 @@ export default function OurVision() {
                     ))}
                   </Pie>
                   <Tooltip
+                    cursor={{ fill: "transparent" }}
                     contentStyle={{
-                      background: "hsl(var(--surface))",
-                      border: "1px solid hsl(var(--border))",
+                      background: "hsl(220 25% 8% / 0.95)",
+                      border: "1px solid hsl(var(--primary) / 0.4)",
                       borderRadius: "12px",
-                      fontSize: "12px",
+                      fontSize: "13px",
+                      color: "#ffffff",
+                      boxShadow: "0 10px 30px -10px hsl(var(--primary) / 0.4)",
                     }}
+                    itemStyle={{ color: "#ffffff", fontWeight: 600 }}
+                    labelStyle={{ color: "#ffffff" }}
                     formatter={(value: number, _n, item: any) => [
                       `${value}%`,
                       dist[item.payload.key],
