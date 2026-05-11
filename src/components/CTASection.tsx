@@ -9,7 +9,7 @@ import danscanLogo from "@/assets/danscan-logo.png";
 const ctaApps = [
   { logo: hmoobLogo, name: "HMOOB Mining", url: "https://hmoob.io", icon: Pickaxe, ctaKey: "cta.launchApp" },
   { logo: dandexLogo, name: "DanDEX", url: "https://dandex.io", icon: ArrowLeftRight, ctaKey: "cta.tradeDex" },
-  { logo: danscanLogo, name: "DanScan", url: "https://danscan.io", icon: Search, ctaKey: "cta.exploreScan" },
+  { logo: danscanLogo, name: "DannyScan", url: "https://dannyscan.com", icon: Search, ctaKey: "cta.exploreScan" },
 ];
 
 export default function CTASection() {

@@ -115,7 +115,7 @@ export const Scene4Explorer: React.FC = () => {
             marginBottom: 16,
           }}
         >
-          danscan.io
+          dannyscan.com
         </div>
         <h2
           style={{

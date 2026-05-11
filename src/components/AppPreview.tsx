@@ -10,7 +10,7 @@ import { useCompatibleWallets } from "@/hooks/useDbData";
 const ecosystemApps = [
   { name: "HMOOB Mining", url: "https://hmoob.io", logo: hmoobLogo, descKey: "appPreview.hmoobDesc", borderColor: "hover:border-primary/30" },
   { name: "DanDEX", url: "https://dandex.io", logo: dandexLogo, descKey: "appPreview.dandexDesc", borderColor: "hover:border-emerald-400/30" },
-  { name: "DanScan", url: "https://danscan.io", logo: danscanLogo, descKey: "appPreview.danscanDesc", borderColor: "hover:border-sky-400/30" },
+  { name: "DannyScan", url: "https://dannyscan.com", logo: danscanLogo, descKey: "appPreview.danscanDesc", borderColor: "hover:border-sky-400/30" },
 ];
 
 export default function AppPreview() {
