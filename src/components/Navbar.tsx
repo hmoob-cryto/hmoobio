@@ -76,7 +76,7 @@ export default function Navbar() {
       <div className="container flex items-center justify-between h-18 py-3">
         <a href="#" className="flex items-center gap-2.5 group">
           <div className="relative">
-            <img src={logo} alt={`${siteName}${siteSuffix}`} className="w-11 h-11 rounded-full ring-2 ring-primary/20 group-hover:ring-primary/50 transition-all duration-300" />
+            <img src={logo} alt={`${siteName}${siteSuffix}`} className="w-14 h-14 rounded-full ring-2 ring-primary/60 group-hover:ring-primary transition-all duration-300 bg-background object-contain shadow-lg shadow-primary/20" />
             <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
           <span className="font-display text-lg font-bold text-foreground">
