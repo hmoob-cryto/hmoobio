@@ -40,8 +40,8 @@ export default function Hero() {
         {/* Logo */}
         <div className="mb-10 animate-fade-up-1">
           <div className="relative inline-block">
-            <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl scale-150 animate-glow-pulse" />
-            <img src={logo} alt="HMOOB Mining" className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full mx-auto ring-2 ring-primary/30 shadow-2xl shadow-primary/20" />
+            <div className="absolute inset-0 rounded-full bg-primary/30 blur-3xl scale-150 animate-glow-pulse" />
+            <img src={logo} alt="HMOOB Mining" className="relative w-40 h-40 sm:w-52 sm:h-52 rounded-full mx-auto ring-4 ring-primary/60 shadow-2xl shadow-primary/40 bg-background object-contain" />
           </div>
         </div>
 
