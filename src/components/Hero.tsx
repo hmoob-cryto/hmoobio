@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/hmoob-coin.jpeg";
 import heroBg from "@/assets/hero-bg.jpg";
 import bitgetLogo from "@/assets/bitget-wallet-logo.png";
 import dannychainLogo from "@/assets/dannychain-logo.png";
@@ -13,7 +13,7 @@ const ecosystemPartners = [
   { name: "DannyChain", logo: dannychainLogo, url: "https://dannychain.io", border: "hover:ring-primary/40" },
   { name: "DanDEX", logo: dandexLogo, url: "https://dandex.io", border: "hover:ring-sky-400/40" },
   { name: "DanMarket", logo: danmarketLogo, url: "https://danmarket.io", border: "hover:ring-secondary/40" },
-  { name: "DanScan", logo: danscanLogo, url: "https://danscan.io", border: "hover:ring-violet-400/40" },
+  { name: "DannyScan", logo: danscanLogo, url: "https://dannyscan.com", border: "hover:ring-violet-400/40" },
 ];
 
 export default function Hero() {
@@ -40,8 +40,8 @@ export default function Hero() {
         {/* Logo */}
         <div className="mb-10 animate-fade-up-1">
           <div className="relative inline-block">
-            <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl scale-150 animate-glow-pulse" />
-            <img src={logo} alt="HMOOB Mining" className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full mx-auto ring-2 ring-primary/30 shadow-2xl shadow-primary/20" />
+            <div className="absolute inset-0 rounded-full bg-primary/30 blur-3xl scale-150 animate-glow-pulse" />
+            <img src={logo} alt="HMOOB Mining" className="relative w-40 h-40 sm:w-52 sm:h-52 rounded-full mx-auto ring-4 ring-primary/60 shadow-2xl shadow-primary/40 bg-background object-contain" />
           </div>
         </div>
 

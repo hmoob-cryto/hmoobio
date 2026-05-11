@@ -13,7 +13,7 @@ export default function EcosystemFlow() {
   const { data: wallets } = useCompatibleWallets();
 
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section id="ecosystem" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsla(36,90%,55%,0.03)_0%,_transparent_60%)]" />
       <div className="container relative">
         <div className="text-center mb-20">

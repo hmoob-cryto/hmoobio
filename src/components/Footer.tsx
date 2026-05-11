@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-12 gap-10 mb-14">
           <div className="md:col-span-4">
             <div className="flex items-center gap-2.5 mb-4">
-              <img src={logo} alt={`${siteName}${siteSuffix}`} className="w-11 h-11 rounded-full ring-2 ring-primary/20" />
+              <img src={logo} alt={`${siteName}${siteSuffix}`} className="w-14 h-14 rounded-full ring-2 ring-primary/60 bg-background object-contain shadow-lg shadow-primary/20" />
               <span className="font-display text-xl font-bold">
                 <span className="text-gradient-gold">{siteName}</span><span className="text-muted-foreground">{siteSuffix}</span>
               </span>

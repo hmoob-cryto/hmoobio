@@ -5,7 +5,7 @@ import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 import Tokenomics from "@/components/Tokenomics";
 
-const CONTRACT_ADDRESS = "0xD84b7c96c23BAb37b585Bac98DFE6651D30F6c11";
+const CONTRACT_ADDRESS = "0x1c2cD5d8f44C2aa37c87676Ac4200c2329AB019d";
 
 export default function About() {
   const { t } = useLanguage();
@@ -66,13 +66,13 @@ export default function About() {
                 <div className="rounded-[2rem] overflow-hidden">
                   <img
                     src={danscanMobile}
-                    alt="DanScan Blockchain Explorer"
+                    alt="DannyScan Blockchain Explorer"
                     className="w-full h-auto"
                     loading="lazy"
                   />
                 </div>
               </div>
-              <p className="text-center text-xs font-mono text-primary/60 mt-4 tracking-wider">DanScan Explorer</p>
+              <p className="text-center text-xs font-mono text-primary/60 mt-4 tracking-wider">DannyScan Explorer</p>
             </div>
           </div>
         </div>
