@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/hmoob-coin.jpeg";
 import heroBg from "@/assets/hero-bg.jpg";
 import bitgetLogo from "@/assets/bitget-wallet-logo.png";
 import dannychainLogo from "@/assets/dannychain-logo.png";
