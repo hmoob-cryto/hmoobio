@@ -1,4 +1,4 @@
-import danscanMobile from "@/assets/danscan-mobile.jpeg";
+import danscanMobile from "@/assets/dannyscan-mobile.jpeg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useSiteLinks } from "@/hooks/useDbData";
 import { Copy, Check } from "lucide-react";
