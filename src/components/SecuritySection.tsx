@@ -49,7 +49,7 @@ export default function SecuritySection() {
           })}
         </div>
         <div className="mt-14 text-center">
-          <a href="https://danscan.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-6 py-3 rounded-xl hover:bg-secondary/5">
+          <a href="https://dannyscan.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-mono text-secondary hover:text-secondary/80 transition-colors border border-secondary/20 px-6 py-3 rounded-xl hover:bg-secondary/5">
             <Eye size={16} />{t("security.verify")}
           </a>
         </div>

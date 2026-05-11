@@ -13,7 +13,7 @@ const ecosystemPartners = [
   { name: "DannyChain", logo: dannychainLogo, url: "https://dannychain.io", border: "hover:ring-primary/40" },
   { name: "DanDEX", logo: dandexLogo, url: "https://dandex.io", border: "hover:ring-sky-400/40" },
   { name: "DanMarket", logo: danmarketLogo, url: "https://danmarket.io", border: "hover:ring-secondary/40" },
-  { name: "DanScan", logo: danscanLogo, url: "https://danscan.io", border: "hover:ring-violet-400/40" },
+  { name: "DannyScan", logo: danscanLogo, url: "https://dannyscan.com", border: "hover:ring-violet-400/40" },
 ];
 
 export default function Hero() {

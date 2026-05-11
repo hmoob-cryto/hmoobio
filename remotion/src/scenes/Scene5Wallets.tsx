@@ -197,7 +197,7 @@ export const Scene5Wallets: React.FC = () => {
           zIndex: 1,
         }}
       >
-        hmoob.io · dandex.io · danscan.io
+        hmoob.io · dandex.io · dannyscan.com
       </div>
     </AbsoluteFill>
   );

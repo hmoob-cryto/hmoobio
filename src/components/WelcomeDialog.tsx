@@ -98,7 +98,7 @@ export default function WelcomeDialog() {
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <span>dandex.io</span>
               <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span>danscan.io</span>
+              <span>dannyscan.com</span>
             </div>
           </div>
         </div>
